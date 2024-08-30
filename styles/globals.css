@@ -3013,7 +3013,7 @@ textarea.form-control-lg {
 
 .btn-sub-danger {
   --bs-btn-color: #fff;
-  --bs-btn-bg: #7a1414;
+  --bs-btn-bg: #7a1414 !important;
   --bs-btn-border-color: #7a1414;
   --bs-btn-hover-color: #fff;
   --bs-btn-hover-bg: #bb2d3b;

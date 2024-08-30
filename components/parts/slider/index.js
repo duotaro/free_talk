@@ -10,18 +10,9 @@ import '@splidejs/splide/css'; // デフォルトのテーマを読み込んで�
 
 export default function SliderList({ sliderList }) {
 
-  // useEffect(() => {
-  //   const glide = new Glide('.glide', {
-  //     type: 'carousel',
-  //     perView: 1,
-  //     focusAt: 'center',
-  //   });
-
-  //   glide.mount();
-  // }, []);
 
     return (
-        <div className="row m-5">
+        <div className="row m-3">
           <section>
             <Splide
               aria-label="私のお気に入りの画像集"

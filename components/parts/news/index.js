@@ -1,17 +1,18 @@
 
 
 import { NEWS_GENRES, NEWS_GENRE } from "../../../const";
+import React, { useState, useCallback, useRef } from "react";
 import Link from "next/link";
-import NewsEntity from '../../../entity/newsEntity'
+import TopNewsEntity from '../../../entity/newsEntity'
 
 export default function News({ newsList }) {
-    console.log(newsList)
+  const [currentTab, setCurrentTab] = useState(NEWS_GENRE.LATEST)
   let resList = []
   let latestList = []
   let parentList = []
   let entryList = []
   for(let item of newsList) {
-    let res = new NewsEntity(item)
+    let res = new TopNewsEntity(item)
     resList.push(res)
     if(res.tag == NEWS_GENRE.LATEST){
         latestList.push(res)
@@ -22,8 +23,9 @@ export default function News({ newsList }) {
     }
   }
 
-  console.log(resList)
-
+  const handleClickTab = (genre) => {
+    setCurrentTab(genre);
+  };
 
 
   return (
@@ -32,33 +34,49 @@ export default function News({ newsList }) {
         <h1>最新情報</h1>
         <p>What's New? - Updated On Oct 17th</p>
       </div>
-      <ul class="nav nav-tabs">
+      <ul className="nav nav-tabs">
         {NEWS_GENRES.map((genre) => {
+            let active = genre == currentTab ? "active" : ""
             return (
-            <li class="nav-item">
-                <a class="nav-link" aria-current="page" data-bs-target={`#${genre}`}>{genre}</a>
+            <li className="nav-item font-weight-bold">
+                <button className={`nav-link ${active}`} nav-link aria-current="page" data-bs-target={`#${genre}`} onClick={() => handleClickTab(genre)}>{genre}</button>
             </li>
             )
         })}
       </ul>
-      <div class="tab-content">
-        <div class="tab-pane active" id={NEWS_GENRE.LATEST}>
-          <ul class="list-group list-group-flush">
+      <div className="tab-content">
+        <div className={`tab-pane ${currentTab == NEWS_GENRE.LATEST ? "active" : ""}`} id={NEWS_GENRE.LATEST}>
+          <ul className="list-group list-group-flush">
             {latestList.map((item) => {
                 return (
-                
-                  <li class="list-group-item">
-                    <a href={item.url} target="_blank">{item.title}</a>
+                  <li className="list-group-item">
+                    <a className={`text-decoration-none ${item.url ? "link-secondary" :  "text-secondary"}`} href={item.url} target="_blank">・{item.title}</a>
                   </li>
                 )
             })}
             </ul>
         </div>
-        <div class="tab-pane" id="parent">
-            <img src="images/photo2.jpg" class="img-fluid" alt="写真：猫がソファの隅で寝ている" />
+        <div className={`tab-pane ${currentTab == NEWS_GENRE.PARENT ? "active" : ""}`} id={NEWS_GENRE.PARENT}>
+          <ul className="list-group list-group-flush">
+            {parentList.map((item) => {
+                return (
+                  <li className="list-group-item">
+                    <a className={`text-decoration-none ${item.url ? "link-secondary" :  "text-secondary"}`} href={item.url} target="_blank">・{item.title}</a>
+                  </li>
+                )
+            })}
+          </ul>
         </div>
-        <div class="tab-pane" id="photo3-pane">
-            <img src="images/photo3.jpg" class="img-fluid" alt="写真：カメラの方向を向く猫の顔" />
+        <div className={`tab-pane ${currentTab == NEWS_GENRE.ENTRY ? "active" : ""}`} id={NEWS_GENRE.ENTRY}>
+          <ul className="list-group list-group-flush">
+            {entryList.map((item) => {
+                return (
+                  <li className="list-group-item">
+                    <a className={`text-decoration-none ${item.url ? "link-secondary" :  "text-secondary"}`} href={item.url} target="_blank">・{item.title}</a>
+                  </li>
+                )
+            })}
+          </ul>
         </div>
       </div>
     </section>

@@ -1,42 +1,110 @@
-This is a [Next.js](https://nextjs.org/) blog using [Notions Public API](https://developers.notion.com).
-NotionをヘッドレスCMSとして利用したブログ
+Notionで編集した内容をローカル環境でAPI経由で取得し、静的ページを作成します。
+## 大まかな流れ
+1.環境構築
+2.Notion編集
+3.ローカル環境で静的ページを作成
+4.vercelでdeployして本番環境に
 
-__デモ:__ [https://notion-blog-nextjs-coral.vercel.app](https://notion-blog-nextjs-coral.vercel.app)
-
-__How-it-works/Documentation:__ [https://samuelkraft.com/blog/building-a-notion-blog-with-public-api](https://samuelkraft.com/blog/building-a-notion-blog-with-public-api)
-
-## Getting Started
-
-First, follow Notions [getting started guide](https://developers.notion.com/docs/getting-started) to get a `NEXT_PUBLIC_NOTION_TOKEN` and a `NEXT_PUBLIC_NOTION_DATABASE_ID`, then add them to a file called `.env.local`.
-
-As a reference here's the Notion table I am using: https://www.notion.so/5b53abc87b284beab0c169c9fb695b4d?v=e4ed5b1a8f2e4e12b6d1ef68fa66e518
-
+## 環境構築
+### ソースコードをローカルにクローン
+ターミナルでこちらを実行してください。（macなら標準でgitがインストールされているが、Windowsは自分でやらないとダメかも）
 ```
-NEXT_PUBLIC_NOTION_TOKEN=
-NEXT_PUBLIC_NOTION_DATABASE_ID=
+git clone git@github.com:arizonagakuenschool/official.git
 ```
 
-Install dependencies
-
+ターミナルでcloneしたディレクトリに移動して以下の内容を実行します。
+インストール
 ```bash
 npm install
 # or
 yarn
 ```
 
-Start the server with
-
+ローカル環境起動
 ```bash
 npm run dev
 # or
 yarn dev
 ```
+起動できたら　[http://localhost:3000](http://localhost:3000) にアクセスすると画面が表示されます。
+この環境はローカルでの威動くものであり、本番とは関係がありません。
+修正した内容が正しく編集できているか確認できます。
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+### googleアカウント
+arizonagakuendeveloper@gmail.com　を作成済み。パスワードは後日共有（いつものデュオ＝＞みなみ）
+必要があれば編集者ごとに作成する。
 
-### tweet埋め込み
-https://blog.35d.jp/2020-04-10-notion-blog-twitter-card
-これを参考に
+### githubアカウントを作成
+arizonagakuendeveloper@gmail.comで作成済み。Googleアカウントでログインできるようになっている。
+
+
+### githubのsshキー設定
+変更があった時にその内容をgithubに反映できるようにする。
+これを設定した人しか変更内容を反映できません。またセキュリティ上の問題があるので、編集者それぞれがこの作業を実施してください。
+必要があれば編集者ごとにアカウントを作成して、リポジトリを共有してください。
+
+以下の方法に従ってSSHキーを作成します。
+https://docs.github.com/ja/authentication/connecting-to-github-with-ssh/adding-a-new-ssh-key-to-your-github-account
+
+ターミナルを起動して以下を実行します。
+```
+ssh-keygen -t ed25519 -C "githubに登録したメールアドレス"
+```
+実行するとファイル名（ここではgithub＿sshとします）を指定して作成。作成時にパスワード入力が求められます。
+
+次に.ssh/configに以下の内容を追加
+ターミナルで
+```
+cd ~/.ssh
+```
+とすると、移動先にconfigファイルがあります。このファイルに以下の内容を追記してください。
+（github＿sshの部分はご自身で設定したファイル名）
+```
+Host github github.com
+  HostName github.com
+  User git
+  Port 22
+  IdentityFile ~/.ssh/github＿ssh
+  IdentitiesOnly yes
+```
+
+
+ターミナルで以下のコマンドを実行して作成したキーをコピーしてください。（github＿sshの部分はご自身で設定したファイル名）
+末尾に「.pub」をつけるのを忘れないでください。
+```
+pbcopy < ~/.ssh/github＿ssh.pub
+```
+
+githubの設定画面に遷移
+https://github.com/settings/keys
+
+「new SSH key」を押してコピーしたキーを追加（名前はなんでも）
+成功すれば追加されているはずです。
+
+### Notionの設定
+アカウントはarizonagakuendeveloper@gmail.comで作成済み。Googleアカウントでログインできるようになっている。
+
+
+Notion APIのシークレットキーを作成します
+https://www.notion.so/profile/integrations
+ここらか「新しいインテグレーション」を選択し、情報を入力してら保存してください。
+内部インテグレーションシークレットと表示されている箇所があるので、表示してコピーします。
+
+secret_xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
+
+このような形式であるはずです。
+これをコピーしておきましょう。
+
+### ソースコードの修正
+プロジェクト直下「.env.local」ファイルを作成してください。（新規ファイル作成でファイル名を「.env.local」とすればいいです）
+作成したら以下のように`NEXT_PUBLIC_NOTION_TOKEN`に先ほど取得したシークレットキーを設定します
+```
+NEXT_PUBLIC_NOTION_TOKEN=secret_xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
+```
+これでNotionの内容をローカル環境で読み取ることができるようになります。
+
+### Notionの情報編集
+
 
 
 ### deploy
