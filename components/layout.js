@@ -1,7 +1,7 @@
 import Head from "next/head";
 import Navbar from './navbar'
 import Footer from './footer'
-import { GENRE_LIST, AD_CLIENT_ID } from "../const";
+import Nav from './nav'
 import AdSense from '../components/ads/ad'
 import 'bootstrap/dist/css/bootstrap.min.css'
 
@@ -15,23 +15,7 @@ export default function Layout({ children }) {
       </Head>
       <Navbar />
       <AdSense />
-      <nav className="navbar navbar-expand navbar-light bg-dark gnav">
-        <div className="text-center text-white ">
-          <ul className="nav nav-pills nav-fill">
-            {GENRE_LIST.map((genre) => {
-            return (
-              <li className="nav-item" key={genre.name}>
-                <a className="nav-link " aria-current="page" href={genre.url}>
-                  {genre.name}
-                </a>
-                <p style={{display: 'none'}}>{genre.url}</p>
-              </li>
-            )
-            })}
-          </ul>
-        </div>
-      
-      </nav>
+      <Nav />
       <main>{children}</main>
       <Footer />
     </>

@@ -46,6 +46,8 @@ export default function Home({ sliderList, newsList, contentList }) {
     let content = new ContentEntity(item)
     mainContent.push(content)
   }
+  mainContent.sort((a, b) => a.ordering - b.ordering);
+
   return (
     <Layout>
       <Head>
@@ -63,51 +65,42 @@ export default function Home({ sliderList, newsList, contentList }) {
           {mainContent.map((item) => {
             return (
               <div className="col mb-3">
-                  <a className="card h-100 text-decoration-none" href="https://www.frysfood.com/i/community/community-rewards">
-                      <div className="card-body p-4">
-                          <div className="text-center">
-                              <p className="fw-bolder">Fry'sが主催するCommunity Rewards Program にアリゾナ学園（寄付先 : Arizona Kokusai Kyoiku Shinkokai）として参加しています。下記よりアカウント登録を頂きますと、お買い物をされる度に、Fry'sよりアリゾナ学園へ寄付を頂ける仕組みとなっております。是非ご協力をお願い致します。</p>
-                          </div>
-                          <img className="p-5 w-100" src="https://arizonagakuenschool.org/wp-content/uploads/2021/05/314272.png" alt="..." />
-                      </div>
+                {item.mainLink && (
+                  <a className="card h-100 text-decoration-none"  href={item.mainLink}>
+                    <div className="card-body p-4">
+                        <div className="text-center">
+                            <p className="fw-bolder">{item.contentText}</p>
+                        </div>
+                        <div className="text-center">
+                          <img className="p-3 w-50" src={item.image1} alt="..." />
+                        </div>
+                    </div>
                   </a>
+                )}
+                {!item.mainLink && (
+                  <div className="card h-100 text-decoration-none"  href={item.mainLink}>
+                    <div className="card-body p-4">
+                        <div className="text-center">
+                        <p className="fw-bolder">{item.contentText}</p>
+                        </div>
+                        <div className="text-center">
+                          <a href={item.image1Link}><img className="p-3 w-50" src={item.image1} alt="..." /></a>
+                          </div>
+                        <div className="text-center">
+                          <a href={item.image2Link}><img className="p-3 w-50" src={item.image2} alt="..." /></a>
+                        </div>
+                        <div className="text-center">
+                          <a href={item.image3Link}><img className="p-3 w-50" src={item.image3} alt="..." /></a>
+                        </div>
+                    </div>
+                  </div>
+                )}
               </div>
             )
           })}
           </div>
           </section>
-          // <section className="col-lg-12">
-          //   <div className="row gx-4 gx-lg-5 row-cols-sm-2 row-cols-1 justify-content-center">
-          //     <div className="col mb-3">
-          //         <a className="card h-100 text-decoration-none" href="https://www.frysfood.com/i/community/community-rewards">
-          //             <div className="card-body p-4">
-          //                 <div className="text-center">
-          //                     <p className="fw-bolder">Fry'sが主催するCommunity Rewards Program にアリゾナ学園（寄付先 : Arizona Kokusai Kyoiku Shinkokai）として参加しています。下記よりアカウント登録を頂きますと、お買い物をされる度に、Fry'sよりアリゾナ学園へ寄付を頂ける仕組みとなっております。是非ご協力をお願い致します。</p>
-          //                 </div>
-          //                 <img className="p-5 w-100" src="https://arizonagakuenschool.org/wp-content/uploads/2021/05/314272.png" alt="..." />
-          //             </div>
-          //         </a>
-          //     </div>
-          //     <div className="col mb-3">
-          //         <a className="card h-100 text-decoration-none" href="https://www.frysfood.com/i/community/community-rewards">
-          //             <div className="card-body p-4">
-          //                 <div className="text-center">
-          //                     <p className="fw-bolder">アリゾナ学園スクールは様々な協賛によって成り立っています。</p>
-          //                     <div className="text-center">
-          //                       <img className="pl-5 pr-5 pb-3 w-50" src="https://arizonagakuenschool.org/wp-content/uploads/2019/05/2.png" alt="..." />
-          //                     </div>
-          //                     <div className="text-center">
-          //                       <img className="pl-5 pr-5 pb-3 w-50" src="https://arizonagakuenschool.org/wp-content/uploads/2021/03/Screenshot_2.png" alt="..." />
-          //                     </div>
-          //                     <div className="text-center">
-          //                       <img className="pl-5 pr-5 w-50" src="https://arizonagakuenschool.org/wp-content/uploads/2019/05/1-1.png" alt="..." />
-          //                     </div>
-          //                 </div>
-          //             </div>
-          //         </a>
-          //     </div>
-          //   </div>
-          // </section>
+       
         </div>{/* .row */}
       </div>{/* .container */}
     </Layout>
@@ -139,17 +132,7 @@ export const getStaticProps = async (context) => {
 const getSlider = async () => {
   const topBannerId = "110fbaeb5f264e91a12487969cc4c214"
   const database = await getDatabase(topBannerId)
-  
-  let sliderList = []
-  for(const item of database) {
-    if(!item){
-      continue
-    }
-    
-    sliderList.push(item)
-  }
-
-  return sliderList
+  return database
 }
 
 /**
@@ -159,33 +142,13 @@ const getSlider = async () => {
 const getNews = async () => {
   const topNewsBannerID = "e48122663a9641bc8c786a16694dd364"
   const database = await getDatabase(topNewsBannerID)
-  
-  let newsList = []
-  for(const item of database) {
-    if(!item){
-      continue
-    }
-    
-    newsList.push(item)
-  }
-
-  return newsList
+  return database
 }
 
 const getContent = async () => {
   const topContentId = "15f19797da4c4a958182b8d7971d17d4"
   const database = await getDatabase(topContentId)
-
-  let contentList = []
-  for(const item of database) {
-    if(!item){
-      continue
-    }
-    
-    contentList.push(item)
-  }
-
-  return contentList
+  return database
 }
 
 export async function generateMetadata({ params }) {

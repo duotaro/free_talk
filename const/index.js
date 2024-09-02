@@ -1,7 +1,5 @@
-/** ドメイン */
-export const DOMAIN = process.env.NEXT_PUBLIC_DOMAIN ?? 'https://duotaro.github.io'
-/** baseurl */
-export const BASE_URL = process.env.NEXT_PUBLIC_DOMAIN ?? 'https://duotaro.github.io'
+import {HeaderMenuEntity, DropDownsEntity, SubMenuEntity} from "../entity/menuEntity"
+import {DOMAIN, URLS} from "../const/pageUrl"
 
 /** 最新情報 */
 export const NEWS_GENRE = {
@@ -99,3 +97,17 @@ export const RECOMMEND_LIST = [
         url: 'https://duotaro.github.io/blog/ai/detail/ade7a08a-fa2b-41d0-81cc-8b112d993813/'
     },
 ]
+
+/** header menu */
+/** 学園紹介 */
+const ABOUT_DROPDOWNS = [
+    new DropDownsEntity(URLS.ABOUT_URL.PAGE_TITLE, URLS.ABOUT_URL.PAGE_URL, []),
+    new DropDownsEntity(URLS.MESSAGE_URL.PAGE_TITLE, URLS.MESSAGE_URL.PAGE_URL, []),
+    new DropDownsEntity(URLS.GENERAL_URL.PAGE_TITLE, URLS.GENERAL_URL.PAGE_URL, [])
+]
+
+export const HEADER_MENU = {
+    HOME: new HeaderMenuEntity(URLS.HOME_URL.PAGE_TITLE, URLS.HOME_URL.PAGE_URL, []),
+    ABOUT: new HeaderMenuEntity("学園紹介", null, ABOUT_DROPDOWNS)
+}
+

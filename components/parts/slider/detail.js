@@ -6,7 +6,7 @@ export default function SliderDetail({slider}) {
         <SplideSlide>
             <div className="card align-middle" style={{backgroundImage:`url('${post.image}')`, minHeight:'360px', backgroundSize:'cover', backgroundPosition:'center center'}}>
                 {/* <img className="card-img-top border-bottom img-responsive" src={post.image} alt="..." /> */}
-                <div className="card-body p-4 align-middle ">
+                <div className="card-body p-4 align-bottom ">
                     <div className="text-center align-middle">
                         <h5 className="fw-bolder text-white">{post.subTitle}</h5>
                         <h2 className="fw-bolder text-white">{post.title}</h2>
