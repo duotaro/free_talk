@@ -1,15 +1,14 @@
 import React, { Fragment } from 'react';
 import Head from "next/head.js";
-import Link from "next/link.js";
+import { useLocale } from "../utils/locale";
 import { getDatabase } from "../lib/notion.js";
 import Layout from '../components/layout.js'
 export const databaseId = process.env.NEXT_PUBLIC_NOTION_DATABASE_ID;
-import { GENRE_LIST, NEWS_GENRES } from "../const/index.js";
-import Side from '../components/parts/widget/side.js'
 import SliderList from '../components/parts/slider/index.js';
 import News from '../components/parts/news/index.js';
 import ContentEntity from '../entity/contentEntity.js';
 import { fetchGss } from '../lib/appscript.js';
+import Side from '../components/parts/widget/side.js'
 
 
 export const Text = ({ text }) => {
@@ -39,67 +38,75 @@ export const Text = ({ text }) => {
   });
 };
 
-export default function Home({ sliderList, newsList, contentList }) {
+export default function Home({ sliderList, newsList, sponsors }) {
 
-  let mainContent = []
+  let sponsorList = []
   
-  for(let item of contentList){
-    let content = new ContentEntity(item)
-    mainContent.push(content)
+  for(let item of sponsors){
+    let sponsor = new ContentEntity(item)
+    sponsorList.push(sponsor)
   }
-  mainContent.sort((a, b) => a.ordering - b.ordering);
 
+  
+
+  const { json } = useLocale()
+
+  console.log(json)
   return (
     <Layout>
       <Head>
-        <title>Techvenience - トップ -</title>
+        <title>ツーソン日本語補習校 - トップ -</title>
         <link rel="icon" href="/favicon.ico" />
       </Head>
       <div className="container mt-5">
         {/* Slider */}
-        <SliderList sliderList={sliderList}></SliderList>
-        {/* Slider */}
-        <News newsList={newsList}></News>
+        <SliderList sliderList={sliderList}></SliderList>        
         <div className="row">
-        <section className="col-lg-12">
-        <div className="row gx-4 gx-lg-5 row-cols-sm-2 row-cols-1 justify-content-center">
-          {mainContent.map((item) => {
-            return (
-              <div className="col mb-3">
-                {item.mainLink && (
-                  <a className="card h-100 text-decoration-none"  href={item.mainLink}>
-                    <div className="card-body p-4">
-                        <div className="text-center">
-                            <p className="fw-bolder">{item.contentText}</p>
-                        </div>
-                        <div className="text-center">
-                          <img className="p-3 w-50" src={item.image1} alt="..." />
-                        </div>
-                    </div>
-                  </a>
-                )}
-                {!item.mainLink && (
-                  <div className="card h-100 text-decoration-none"  href={item.mainLink}>
-                    <div className="card-body p-4">
-                        <div className="text-center">
-                        <p className="fw-bolder">{item.contentText}</p>
-                        </div>
-                        <div className="text-center">
-                          <a href={item.image1Link}><img className="p-3 w-50" src={item.image1} alt="..." /></a>
+          <section className="col-lg-8">
+            <News newsList={newsList} lang={json.news}></News>
+            <div className="row gx-4 gx-lg-5 row-cols-sm-2 row-cols-1 justify-content-center">
+               
+            {/* {mainContent.map((item) => {
+              return (
+                <div className="col mb-3" key={item.ordering}>
+                  {item.mainLink && (
+                    <a className="card h-100 text-decoration-none"  href={item.mainLink}>
+                      <div className="card-body p-4">
+                          <div className="text-center">
+                              <p className="fw-bolder">{item.contentText}</p>
                           </div>
-                        <div className="text-center">
-                          <a href={item.image2Link}><img className="p-3 w-50" src={item.image2} alt="..." /></a>
-                        </div>
-                        <div className="text-center">
-                          <a href={item.image3Link}><img className="p-3 w-50" src={item.image3} alt="..." /></a>
-                        </div>
+                          <div className="text-center">
+                            <img className="p-3 w-50" src={item.image1} alt="..." />
+                          </div>
+                      </div>
+                    </a>
+                  )}
+                  {!item.mainLink && (
+                    <div className="card h-100 text-decoration-none"  href={item.mainLink}>
+                      <div className="card-body p-4">
+                          <div className="text-center">
+                          <p className="fw-bolder">{item.contentText}</p>
+                          </div>
+                          <div className="text-center">
+                            <a href={item.image1Link}><img className="p-3 w-50" src={item.image1} alt="..." /></a>
+                            </div>
+                          <div className="text-center">
+                            <a href={item.image2Link}><img className="p-3 w-50" src={item.image2} alt="..." /></a>
+                          </div>
+                          <div className="text-center">
+                            <a href={item.image3Link}><img className="p-3 w-50" src={item.image3} alt="..." /></a>
+                          </div>
+                      </div>
                     </div>
-                  </div>
-                )}
-              </div>
-            )
-          })}
-          </div>
+                  )}
+                </div>
+              )
+            })} */}
+            </div>
+          </section>
+          {/* Side widgets*/}
+          <section className="col-lg-4">
+            <Side sponsorList={sponsorList} lang={json.sponsors}/>
           </section>
        
         </div>{/* .row */}
@@ -114,16 +121,19 @@ export const getStaticProps = async (context) => {
   // get news
   let newsList = await getNews()
   // get content
-  let contentList = await getContent()
+  let sponsors = await getSponsors()
 
-
-
-  getNewsFromGSS()
+  //let sponsors = item.sponsors
+  // for(let sponsor in sponsors) {
+  //   let res = sponsors[sponsor]
+  //   console.log(res)
+  //   console.log(res.image)
+  // }
   return {
     props: {
       sliderList: sliderList,
       newsList: newsList,
-      contentList: contentList
+      sponsors: sponsors
     },
     revalidate: 1
   };
@@ -149,7 +159,7 @@ const getNews = async () => {
   return database
 }
 
-const getContent = async () => {
+const getSponsors = async () => {
   const topContentId = "15f19797da4c4a958182b8d7971d17d4"
   const database = await getDatabase(topContentId)
   return database
@@ -183,7 +193,14 @@ export async function generateMetadata({ params }) {
 
 let getNewsFromGSS = async () => {
   let news = await fetchGss("news")
+  let sponsors = await fetchGss("sponsors")
   console.log("===================================")
   console.log(news)
+  console.log(sponsors)
   console.log("===================================")
+
+  return {
+    news,
+    sponsors
+  }
 }

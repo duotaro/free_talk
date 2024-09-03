@@ -1,4 +1,4 @@
-import {HeaderMenuEntity, DropDownsEntity, SubMenuEntity} from "../entity/menuEntity"
+import {HeaderMenuEntity, DropDownsEntity} from "../entity/menuEntity"
 import {DOMAIN, URLS} from "../const/pageUrl"
 
 /** 最新情報 */
@@ -101,13 +101,13 @@ export const RECOMMEND_LIST = [
 /** header menu */
 /** 学園紹介 */
 const ABOUT_DROPDOWNS = [
-    new DropDownsEntity(URLS.ABOUT_URL.PAGE_TITLE, URLS.ABOUT_URL.PAGE_URL, []),
-    new DropDownsEntity(URLS.MESSAGE_URL.PAGE_TITLE, URLS.MESSAGE_URL.PAGE_URL, []),
-    new DropDownsEntity(URLS.GENERAL_URL.PAGE_TITLE, URLS.GENERAL_URL.PAGE_URL, [])
+    new DropDownsEntity(URLS.ABOUT_URL, []),
+    new DropDownsEntity(URLS.MESSAGE_URL, []),
+    new DropDownsEntity(URLS.GENERAL_URL, [])
 ]
 
 export const HEADER_MENU = {
-    HOME: new HeaderMenuEntity(URLS.HOME_URL.PAGE_TITLE, URLS.HOME_URL.PAGE_URL, []),
-    ABOUT: new HeaderMenuEntity("学園紹介", null, ABOUT_DROPDOWNS)
+    HOME: new HeaderMenuEntity(URLS.HOME_URL, []),
+    ABOUT: new HeaderMenuEntity(URLS.ABOUT_URL, ABOUT_DROPDOWNS)
 }
 

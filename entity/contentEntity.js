@@ -1,8 +1,9 @@
 export default class ContentEntity {
     constructor(item){
         this.ordering =  item.properties["ordering"].number
+        this.year = item.properties["year"].rich_text[0].text.content
         this.title = item.properties["title"].title[0].text.content
-        this.contentText = item.properties["contentText"].rich_text[0].text.content
+        this.i18nkey = item.properties["i18nkey"].rich_text[0].text.content
         this.image1 = item.properties["image1"].files[0].file.url
         if(item.properties["image2"].files[0]){
             this.image2 = item.properties["image2"].files[0].file.url
@@ -22,6 +23,7 @@ export default class ContentEntity {
             this.mainLink = undefined
         }
 
+        console.log(this)
         
     }
 }

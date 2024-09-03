@@ -1,7 +1,4 @@
 import React, { useEffect } from 'react';
-import Glide from '@glidejs/glide';
-import '@glidejs/glide/dist/css/glide.core.min.css';
-import '@glidejs/glide/dist/css/glide.core.css';
 import SliderDetail from '../slider/detail'
 
 import { Splide, SplideSlide } from "@splidejs/react-splide";

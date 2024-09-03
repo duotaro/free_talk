@@ -1,13 +1,13 @@
 import { HEADER_MENU } from "../const";
-
-console.log(HEADER_MENU)
+import { useLocale } from "../utils/locale";
 
 export default function Nav({  }) {
+  const { json } = useLocale()
+  const lang = json.navigation
+
   return (
     <nav className="navbar navbar-expand-lg navbar-light bg-dark gnav"> 
-        {/* <a className="navbar-brand" href="#">Navbar</a> */}
         <button className="navbar-toggler text-white " type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-          {/* <span className="navbar-toggler-icon text-light"></span> */}
           <i className="bi bi-list"></i>
         </button>
         <div className="collapse navbar-collapse text-center" id="navbarSupportedContent">
@@ -17,19 +17,19 @@ export default function Nav({  }) {
             return (
               <>
               {!item.dropdowns.length && (
-                <li className="nav-item">
-                  <a className="nav-link text-light" aria-current="page" href={item.link}>{item.title}</a>
+                <li className="nav-item" key={item.key}>
+                  <a className="nav-link text-light" aria-current="page" href={item.link}>{lang[item.key]}</a>
                 </li>
               )}
               {item.dropdowns.length && (
-                <li className="nav-item dropdown">
-                  <a className="nav-link dropdown-toggle text-light" href="#" id={item.title} role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                  {item.title}
+                <li className="nav-item dropdown" key={item.key}>
+                  <a className="nav-link dropdown-toggle text-light" href="#" id={item.key} role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                  {lang[item.key]}
                   </a>
-                  <ul className="dropdown-menu" aria-labelledby={item.title}>
+                  <ul className="dropdown-menu" aria-labelledby={item.keys}>
                     {item.dropdowns.map((dropdown) => {
                       return (
-                        <li><a className="dropdown-item" href={dropdown.link}>{dropdown.title}</a></li>  
+                        <li><a className="dropdown-item" href={dropdown.link}>{lang[dropdown.key]}</a></li>  
                       )
                     })}
                   </ul>

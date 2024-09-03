@@ -1,0 +1,22 @@
+{
+   "navigation": {
+      "title": "Tucson Japanese Language School",
+      "sub_title": "ツーソン日本語補習校",
+      "home": "HOME",
+      "about": "ABOUT",
+      "admissions": "ENDROLLMENT",
+      "faq": "よくある質問",
+      "visit": "お問い合わせ",
+      "square": "オンライン決済",
+      "tucsonadultjapanese": "よくある質問"
+   },
+    "footer": {
+      "title": "CONTACT INFO"
+    },
+    "sponsors": {
+      "sponsors": "Sponsors {year}"
+    },
+    "news": {
+      "title": "News"
+    }
+}

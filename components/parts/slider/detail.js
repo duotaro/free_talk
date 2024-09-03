@@ -4,7 +4,7 @@ export default function SliderDetail({slider}) {
     let post = new SliderEntity(slider)
     return (
         <SplideSlide>
-            <div className="card align-middle" style={{backgroundImage:`url('${post.image}')`, minHeight:'360px', backgroundSize:'cover', backgroundPosition:'center center'}}>
+            <div className="card align-middle" style={{backgroundImage:`url('${post.image}')`, minHeight:'360px', backgroundSize:'cover', backgroundPosition:'center center'}} key={post.title}>
                 {/* <img className="card-img-top border-bottom img-responsive" src={post.image} alt="..." /> */}
                 <div className="card-body p-4 align-bottom ">
                     <div className="text-center align-middle">

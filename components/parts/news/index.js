@@ -5,7 +5,7 @@ import React, { useState, useCallback, useRef } from "react";
 import Link from "next/link";
 import TopNewsEntity from '../../../entity/newsEntity'
 
-export default function News({ newsList }) {
+export default function News({ newsList, lang }) {
   const [currentTab, setCurrentTab] = useState(NEWS_GENRE.LATEST)
   let resList = []
   let latestList = []
@@ -31,14 +31,13 @@ export default function News({ newsList }) {
   return (
     <section className="card p-2 m-3">
       <div className="text-center">
-        <h1>最新情報</h1>
-        <p>What's New? - Updated On Oct 17th</p>
+        <h1>{lang.title}</h1>
       </div>
       <ul className="nav nav-tabs">
         {NEWS_GENRES.map((genre) => {
             let active = genre == currentTab ? "active" : ""
             return (
-            <li className="nav-item font-weight-bold">
+            <li className="nav-item font-weight-bold" key={genre}>
                 <button className={`nav-link ${active}`} nav-link aria-current="page" data-bs-target={`#${genre}`} onClick={() => handleClickTab(genre)}>{genre}</button>
             </li>
             )
@@ -49,7 +48,7 @@ export default function News({ newsList }) {
           <ul className="list-group list-group-flush">
             {latestList.map((item) => {
                 return (
-                  <li className="list-group-item">
+                  <li className="list-group-item" key={item.title}>
                     <a className={`text-decoration-none ${item.url ? "link-secondary" :  "text-secondary"}`} href={item.url} target="_blank">・{item.title}</a>
                   </li>
                 )
@@ -60,7 +59,7 @@ export default function News({ newsList }) {
           <ul className="list-group list-group-flush">
             {parentList.map((item) => {
                 return (
-                  <li className="list-group-item">
+                  <li className="list-group-item" key={item.title}>
                     <a className={`text-decoration-none ${item.url ? "link-secondary" :  "text-secondary"}`} href={item.url} target="_blank">・{item.title}</a>
                   </li>
                 )
@@ -71,7 +70,7 @@ export default function News({ newsList }) {
           <ul className="list-group list-group-flush">
             {entryList.map((item) => {
                 return (
-                  <li className="list-group-item">
+                  <li className="list-group-item" key={item.title}>
                     <a className={`text-decoration-none ${item.url ? "link-secondary" :  "text-secondary"}`} href={item.url} target="_blank">・{item.title}</a>
                   </li>
                 )
