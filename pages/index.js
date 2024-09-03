@@ -9,6 +9,7 @@ import Side from '../components/parts/widget/side.js'
 import SliderList from '../components/parts/slider/index.js';
 import News from '../components/parts/news/index.js';
 import ContentEntity from '../entity/contentEntity.js';
+import { fetchGss } from '../lib/appscript.js';
 
 
 export const Text = ({ text }) => {
@@ -115,6 +116,9 @@ export const getStaticProps = async (context) => {
   // get content
   let contentList = await getContent()
 
+
+
+  getNewsFromGSS()
   return {
     props: {
       sliderList: sliderList,
@@ -174,4 +178,12 @@ export async function generateMetadata({ params }) {
   };
 
   return metadata;
+}
+
+
+let getNewsFromGSS = async () => {
+  let news = await fetchGss("news")
+  console.log("===================================")
+  console.log(news)
+  console.log("===================================")
 }
