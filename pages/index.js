@@ -1,4 +1,4 @@
-import React, { Fragment } from 'react';
+import React, { useContext } from 'react';
 import Head from "next/head.js";
 import { useLocale } from "../utils/locale";
 import { getDatabase } from "../lib/notion.js";
@@ -9,37 +9,11 @@ import News from '../components/parts/news/index.js';
 import ContentEntity from '../entity/contentEntity.js';
 import { fetchGss } from '../lib/appscript.js';
 import Side from '../components/parts/widget/side.js'
+import LocaleContext from '../components/context/localeContext.js';
 
-
-export const Text = ({ text }) => {
-  if (!text) {
-    return null;
-  }
-  return text.map((value) => {
-    const {
-      annotations: { bold, code, color, italic, strikethrough, underline },
-      text,
-    } = value;
-    return (
-      <span
-        className={[
-          bold ? styles.bold : "",
-          code ? styles.code : "",
-          italic ? styles.italic : "",
-          strikethrough ? styles.strikethrough : "",
-          underline ? styles.underline : "",
-        ].join(" ")}
-        style={color !== "default" ? { color } : {}}
-        key={text.content}
-      >
-        {text.link ? <a href={text.link.url}>{text.content}</a> : text.content}
-      </span>
-    );
-  });
-};
 
 export default function Home({ sliderList, newsList, sponsors, news }) {
-
+  const { locale, setLocale } = useContext(LocaleContext);
   let sponsorList = []
   
   for(let item of sponsors){
@@ -47,9 +21,9 @@ export default function Home({ sliderList, newsList, sponsors, news }) {
     sponsorList.push(sponsor)
   }
 
-  
 
-  const { json } = useLocale()
+
+  const { json } = useLocale(locale)
 
   console.log(json)
   return (
