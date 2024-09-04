@@ -14,12 +14,12 @@ export default function SwitchLang({}) {
     return (
         <>
           {locale == "ja" && (
-            <button class="btn btn-secondary" onClick={() => handleClick("en")}>
+            <button className="btn btn-secondary" onClick={() => handleClick("en")}>
                 English
             </button>
           )}
           {locale == "en" && (
-            <button class="btn btn-secondary" onClick={() => handleClick("ja")}>
+            <button className="btn btn-secondary" onClick={() => handleClick("ja")}>
                 日本語
             </button>
           )}

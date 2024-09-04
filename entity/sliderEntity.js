@@ -3,7 +3,6 @@ export default class SliderEntity {
         this.ordering =  item.properties["ordering"].number
         this.label = item.properties["title"].title[0].text.content
         this.label_en = item.properties["en"].rich_text[0].text.content
-        console.log(item.properties["image"].files[0].file)
         this.image = item.properties["image"].files[0].file.url
     }
 }

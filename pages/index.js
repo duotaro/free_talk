@@ -62,7 +62,7 @@ export const getStaticProps = async (context) => {
   // let sponsors = await getSponsors()
 
 
-  let item = await getNewsFromGSS()
+  //let item = await getNewsFromGSS()
   // console.log(item)
   // console.log(item.news)
 
