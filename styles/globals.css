@@ -44,15 +44,6 @@ h1 {
     pointer-events: none;
 }
 
-.hover-target:hover .hover-active {
-  opacity: 1; /* ホバーしたときに表示 */
-}
-
-.hover-active {
-  opacity: 0; /* 初期状態では完全に透明 */
-  transition: opacity 0.3s ease; /* トランジション効果を追加 */
-}
-
 
 /*!
 * Start Bootstrap - Shop Homepage v5.0.6 (https://startbootstrap.com/template/shop-homepage)

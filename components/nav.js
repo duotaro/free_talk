@@ -20,6 +20,7 @@ export default function Nav({  }) {
             const item = HEADER_MENU[key]
             return (
               <>
+              <p>tet</p>
               {!item.dropdowns.length && (
                 <li className="nav-item" key={item.key}>
                   <a className="nav-link text-light" aria-current="page" href={item.link}>{lang[item.key]}</a>

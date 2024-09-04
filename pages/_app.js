@@ -2,13 +2,16 @@ import "../styles/globals.css";
 import "../firebase/client.js"
 import Script from "next/script";
 import { LocaleProvider } from "../components/context/localeContext.js"
+import { useEffect } from "react";
 
 function MyApp({ Component, pageProps }) {
+  
+ useEffect(() => {
+    require("bootstrap/dist/js/bootstrap.bundle.min.js");
+  }, []);
+
   return (
   <>
-    <Script 
-      strategy="afterInteractive" 
-      src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js" />
     <LocaleProvider>
       <Component {...pageProps} />
     </LocaleProvider>

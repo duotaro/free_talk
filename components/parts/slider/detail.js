@@ -26,8 +26,8 @@ export default function SliderDetail({slider}) {
     const label = locale == "ja" ? post.label : post.label_en
 
     return (
-        <SplideSlide>
-            <div className="card" style={cardStyle} key={post.title} onMouseEnter={handleMouseEnter} onMouseLeave={handleMouseLeave}>
+        <SplideSlide key={post.title}>
+            <div className="card" style={cardStyle} onMouseEnter={handleMouseEnter} onMouseLeave={handleMouseLeave}>
                 <div className="card-body p-4 align-bottom ">
                     
                 </div>
