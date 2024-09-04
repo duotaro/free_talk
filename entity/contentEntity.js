@@ -19,7 +19,7 @@ export default class ContentEntity {
             this.mainLink = undefined
         }
         if(item.properties["image3Link"].rich_text[0]){
-            this.image2Link = item.properties["image3Link"].rich_text[0].text.content
+            this.image3Link = item.properties["image3Link"].rich_text[0].text.content
             this.mainLink = undefined
         }
 
