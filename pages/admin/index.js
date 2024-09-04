@@ -18,24 +18,6 @@ export default function Home() {
   return (
     <div>
       <h1>Vercel API へ POST リクエスト</h1>
-      <input 
-        type="text" 
-        placeholder="Project ID" 
-        value={projectId} 
-        onChange={(e) => setProjectId(e.target.value)} 
-      />
-      <input 
-        type="text" 
-        placeholder="Deploy ID" 
-        value={deployId} 
-        onChange={(e) => setDeployId(e.target.value)} 
-      />
-      <input 
-        type="text" 
-        placeholder="Data" 
-        value={data} 
-        onChange={(e) => setData(e.target.value)} 
-      />
       <button onClick={handleSubmit}>送信</button>
       {message && <p>{message}</p>}
     </div>
