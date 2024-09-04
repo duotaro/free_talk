@@ -38,7 +38,7 @@ export const Text = ({ text }) => {
   });
 };
 
-export default function Home({ sliderList, newsList, sponsors }) {
+export default function Home({ sliderList, newsList, sponsors, news }) {
 
   let sponsorList = []
   
@@ -65,7 +65,11 @@ export default function Home({ sliderList, newsList, sponsors }) {
           <section className="col-lg-8">
             <News newsList={newsList} lang={json.news}></News>
             <div className="row gx-4 gx-lg-5 row-cols-sm-2 row-cols-1 justify-content-center">
-               
+               {news.map((item) => {
+                return (
+                  <p>{item.title}</p>
+                )
+               })}
             {/* {mainContent.map((item) => {
               return (
                 <div className="col mb-3" key={item.ordering}>
@@ -123,17 +127,17 @@ export const getStaticProps = async (context) => {
   // get content
   let sponsors = await getSponsors()
 
-  //let sponsors = item.sponsors
-  // for(let sponsor in sponsors) {
-  //   let res = sponsors[sponsor]
-  //   console.log(res)
-  //   console.log(res.image)
-  // }
+
+  let item = await getNewsFromGSS()
+  console.log(item)
+  console.log(item.news)
+
   return {
     props: {
       sliderList: sliderList,
       newsList: newsList,
-      sponsors: sponsors
+      sponsors: sponsors,
+      news: item.news.news
     },
     revalidate: 1
   };
