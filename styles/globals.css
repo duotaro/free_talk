@@ -1,4 +1,7 @@
 @charset "UTF-8";
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
 
 html,
 body {
@@ -32,7 +35,23 @@ a {
 h1 {
   font-weight: 800;
 }
+.dropdown:hover>.dropdown-menu {
+  display: block;
+}
 
+.dropdown>.dropdown-toggle:active {
+  /*Without this, clicking will make it sticky*/
+    pointer-events: none;
+}
+
+.hover-target:hover .hover-active {
+  opacity: 1; /* ホバーしたときに表示 */
+}
+
+.hover-active {
+  opacity: 0; /* 初期状態では完全に透明 */
+  transition: opacity 0.3s ease; /* トランジション効果を追加 */
+}
 
 
 /*!

@@ -1,24 +1,38 @@
+import { useState, useContext } from 'react';
+
 import SliderEntity from '../../../entity/sliderEntity.js'
 import { SplideSlide } from "@splidejs/react-splide";
+import LocaleContext from '../../context/localeContext.js';
 export default function SliderDetail({slider}) {
+    const { locale } = useContext(LocaleContext);
+    const [isHovered, setIsHovered] = useState(false);
+
+    const handleMouseEnter = () => setIsHovered(true);
+    const handleMouseLeave = () => setIsHovered(false);
+
     let post = new SliderEntity(slider)
+
+    const cardStyle = {
+        backgroundImage: `url('${post.image}')`,
+        minHeight: '360px',
+        backgroundSize: 'cover',
+        backgroundPosition: 'center center',
+        opacity: isHovered ? 0.7 : 1,
+        transition: 'opacity 0.3s ease'
+    };
+
+    const displayClass = isHovered ? "d-block" : "d-none"
+
+    const label = locale == "ja" ? post.label : post.label_en
+
     return (
         <SplideSlide>
-            <div className="card align-middle" style={{backgroundImage:`url('${post.image}')`, minHeight:'360px', backgroundSize:'cover', backgroundPosition:'center center'}} key={post.title}>
-                {/* <img className="card-img-top border-bottom img-responsive" src={post.image} alt="..." /> */}
+            <div className="card" style={cardStyle} key={post.title} onMouseEnter={handleMouseEnter} onMouseLeave={handleMouseLeave}>
                 <div className="card-body p-4 align-bottom ">
-                    <div className="text-center align-middle">
-                        <h5 className="fw-bolder text-white">{post.subTitle}</h5>
-                        <h2 className="fw-bolder text-white">{post.title}</h2>
-                        <div className="fw-bolder text-white">{post.description}</div>
-                    </div>
+                    
                 </div>
-                <div className="card-footer p-4 pt-0 border-top-0 align-middle">
-                    <div className="text-center">
-                    <a className="btn btn-sub-danger mt-auto link text-white " href={post.pageUrl}>
-                        {post.linkLabel.split('\n').map(t => (<div>{t}</div>))}
-                    </a>
-                    </div>
+                <div className={`${displayClass} bg-purple-100`}>
+                    <h5 className="">{label}</h5>
                 </div>
             </div>
         </SplideSlide>

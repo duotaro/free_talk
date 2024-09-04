@@ -1,16 +1,9 @@
 import Link from "next/link"
 
 export default function SponsorList({ sponsors }) {
-
-    console.log(sponsors)
     return (
-        <div className="card h-100">
+        <div className=" h-100">
             <div className="card-body p-4">
-                {/* <div className="text-center border-bottom">
-                </div>            */}
-                {/* <div className="text-center">
-                   <p className="fw-bolder">{sponsors.year}</p>
-                </div> */}
                 <div className="text-center">
                     <a href={sponsors.image1Link}><img className="p-1 w-50" src={sponsors.image1} alt="..." /></a>
                 </div>
@@ -24,6 +17,5 @@ export default function SponsorList({ sponsors }) {
             <div className="card-footer pt-0 border-top-0 bg-transparent">
             </div>
         </div>
-
     )
 };

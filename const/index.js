@@ -1,4 +1,4 @@
-import {HeaderMenuEntity, DropDownsEntity} from "../entity/menuEntity"
+import {HeaderMenuEntity} from "../entity/menuEntity"
 import {DOMAIN, URLS} from "../const/pageUrl"
 
 /** 最新情報 */
@@ -99,15 +99,37 @@ export const RECOMMEND_LIST = [
 ]
 
 /** header menu */
-/** 学園紹介 */
+/** 学校概要 */
 const ABOUT_DROPDOWNS = [
-    new DropDownsEntity(URLS.ABOUT_URL, []),
-    new DropDownsEntity(URLS.MESSAGE_URL, []),
-    new DropDownsEntity(URLS.GENERAL_URL, [])
+    new HeaderMenuEntity(URLS.STAFF_URL, []),
+    new HeaderMenuEntity(URLS.EVENT_URL, []),
+    new HeaderMenuEntity(URLS.SPONSORS_URL, []),
+    new HeaderMenuEntity(URLS.KANJI_URL, [])
 ]
-
+/** 入学案内 */
+const ADMISSION_DROPDOWNS = [
+    new HeaderMenuEntity(URLS.ABOUT_URL, []),
+    new HeaderMenuEntity(URLS.ABOUT_URL, [])
+]
+/** お問い合わせ */
+const CONTACT_DROPDOWNS = [
+    new HeaderMenuEntity(URLS.ABOUT_URL, []),
+    new HeaderMenuEntity(URLS.ABOUT_URL, []),
+    new HeaderMenuEntity(URLS.ABOUT_URL, [])
+]
+/** 大人向けプラグラム */
+const ADULT_DROPDOWNS = [
+    new HeaderMenuEntity(URLS.ABOUT_URL, []),
+    new HeaderMenuEntity(URLS.ABOUT_URL, []),
+    new HeaderMenuEntity(URLS.ABOUT_URL, [])
+]
 export const HEADER_MENU = {
     HOME: new HeaderMenuEntity(URLS.HOME_URL, []),
-    ABOUT: new HeaderMenuEntity(URLS.ABOUT_URL, ABOUT_DROPDOWNS)
+    ABOUT: new HeaderMenuEntity(URLS.ABOUT_URL, ABOUT_DROPDOWNS),
+    ADMISSION: new HeaderMenuEntity(URLS.ADMISSION_URL, ADMISSION_DROPDOWNS),
+    FAQ: new HeaderMenuEntity(URLS.FAQ_URL, []),
+    CONTACT: new HeaderMenuEntity(URLS.CONTACT_URL, CONTACT_DROPDOWNS),
+    PAYMANET: new HeaderMenuEntity(URLS.PAYMENT_URL, []),
+    ADULT: new HeaderMenuEntity(URLS.ADULT_URL, ADULT_DROPDOWNS)
 }
 

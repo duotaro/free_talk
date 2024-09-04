@@ -12,79 +12,39 @@ import Side from '../components/parts/widget/side.js'
 import LocaleContext from '../components/context/localeContext.js';
 
 
-export default function Home({ sliderList, newsList, sponsors, news }) {
-  const { locale, setLocale } = useContext(LocaleContext);
+export default function Home({ sliderList }) {
+  const { locale } = useContext(LocaleContext);
+  const { json, metaTitleExtension } = useLocale(locale)
+  let lang = json.navigation
   let sponsorList = []
   
-  for(let item of sponsors){
-    let sponsor = new ContentEntity(item)
-    sponsorList.push(sponsor)
-  }
-
-
-
-  const { json } = useLocale(locale)
-
-  console.log(json)
+  // for(let item of sponsors){
+  //   let sponsor = new ContentEntity(item)
+  //   sponsorList.push(sponsor)
+  // }
   return (
     <Layout>
       <Head>
-        <title>ツーソン日本語補習校 - トップ -</title>
+        <title>{metaTitleExtension}</title>
+        <meta name="description" content={`${lang.home} - ${lang.description}`} />
         <link rel="icon" href="/favicon.ico" />
       </Head>
-      <div className="container mt-5">
-        {/* Slider */}
-        <SliderList sliderList={sliderList}></SliderList>        
+      <div className="container mt-5">    
         <div className="row">
           <section className="col-lg-8">
-            <News newsList={newsList} lang={json.news}></News>
-            <div className="row gx-4 gx-lg-5 row-cols-sm-2 row-cols-1 justify-content-center">
+            <SliderList sliderList={sliderList}></SliderList>    
+            {/* <News newsList={newsList} lang={json.news}></News> */}
+            {/* <div className="row gx-4 gx-lg-5 row-cols-sm-2 row-cols-1 justify-content-center">
                {news.map((item) => {
                 return (
                   <p>{item.title}</p>
                 )
                })}
-            {/* {mainContent.map((item) => {
-              return (
-                <div className="col mb-3" key={item.ordering}>
-                  {item.mainLink && (
-                    <a className="card h-100 text-decoration-none"  href={item.mainLink}>
-                      <div className="card-body p-4">
-                          <div className="text-center">
-                              <p className="fw-bolder">{item.contentText}</p>
-                          </div>
-                          <div className="text-center">
-                            <img className="p-3 w-50" src={item.image1} alt="..." />
-                          </div>
-                      </div>
-                    </a>
-                  )}
-                  {!item.mainLink && (
-                    <div className="card h-100 text-decoration-none"  href={item.mainLink}>
-                      <div className="card-body p-4">
-                          <div className="text-center">
-                          <p className="fw-bolder">{item.contentText}</p>
-                          </div>
-                          <div className="text-center">
-                            <a href={item.image1Link}><img className="p-3 w-50" src={item.image1} alt="..." /></a>
-                            </div>
-                          <div className="text-center">
-                            <a href={item.image2Link}><img className="p-3 w-50" src={item.image2} alt="..." /></a>
-                          </div>
-                          <div className="text-center">
-                            <a href={item.image3Link}><img className="p-3 w-50" src={item.image3} alt="..." /></a>
-                          </div>
-                      </div>
-                    </div>
-                  )}
-                </div>
-              )
-            })} */}
-            </div>
+            </div> */}
           </section>
           {/* Side widgets*/}
           <section className="col-lg-4">
-            <Side sponsorList={sponsorList} lang={json.sponsors}/>
+            <Side sponsorList={sponsorList} />
           </section>
        
         </div>{/* .row */}
@@ -96,22 +56,19 @@ export default function Home({ sliderList, newsList, sponsors, news }) {
 export const getStaticProps = async (context) => {
   // get slider
   let sliderList = await getSlider()
-  // get news
-  let newsList = await getNews()
-  // get content
-  let sponsors = await getSponsors()
+  // // get news
+  // let newsList = await getNews()
+  // // get content
+  // let sponsors = await getSponsors()
 
 
   let item = await getNewsFromGSS()
-  console.log(item)
-  console.log(item.news)
+  // console.log(item)
+  // console.log(item.news)
 
   return {
     props: {
-      sliderList: sliderList,
-      newsList: newsList,
-      sponsors: sponsors,
-      news: item.news.news
+      sliderList: sliderList
     },
     revalidate: 1
   };
@@ -122,26 +79,26 @@ export const getStaticProps = async (context) => {
  * @returns list [SliderEntity]
  */
 const getSlider = async () => {
-  const topBannerId = "110fbaeb5f264e91a12487969cc4c214"
+  const topBannerId = "f2bd94d61f7c45958755562d366af5ea"
   const database = await getDatabase(topBannerId)
   return database
 }
 
-/**
- * get latest news 
- * @returns list [SliderEntity]
- */
-const getNews = async () => {
-  const topNewsBannerID = "e48122663a9641bc8c786a16694dd364"
-  const database = await getDatabase(topNewsBannerID)
-  return database
-}
+// /**
+//  * get latest news 
+//  * @returns list [SliderEntity]
+//  */
+// const getNews = async () => {
+//   const topNewsBannerID = "e48122663a9641bc8c786a16694dd364"
+//   const database = await getDatabase(topNewsBannerID)
+//   return database
+// }
 
-const getSponsors = async () => {
-  const topContentId = "15f19797da4c4a958182b8d7971d17d4"
-  const database = await getDatabase(topContentId)
-  return database
-}
+// const getSponsors = async () => {
+//   const topContentId = "15f19797da4c4a958182b8d7971d17d4"
+//   const database = await getDatabase(topContentId)
+//   return database
+// }
 
 export async function generateMetadata({ params }) {
   const metadata = {
@@ -172,10 +129,10 @@ export async function generateMetadata({ params }) {
 let getNewsFromGSS = async () => {
   let news = await fetchGss("news")
   let sponsors = await fetchGss("sponsors")
-  console.log("===================================")
-  console.log(news)
-  console.log(sponsors)
-  console.log("===================================")
+  // console.log("===================================")
+  // console.log(news)
+  // console.log(sponsors)
+  // console.log("===================================")
 
   return {
     news,

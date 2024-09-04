@@ -5,7 +5,7 @@ import LocaleContext from "../../components/context/localeContext";
 import { useLocale } from "../../utils/locale";
 
 
-export default function About({  }) {
+export default function Event({  }) {
   const { locale } = useContext(LocaleContext);
   const { json, metaTitleExtension } = useLocale(locale)
   let lang = json.navigation
@@ -13,14 +13,14 @@ export default function About({  }) {
   return (
     <Layout>
       <Head>
-        <title>{lang.about} - {metaTitleExtension} </title>
-        <meta name="description" content={`${lang.about} - ${lang.description}`} />
+        <title>{lang.event} - {metaTitleExtension} </title>
+        <meta name="description" content={`${lang.event} - ${lang.description}`} />
       </Head>
 
       <div className="container mt-5">
         <div className="row">
           <section className="col">
-            学園概要のページ
+            イベントのページ
           </section>
         </div>
       </div>

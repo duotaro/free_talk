@@ -2,19 +2,33 @@
     "navigation": {
       "title": "ツーソン日本語補習校",
       "sub_title": "Tucson Japanese Language School",
+      "meta_title": "ツーソン日本語補習校 | アメリカ・ツーソンの日本語教育",
+      "description": "ツーソン日本語補習校で日本語を学びませんか？当校は、ツーソンで日本語を習得したい方々に最適な教育環境を提供します。入学に関する情報やコースの詳細はこちらからご確認ください。",
+      "keyword": "Japan, Japanese, School, Tucson, children, class, culture, kids, language, クラス, ツーソン, 子ども, 学校, 日本, 日本語",
       "home": "ホーム",
       "about": "学校概要",
+      "staff": "職員紹介",
+      "event": "年間行事",
+      "sponsors": "協賛者一覧",
+      "kanji": "漢字検定",
       "admissions": "入学案内",
       "faq": "よくある質問",
-      "visit": "お問い合わせ",
-      "square": "オンライン決済",
-      "tucsonadultjapanese": "よくある質問"
+      "contact": "お問い合わせ",
+      "payment": "オンライン決済",
+      "adultjapanese": "大人向けプログラム"
     },
     "footer": {
-      "title": "お問い合わせ"
+      "title": "お問い合わせ",
+      "location": "借用校住所",
+      "address": "会社住所",
+      "sns": "SNS",
+      "email": "メールアドレス"
     },
-    "sponsors": {
-      "sponsors": "{year}年度協賛企業、団体"
+    "side": {
+      "title": "CONTACT INFO",
+      "sponsors": "{year}年度協賛企業、団体",
+      "contact": "お問い合わせ",
+      "archive": "アーカイブ"
     },
     "news": {
       "title": "最新情報"

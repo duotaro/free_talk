@@ -6,11 +6,9 @@ import '@splidejs/splide/css'; // デフォルトのテーマを読み込んで�
 
 
 export default function SliderList({ sliderList }) {
-
-
     return (
-        <div className="row m-3">
-          <section>
+        <div className="row mb-3">
+          <section className=''>
             <Splide
               aria-label="私のお気に入りの画像集"
               options={{
