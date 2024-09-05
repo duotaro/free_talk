@@ -1,6 +1,10 @@
 import {HeaderMenuEntity} from "../entity/menuEntity"
 import {DOMAIN, URLS} from "../const/pageUrl"
 
+export const DOWNLOAD_IMAGE_PATH = 'public/image/download'
+export const ACCESABLE_IMAGE_PATH = 'image/download'
+export const DOWNLOAD_IMAGE_EXTENSION = '.png'
+
 /** 最新情報 */
 export const NEWS_GENRE = {
     LATEST : '最新情報', 

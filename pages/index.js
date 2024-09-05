@@ -9,7 +9,9 @@ import News from '../components/parts/news/index.js';
 import ContentEntity from '../entity/contentEntity.js';
 import { fetchGss } from '../lib/appscript.js';
 import Side from '../components/parts/widget/side.js'
+//import fs from 'fs';
 import LocaleContext from '../components/context/localeContext.js';
+import saveImageIfNeeded from '../components/download/index.js';
 
 
 export default function Home({ sliderList }) {
@@ -17,7 +19,7 @@ export default function Home({ sliderList }) {
   const { json, metaTitleExtension } = useLocale(locale)
   let lang = json.navigation
   let sponsorList = []
-  
+
   // for(let item of sponsors){
   //   let sponsor = new ContentEntity(item)
   //   sponsorList.push(sponsor)
@@ -56,15 +58,6 @@ export default function Home({ sliderList }) {
 export const getStaticProps = async (context) => {
   // get slider
   let sliderList = await getSlider()
-  // // get news
-  // let newsList = await getNews()
-  // // get content
-  // let sponsors = await getSponsors()
-
-
-  //let item = await getNewsFromGSS()
-  // console.log(item)
-  // console.log(item.news)
 
   return {
     props: {
@@ -81,7 +74,15 @@ export const getStaticProps = async (context) => {
 const getSlider = async () => {
   const topBannerId = "f2bd94d61f7c45958755562d366af5ea"
   const database = await getDatabase(topBannerId)
-  return database
+  let props = []
+  for(let item of database){
+    props.push(item.properties)
+  }
+
+  await saveImageIfNeeded(props, "slider")
+
+  return database;
+ 
 }
 
 // /**
