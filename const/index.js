@@ -5,14 +5,6 @@ export const DOWNLOAD_IMAGE_PATH = 'public/image/download'
 export const ACCESABLE_IMAGE_PATH = 'image/download'
 export const DOWNLOAD_IMAGE_EXTENSION = '.png'
 
-/** 最新情報 */
-export const NEWS_GENRE = {
-    LATEST : '最新情報', 
-    PARENT : '保護者の皆様へ', 
-    ENTRY : '登録/募集のお知らせ'
-}
-/** ジャンル */
-export const NEWS_GENRES = [NEWS_GENRE.LATEST, NEWS_GENRE.PARENT, NEWS_GENRE.ENTRY]
 /** ジャンル */
 export const GENRE_ENUM = {
     GENRE1 : 'ai', 

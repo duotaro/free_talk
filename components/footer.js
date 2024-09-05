@@ -8,7 +8,7 @@ export default function Footer({  }) {
   const lang = json.footer
 
   return (
-    <footer className="text-center text-lg-start text-white text-dark p-3 bg-dark">
+    <footer className="text-center text-lg-start text-white text-dark p-3 bg-dark bg-gradient">
       <div className="container p-4 pb-0">
         <section className="">
           <div className="row mb-md-5">

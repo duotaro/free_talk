@@ -32,5 +32,8 @@
     },
     "news": {
       "title": "最新情報"
+    },
+    "calender": {
+      "title": "カレンダー"
     }
 }

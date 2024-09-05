@@ -12,9 +12,10 @@ import Side from '../components/parts/widget/side.js'
 //import fs from 'fs';
 import LocaleContext from '../components/context/localeContext.js';
 import saveImageIfNeeded from '../components/download/index.js';
+import Calender from '../components/parts/calender/index.js';
 
 
-export default function Home({ sliderList, sponsors }) {
+export default function Home({ sliderList, sponsors, newsList, scheduleList }) {
   const { locale } = useContext(LocaleContext);
   const { json, metaTitleExtension } = useLocale(locale)
   let lang = json.navigation
@@ -34,15 +35,9 @@ export default function Home({ sliderList, sponsors }) {
       <div className="container mt-5">    
         <div className="row">
           <section className="col-lg-8">
-            <SliderList sliderList={sliderList}></SliderList>    
-            {/* <News newsList={newsList} lang={json.news}></News> */}
-            {/* <div className="row gx-4 gx-lg-5 row-cols-sm-2 row-cols-1 justify-content-center">
-               {news.map((item) => {
-                return (
-                  <p>{item.title}</p>
-                )
-               })}
-            </div> */}
+            <SliderList sliderList={sliderList} />
+            <News newsList={newsList} lang={json.news} />
+            <Calender scheduleList={scheduleList} />
           </section>
           {/* Side widgets*/}
           <section className="col-lg-4">
@@ -62,10 +57,17 @@ export const getStaticProps = async (context) => {
   // get sponsor
   let sponsors = await getSponsors()
 
+  // get news
+  let newsList = await getNews()
+
+  // get calender
+  let scheduleList = await getCalender()
   return {
     props: {
       sliderList: sliderList,
-      sponsors: sponsors
+      sponsors: sponsors,
+      newsList: newsList,
+      scheduleList: scheduleList
     },
     revalidate: 1
   };
@@ -89,25 +91,28 @@ const getSlider = async () => {
  
 }
 
-// /**
-//  * get latest news 
-//  * @returns list [SliderEntity]
-//  */
-// const getNews = async () => {
-//   const topNewsBannerID = "e48122663a9641bc8c786a16694dd364"
-//   const database = await getDatabase(topNewsBannerID)
-//   return database
-// }
+/**
+ * get latest news 
+ * @returns list [SliderEntity]
+ */
+const getNews = async () => {
+  const database = await getDatabase("cc0b1eb3570842ba926cc71ecaf5df4d")
+  return database
+}
 
 const getSponsors = async () => {
-  const topContentId = "1e302ac5bce442b797e491aee309e7c4"
-  const database = await getDatabase(topContentId)
+  const database = await getDatabase("1e302ac5bce442b797e491aee309e7c4")
   let props = []
   for(let item of database){
     props.push(item.properties)
   }
 
   await saveImageIfNeeded(props, "sponsor")
+  return database
+}
+
+const getCalender = async () => {
+  const database = await getDatabase("1e302ac5bce442b797e491aee309e7c4")
   return database
 }
 

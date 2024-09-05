@@ -17,11 +17,17 @@ export default function SliderDetail({slider}) {
         minHeight: '360px',
         backgroundSize: 'cover',
         backgroundPosition: 'center center',
-        opacity: isHovered ? 0.7 : 1,
+        opacity: isHovered ? 0.9 : 1,
         transition: 'opacity 0.3s ease'
     };
 
-    const displayClass = isHovered ? "d-block" : "d-none"
+    const labelStyle = {
+        backgroundColor: '#FFFFFF80',
+        opacity: isHovered ? 0.8 : 0,
+        transition: 'opacity 0.3s ease'
+    };
+
+    //const displayClass = isHovered ? "d-block" : "d-none"
 
     const label = locale == "ja" ? post.label : post.label_en
 
@@ -31,7 +37,7 @@ export default function SliderDetail({slider}) {
                 <div className="card-body p-4 align-bottom ">
                     
                 </div>
-                <div className={`${displayClass} bg-purple-100`}>
+                <div className="p-3" style={labelStyle} >
                     <h5 className="">{label}</h5>
                 </div>
             </div>

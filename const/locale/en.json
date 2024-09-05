@@ -32,5 +32,8 @@
     },
     "news": {
       "title": "News"
+    },
+    "calender": {
+      "title": "Event"
     }
 }

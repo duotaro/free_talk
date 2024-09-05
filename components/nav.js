@@ -10,7 +10,7 @@ export default function Nav({  }) {
 
   return (
 
-    <nav className="navbar navbar-expand-lg navbar-light bg-dark gnav"> 
+    <nav className="navbar navbar-expand-lg navbar-light gnav" style={{backgroundColor:"#0047AB"}}> 
         <button className="navbar-toggler text-white " type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
           <i className="bi bi-list"></i>
         </button>
@@ -20,13 +20,12 @@ export default function Nav({  }) {
             const item = HEADER_MENU[key]
             return (
               <>
-              <p>tet</p>
-              {!item.dropdowns.length && (
+              {item.dropdowns.length == 0 && (
                 <li className="nav-item" key={item.key}>
                   <a className="nav-link text-light" aria-current="page" href={item.link}>{lang[item.key]}</a>
                 </li>
               )}
-              {item.dropdowns.length && (
+              {item.dropdowns.length > 0 && (
                 <li className="nav-item dropdown" key={item.key}>
                   <a className="nav-link dropdown-toggle text-light" href="#" id={item.key} role="button" data-bs-toggle="dropdown" aria-expanded="false">
                   {lang[item.key]}
@@ -39,7 +38,6 @@ export default function Nav({  }) {
                     })}
                   </ul>
                 </li>
-                
               )}
               </>
             )
