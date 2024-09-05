@@ -32,9 +32,6 @@ const checkBlock = async (block) => {
     const url = block.image.files[0].file.url
     const blob = await getTemporaryImage(url)
 
-    console.log("----------block----------")
-    console.log(block.image)
-
     if (!blob) {
       return ''
     }

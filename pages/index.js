@@ -6,7 +6,7 @@ import Layout from '../components/layout.js'
 export const databaseId = process.env.NEXT_PUBLIC_NOTION_DATABASE_ID;
 import SliderList from '../components/parts/slider/index.js';
 import News from '../components/parts/news/index.js';
-import ContentEntity from '../entity/contentEntity.js';
+import SponsorEntity from '../entity/sponsorEntity.js';
 import { fetchGss } from '../lib/appscript.js';
 import Side from '../components/parts/widget/side.js'
 //import fs from 'fs';
@@ -14,16 +14,16 @@ import LocaleContext from '../components/context/localeContext.js';
 import saveImageIfNeeded from '../components/download/index.js';
 
 
-export default function Home({ sliderList }) {
+export default function Home({ sliderList, sponsors }) {
   const { locale } = useContext(LocaleContext);
   const { json, metaTitleExtension } = useLocale(locale)
   let lang = json.navigation
   let sponsorList = []
 
-  // for(let item of sponsors){
-  //   let sponsor = new ContentEntity(item)
-  //   sponsorList.push(sponsor)
-  // }
+  for(let item of sponsors){
+    let sponsor = new SponsorEntity(item)
+    sponsorList.push(sponsor)
+  }
   return (
     <Layout>
       <Head>
@@ -59,9 +59,13 @@ export const getStaticProps = async (context) => {
   // get slider
   let sliderList = await getSlider()
 
+  // get sponsor
+  let sponsors = await getSponsors()
+
   return {
     props: {
-      sliderList: sliderList
+      sliderList: sliderList,
+      sponsors: sponsors
     },
     revalidate: 1
   };
@@ -95,11 +99,17 @@ const getSlider = async () => {
 //   return database
 // }
 
-// const getSponsors = async () => {
-//   const topContentId = "15f19797da4c4a958182b8d7971d17d4"
-//   const database = await getDatabase(topContentId)
-//   return database
-// }
+const getSponsors = async () => {
+  const topContentId = "1e302ac5bce442b797e491aee309e7c4"
+  const database = await getDatabase(topContentId)
+  let props = []
+  for(let item of database){
+    props.push(item.properties)
+  }
+
+  await saveImageIfNeeded(props, "sponsor")
+  return database
+}
 
 export async function generateMetadata({ params }) {
   const metadata = {

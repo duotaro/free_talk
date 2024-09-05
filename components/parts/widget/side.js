@@ -9,10 +9,8 @@ export default function Side({ sponsorList }) {
   const { json } = useLocale(locale)
   let lang = json.side
   let sponsors = sponsorList[0]
-  var title = ""
-  if(sponsors){
-    title = lang[sponsors.i18nkey].replace("{year}", sponsors.year);
-  }
+  var title = lang["sponsors"].replace("{year}", 2023);
+
 
   return (
       <>
@@ -20,15 +18,20 @@ export default function Side({ sponsorList }) {
             <div className="card-header  bg-dark text-white">sns</div>
             
         </div> */}
-        {sponsors && (
+        {sponsorList.length && (
         <div className="card mb-4">
             <div className="card-header  bg-dark text-white">
               <i class="bi bi-emoji-smile text-warning m-1"></i>{title}
             </div>
-            <SponsorList sponsors={sponsors} />
+            {sponsorList.map((sponsor) => {
+              return (
+                <SponsorList sponsor={sponsor} />
+              )
+            })}
+            
         </div>
         )}
-        <div className="card mb-4">
+        {/* <div className="card mb-4">
             <div className="card-header  bg-dark text-white">
               <i className="bi bi-graph-up-arrow text-warning m-1">{lang.contact}</i>
             </div>
@@ -38,8 +41,7 @@ export default function Side({ sponsorList }) {
             <div className="card-header  bg-dark text-white">
               <i className="bi bi-hand-index text-danger m-1"></i>{lang.archives}
             </div>
-            
-        </div>
+        </div> */}
     </>
   );
 }
