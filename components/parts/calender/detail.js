@@ -2,40 +2,38 @@
 
 
 import React, { useContext } from "react";
-import NewsEntity from '../../../entity/newsEntity'
 import LocaleContext from "../../context/localeContext";
-import Link from "next/link";
 
 export default function CalenderDetail({ schedule }) {
   const { locale } = useContext(LocaleContext);
 
+  const isJpn = locale == "ja"
+
+
   return (
-    <section className="card p-2 m-3" key={schedule.ordering}>
-        <div class="card-body">
-            schedule
-            {/* <h5 class="card-title">{entity.date}</h5> */}
-            {/* <a className={`text-decoration-none ${entity.link ? "link-primary" :  "text-primary"}`} 
-                href={entity.link}>
-                <h5 class="card-title">{entity.title.map((title) => {
-                    console.log(title)
-                    return title.href ? (
-                        <Link href={title.href} className="link-secondary">{title.text.content}</Link>
-                    ) : (
-                        <span>{title.text.content}</span>
-                    )
-                })}</h5>
-            </a>
-            <div class="card-text">
-                {entity.text.map((text) => {
-                    return text.href ? (
-                        <Link href={text.href} className="link-secondary">{text.text.content}</Link>
-                    ) : (
-                        <span>{text.text.content}</span>
-                    )
-                })}
-            </div>
-             */}
+	<div class="row row-striped" key={schedule.title}>
+        <div class="col-2 text-right">
+            <h3 class=""><span class="badge bg-primary">{schedule.day} {isJpn && (<span></span>)}</span></h3>
+            <h3>{schedule.month}{isJpn && (<span>月</span>)}</h3>
         </div>
-    </section>
+        <div class="col-10">
+            <h3 class="text-uppercase"><strong>{schedule.title}</strong></h3>
+            <ul class="list-inline">
+                <li class="list-inline-item"><i class="bi bi-calendar3"></i> {schedule.dayName}</li>
+                <li class="list-inline-item"><i class="bi bi-clock"></i> {schedule.start} - {schedule.end}</li>
+                <li class="list-inline-item"><i class="bi bi-geo-alt"></i><a href={`https://www.google.com/maps?q=${schedule.location}`} target="_blank">{schedule.location}</a></li>
+            </ul>
+            {schedule.text && (
+                <>
+                {schedule.link && (
+                    <a href={schedule.link} className="card p-3 text-decoration-none " target="_blank">{schedule.text}</a>
+                )}
+                {!schedule.link && (
+                    <p className="card p-3">{schedule.text}</p>
+                )}
+                </>
+            )}
+        </div>
+    </div>
   );
 }

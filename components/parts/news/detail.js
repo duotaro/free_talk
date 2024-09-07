@@ -21,7 +21,6 @@ export default function NewsDetail({ news }) {
             <a className={`text-decoration-none ${entity.link ? "link-primary" :  "text-primary"}`} 
                 href={entity.link}>
                 <h5 class="card-title">{entity.title.map((title) => {
-                    console.log(title)
                     return title.href ? (
                         <Link href={title.href} className="link-secondary">{title.text.content}</Link>
                     ) : (
