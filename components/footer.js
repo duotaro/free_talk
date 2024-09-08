@@ -8,7 +8,7 @@ export default function Footer({  }) {
   const lang = json.footer
 
   return (
-    <footer className="text-center text-lg-start text-white text-dark p-3 bg-dark bg-gradient">
+    <footer className="text-center text-lg-start text-white text-dark p-3 bg-blue-800 text-white">
       <div className="container p-4 pb-0">
         <section className="">
           <div className="row mb-md-5">
@@ -16,7 +16,7 @@ export default function Footer({  }) {
               <h5 className="text-uppercase"><i className="bi bi-geo-alt m-2"></i>{lang.location}</h5>
               <ul className="list-unstyled mb-0">
                 <li>
-                  <a href="https://www.google.com/maps?q=1701+E+Seneca+St,+Tucson,+AZ+85719,+USA" target="_blank" className="link-light ">International School of Tucson <br />1701 East Seneca Street, Tucson, AZ 85719</a>
+                  <a href="https://www.google.com/maps?q=1701+E+Seneca+St,+Tucson,+AZ+85719,+USA" target="_blank" className="text-white">International School of Tucson <br />1701 East Seneca Street, Tucson, AZ 85719</a>
                 </li>
               </ul>
             </div>
@@ -25,7 +25,7 @@ export default function Footer({  }) {
               <h5 className="text-uppercase"><i className="bi bi-envelope-fill m-2" ></i>{lang.address}</h5>
               <ul className="list-unstyled mb-0">
                 <li>
-                <a href="https://www.google.com/maps?q=1803+E+Seneca+St,+Tucson,+AZ+85719,+USA" target="_blank" className="link-light ">1803 East Seneca Street,<br />Tucson, AZ 85719</a>
+                <a href="https://www.google.com/maps?q=1803+E+Seneca+St,+Tucson,+AZ+85719,+USA" target="_blank" className="text-white">1803 East Seneca Street,<br />Tucson, AZ 85719</a>
                 </li>
               </ul>
             </div>
@@ -36,7 +36,7 @@ export default function Footer({  }) {
               <h5 className="text-uppercase"><i className="bi bi-facebook m-2" ></i>{lang.sns}</h5>
               <ul className="list-unstyled mb-0">
                 <li>
-                <a href="https://www.facebook.com/tucsonnihongohosyuko/" target="_blank" className="link-light ">tucsonnihongohosyuko</a>
+                <a href="https://www.facebook.com/tucsonnihongohosyuko/" target="_blank" className="text-white ">tucsonnihongohosyuko</a>
                 </li>
               </ul>
             </div>
@@ -45,7 +45,7 @@ export default function Footer({  }) {
               <h5 className="text-uppercase"><i className="bi bi-envelope-fill m-2" ></i>{lang.email}</h5>
               <ul className="list-unstyled mb-0">
                 <li>
-                <a href="mailto:info@tucson.nihongo.hosyuko@gmail.com" target="_blank" className="link-light ">tucson.nihongo.hosyuko@gmail.com</a>
+                <a href="mailto:info@tucson.nihongo.hosyuko@gmail.com" target="_blank" className="text-white ">tucson.nihongo.hosyuko@gmail.com</a>
                 </li>
               </ul>
             </div>

@@ -15,9 +15,9 @@ export default function Navigation({  }) {
     <nav className="navbar navbar-expand-lg navbar-light bg-white">
         <div className="container px-4 px-lg-5">
             {/* <Link href={`/`} className="navbar-brand ml-3 "><img src={logoSrc} className=""/></Link> */}
-            <Link href={`/`} className="navbar-brand ml-3">{json.navigation.title}</Link>
+            <Link href={`/`} as="h1" className="navbar-brand ml-3">{json.navigation.title}</Link>
             {/* <p className={textClass}><small>{lang.sub_title}</small></p> */}
-            <div className="text-right">
+            <div className="text-right text-blue-800">
               <SwitchLang currentLocale={locale} />
            </div>
         </div>

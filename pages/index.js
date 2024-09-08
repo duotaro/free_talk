@@ -32,10 +32,10 @@ export default function Home({ sliderList, sponsors, newsList, scheduleList }) {
         <meta name="description" content={`${lang.home} - ${lang.description}`} />
         <link rel="icon" href="/favicon.ico" />
       </Head>
-      <div className="container mt-5">    
+      <div className="">
+        <SliderList sliderList={sliderList} />  
         <div className="row">
           <section className="col-lg-8">
-            <SliderList sliderList={sliderList} />
             <News newsList={newsList} lang={json.news} />
             <Calender scheduleList={scheduleList} />
           </section>
