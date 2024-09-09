@@ -13,6 +13,8 @@ import Side from '../components/parts/widget/side.js'
 import LocaleContext from '../components/context/localeContext.js';
 import saveImageIfNeeded from '../components/download/index.js';
 import Calender from '../components/parts/calender/index.js';
+import Mission from '../components/parts/mission/index.js';
+import Vision from '../components/parts/vision/index.js';
 
 
 export default function Home({ sliderList, sponsors, newsList, scheduleList }) {
@@ -37,7 +39,8 @@ export default function Home({ sliderList, sponsors, newsList, scheduleList }) {
         <div className="row">
           <section className="col-lg-8">
             <News newsList={newsList} lang={json.news} />
-            <Calender scheduleList={scheduleList} />
+            <Mission />
+            <Vision />
           </section>
           {/* Side widgets*/}
           <section className="col-lg-4">

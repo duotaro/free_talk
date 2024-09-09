@@ -27,7 +27,7 @@ export default function Nav({  }) {
   const lang = json.navigation
 
   return (
-    <header className="bg-blue-800 text-white">
+    <header className="bg-blue-800 ">
     <nav aria-label="Global" className="mx-auto flex max-w-7xl items-center justify-between p-6 lg:px-8">
 
       <div className="flex lg:hidden">
@@ -50,7 +50,7 @@ export default function Nav({  }) {
               )}
               {item.dropdowns.length > 0 && (
                 <Popover className="relative">
-                  <PopoverButton className="flex items-center gap-x-1 text-sm font-semibold leading-6 hover:text-gray-400">
+                  <PopoverButton className="flex items-center gap-x-1 text-sm text-white font-semibold leading-6 hover:text-gray-400">
                     {lang[item.key]}
                     <ChevronDownIcon aria-hidden="true" className="h-5 w-5 flex-none " />
                   </PopoverButton>

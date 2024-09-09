@@ -27,8 +27,9 @@ export default function Calender({ scheduleList }) {
 
 
   return (
-    <section className="card mb-3 p-3">
-      <div className="">
+    <section className="py-8 md:py-12 lg:py-20 bg-gray-50">
+      <div className="container px-6 mx-auto">
+        <div className="grid items-center gap-8 md:grid-flow-col-dense md:grid-cols-2 md:gap-12">
         <h1 className="text-center">{json.calender.title}</h1>
         <ul className="list-group list-group-flush">
           {entityList.map((schedule) => {
@@ -37,6 +38,7 @@ export default function Calender({ scheduleList }) {
               )
           })}
           </ul>
+        </div>
       </div>
     </section>
   );

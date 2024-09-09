@@ -33,12 +33,9 @@ export default function SliderDetail({slider}) {
 
     return (
         <SplideSlide key={post.title}>
-            <div className="card" style={cardStyle} onMouseEnter={handleMouseEnter} onMouseLeave={handleMouseLeave}>
-                <div className="card-body p-4 align-bottom ">
-                    
-                </div>
-                <div className="p-3" style={labelStyle} >
-                    <h5 className="">{label}</h5>
+            <div className="card relative" style={cardStyle} onMouseEnter={handleMouseEnter} onMouseLeave={handleMouseLeave}>
+                <div className="p-3 absolute bottom-0 left-0 w-full" style={labelStyle} >
+                    <h5 className="text-[#333333]">{label}</h5>
                 </div>
             </div>
         </SplideSlide>

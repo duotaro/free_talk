@@ -15,7 +15,10 @@
       "faq": "FAQ",
       "contact": "CONTACT",
       "payment": "MAKE PAYMENT",
-      "adultjapanese": "ADULT LEARNING"
+      "adultjapanese": "ADULT LEARNING",
+      "news": "Announce",
+      "mission": "Mission",
+      "vision": "Vision"
    },
     "footer": {
       "title": "CONTACT INFO",

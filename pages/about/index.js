@@ -17,7 +17,7 @@ export default function About({  }) {
         <meta name="description" content={`${lang.about} - ${lang.description}`} />
       </Head>
 
-      <div className="container mt-5">
+      <div className="container">
         <div className="row">
           <section className="col">
             学園概要のページ

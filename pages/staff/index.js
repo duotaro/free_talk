@@ -17,7 +17,7 @@ export default function Sponsors({  }) {
         <meta name="description" content={`${lang.staff} - ${lang.description}`} />
       </Head>
 
-      <div className="container mt-5">
+      <div className="container">
         <div className="row">
           <section className="col">
             職員紹介のページ
