@@ -15,6 +15,7 @@ import saveImageIfNeeded from '../components/download/index.js';
 import Calender from '../components/parts/calender/index.js';
 import Mission from '../components/parts/mission/index.js';
 import Vision from '../components/parts/vision/index.js';
+import Faq from '../components/parts/faq/index.js';
 
 
 export default function Home({ sliderList, sponsors, newsList, scheduleList }) {
@@ -41,11 +42,12 @@ export default function Home({ sliderList, sponsors, newsList, scheduleList }) {
             <News newsList={newsList} lang={json.news} />
             <Mission />
             <Vision />
+            <Faq />
           </section>
           {/* Side widgets*/}
-          <section className="col-lg-4">
+          {/* <section className="col-lg-4">
             <Side sponsorList={sponsorList} />
-          </section>
+          </section> */}
        
         </div>{/* .row */}
       </div>{/* .container */}

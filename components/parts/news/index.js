@@ -13,9 +13,9 @@ export default function News({ newsList }) {
   return (
     <section className="py-8 md:py-12 lg:py-20 bg-white">
       <div className="container px-6 mx-auto text-center" >
-        <h2 className="text-3xl font-black sm:text-4xl md:text-5xl lg:text-6xl">
+        <h4 className="text-2xl font-black sm:text-4xl md:text-4xl lg:text-5xl">
           {json.news.title}
-        </h2>
+        </h4>
         {/* {links?.length ? <Links links={links} /> : null} */}
       </div>
       <div className="container px-6 mx-auto">
