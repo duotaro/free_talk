@@ -16,9 +16,11 @@ import Calender from '../components/parts/calender/index.js';
 import Mission from '../components/parts/mission/index.js';
 import Vision from '../components/parts/vision/index.js';
 import Faq from '../components/parts/faq/index.js';
+import { convertAboutFromDatabase } from '../entity/aboutEntity.js';
+import About from '../components/parts/about/index.js';
 
 
-export default function Home({ sliderList, sponsors, newsList, scheduleList }) {
+export default function Home({ sliderList, sponsors, newsList, scheduleList, about }) {
   const { locale } = useContext(LocaleContext);
   const { json, metaTitleExtension } = useLocale(locale)
   let lang = json.navigation
@@ -28,6 +30,15 @@ export default function Home({ sliderList, sponsors, newsList, scheduleList }) {
     let sponsor = new SponsorEntity(item)
     sponsorList.push(sponsor)
   }
+
+  let {aboutSchool, mission, vision} = convertAboutFromDatabase(about, locale == "ja")
+
+  console.log("-------------------")
+  console.log(aboutSchool)
+  console.log(mission)
+  console.log(vision)
+  console.log("-------------------")
+
   return (
     <Layout>
       <Head>
@@ -40,8 +51,9 @@ export default function Home({ sliderList, sponsors, newsList, scheduleList }) {
         <div className="row">
           <section className="col-lg-8">
             <News newsList={newsList} lang={json.news} />
-            <Mission />
-            <Vision />
+            <About about={aboutSchool}/>
+            <Mission mission={mission}/>
+            <Vision vision={vision}/>
             <Faq />
           </section>
           {/* Side widgets*/}
@@ -67,12 +79,16 @@ export const getStaticProps = async (context) => {
 
   // get calender
   let scheduleList = await getCalender()
+
+  // get about
+  let about = await getAbout()
   return {
     props: {
       sliderList: sliderList,
       sponsors: sponsors,
       newsList: newsList,
-      scheduleList: scheduleList
+      scheduleList: scheduleList,
+      about: about
     },
     revalidate: 1
   };
@@ -118,6 +134,18 @@ const getSponsors = async () => {
 
 const getCalender = async () => {
   const database = await getDatabase("8d87080f73f14e8a9e7ba934c1d928c6")
+  return database
+}
+
+const getAbout = async () => {
+  const database = await getDatabase("d4eb3828e74c469b9179ca7be9edb5cf")
+  console.log(database)
+  let props = []
+  for(let item of database){
+    props.push(item.properties)
+  }
+
+  await saveImageIfNeeded(props, "about")
   return database
 }
 

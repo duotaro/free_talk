@@ -38,5 +38,8 @@
     },
     "calender": {
       "title": "Event"
+    },
+    "common": {
+      "show_more": "show more"
     }
 }

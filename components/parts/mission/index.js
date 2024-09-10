@@ -7,7 +7,7 @@ import Link from "next/link"
 import LocaleContext from "../../context/localeContext";
 import { useLocale } from "../../../utils/locale";
 
-export default function Mission({ }) {
+export default function Mission({ mission }) {
   const { locale } = useContext(LocaleContext);
   const { json } = useLocale(locale)
 
@@ -17,7 +17,7 @@ export default function Mission({ }) {
         <div className="grid items-center gap-8 md:grid-flow-col-dense md:grid-cols-2 md:gap-12">
             <div className="md:col-start-1">
               <Image
-                src="/image/download/slider/katakana.webp.png"
+                src={mission.image}
                 alt="Mission"
                 width={500}
                 height={300}
@@ -28,13 +28,13 @@ export default function Mission({ }) {
             </div>
             <div className="flex flex-col items-center text-center md:items-start md:text-left">
                 <h2 className="text-3xl font-black sm:text-4xl lg:text-5xl">
-                {json.navigation.mission}
+                {mission.title}
                 </h2>
                 <div className="max-w-md mt-4 text-lg font-light leading-relaxed text-gray-500 sm:text-xl lg:text-2xl">
-                    ここにミッションの内容？ここにミッションの内容？ここにミッションの内容？ここにミッションの内容？ここにミッションの内容？ここにミッションの内容？ここにミッションの内容？
+                    {mission.text}
                 </div>
                 <Link href={`/mission/`} className="px-6 py-3 text-lg transition-colors rounded-md bg-blue-600 text-white hover:bg-blue-700">
-                    リンクがあれば
+                    {json.common.show_more}
                 </Link>
             </div>
         </div>
