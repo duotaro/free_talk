@@ -33,9 +33,9 @@ export default function Mission({ mission }) {
                 <div className="max-w-md mt-4 text-lg font-light leading-relaxed text-gray-500 sm:text-xl lg:text-2xl">
                     {mission.text}
                 </div>
-                <Link href={`/mission/`} className="px-6 py-3 text-lg transition-colors rounded-md bg-blue-600 text-white hover:bg-blue-700">
+                {/* <Link href={`/mission/`} className="px-6 py-3 text-lg transition-colors rounded-md bg-blue-600 text-white hover:bg-blue-700">
                     {json.common.show_more}
-                </Link>
+                </Link> */}
             </div>
         </div>
       </div>
