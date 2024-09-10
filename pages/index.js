@@ -33,12 +33,6 @@ export default function Home({ sliderList, sponsors, newsList, scheduleList, abo
 
   let {aboutSchool, mission, vision} = convertAboutFromDatabase(about, locale == "ja")
 
-  console.log("-------------------")
-  console.log(aboutSchool)
-  console.log(mission)
-  console.log(vision)
-  console.log("-------------------")
-
   return (
     <Layout>
       <Head>
@@ -49,13 +43,11 @@ export default function Home({ sliderList, sponsors, newsList, scheduleList, abo
       <div className="">
         <SliderList sliderList={sliderList} />  
         <div className="row">
-          <section className="col-lg-8">
-            <News newsList={newsList} lang={json.news} />
-            <About about={aboutSchool}/>
-            <Mission mission={mission}/>
-            <Vision vision={vision}/>
-            <Faq />
-          </section>
+          <News newsList={newsList} lang={json.news} />
+          <About about={aboutSchool}/>
+          <Mission mission={mission}/>
+          <Vision vision={vision}/>
+          <Faq />
           {/* Side widgets*/}
           {/* <section className="col-lg-4">
             <Side sponsorList={sponsorList} />

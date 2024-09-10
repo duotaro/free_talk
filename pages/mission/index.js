@@ -7,13 +7,14 @@ import About from "../../components/parts/about";
 import { getDatabase } from "../../lib/notion";
 import saveImageIfNeeded from "../../components/download/index.js";
 import { convertAboutFromDatabase } from "../../entity/aboutEntity";
+import Mission from "../../components/parts/mission/index.js";
 
-export default function AboutPage({ about }) {
+export default function MissionPage({ about }) {
   const { locale } = useContext(LocaleContext);
   const { json, metaTitleExtension } = useLocale(locale)
   let lang = json.navigation
 
-  let {aboutSchool} = convertAboutFromDatabase(about, locale == "ja")
+  let {mission} = convertAboutFromDatabase(about, locale == "ja")
 
 
   return (
@@ -25,7 +26,7 @@ export default function AboutPage({ about }) {
 
       <div className="">
         <div className="row">
-          <About about={aboutSchool}/>
+          <Mission mission={mission} />
         </div>
       </div>
     </Layout>
