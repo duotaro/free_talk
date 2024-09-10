@@ -7,14 +7,14 @@ import '@splidejs/splide/css'; // デフォルトのテーマを読み込んで�
 
 export default function SliderList({ sliderList }) {
     return (
-        <div className="row mb-3">
+        <div className="">
           <section className=''>
             <Splide
               aria-label="私のお気に入りの画像集"
               options={{
                 autoplay: true, // 自動再生を有効
                 interval: 3000, // 自動再生の間隔を3秒に設定
-                rewind: true
+                perPage: 1
               }}
             >
               {sliderList.map((slider) => {

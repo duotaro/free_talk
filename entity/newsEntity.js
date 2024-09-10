@@ -1,10 +1,12 @@
+import { getBlocks, getDatabase, getPage } from "../lib/notion"
 import { formatDate } from "../utils/dateUtils"
 
 export default class NewsEntity {
     constructor(item, isJapanease){
-        this.ordering =  item.properties["ordering"].number
         // title
         this.title = []
+
+        this.id = item.id
         if(isJapanease && item.properties["title"].title[0]){
             this.title = item.properties["title"].title
         }
@@ -21,8 +23,29 @@ export default class NewsEntity {
         if(!isJapanease && item.properties["text_en"].rich_text[0]){
             this.text = item.properties["text_en"].rich_text
         }
-        if(item.properties["link"].rich_text[0]){
-            this.link = item.properties["link"].rich_text[0].text.content
-        }
     }
+}
+const getNewsDetail = async (id) => {
+    const detail = await getDatabase(id)
+    // get page?
+    return detail
+}
+
+export const getDetailList = async (database) => {
+    let params = []
+    const paramsPromises = database.map(async (page) => {
+        const detailBlock = await getBlocks(page.id)
+
+        const detailList = await getDatabase(detailBlock[0].id);
+        return detailList.map((detail) => ({
+            detailId: detail.id,
+            detail: page,
+            locale: detail.properties["locale"].title[0].plain_text,
+        }));
+
+    })
+    // すべての Promise が解決するのを待つ
+    const paramsArrays = await Promise.all(paramsPromises);
+
+    return paramsArrays.flat();
 }

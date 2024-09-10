@@ -1,9 +1,9 @@
 {
    "navigation": {
-      "title": "Tucson Japanese Language School",
+      "title": "Tucson Japanese School",
       "sub_title": "ツーソン日本語補習校",
-      "meta_title": "Tucson Japanese Language School | Japanese Education in Tucson, USA",
-      "description": "Looking to learn Japanese in Tucson? Tucson Japanese Language School provides an excellent educational environment for Japanese learners. Check out our enrollment information and course offerings here.",
+      "meta_title": "Tucson Japanese School | Japanese Education in Tucson, USA",
+      "description": "Looking to learn Japanese in Tucson? Tucson Japanese School provides an excellent educational environment for Japanese learners. Check out our enrollment information and course offerings here.",
       "keyword": "Japan, Japanese, School, Tucson, children, class, culture, kids, language, クラス, ツーソン, 子ども, 学校, 日本, 日本語",
       "home": "HOME",
       "about": "ABOUT",
@@ -40,6 +40,7 @@
       "title": "Event"
     },
     "common": {
-      "show_more": "show more"
+      "show_more": "show more",
+      "not_found_article": "not found"
     }
 }

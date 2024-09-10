@@ -18,6 +18,7 @@ import Vision from '../components/parts/vision/index.js';
 import Faq from '../components/parts/faq/index.js';
 import { convertAboutFromDatabase } from '../entity/aboutEntity.js';
 import About from '../components/parts/about/index.js';
+import { getDetailList } from '../entity/newsEntity.js';
 
 
 export default function Home({ sliderList, sponsors, newsList, scheduleList, about }) {
@@ -41,8 +42,8 @@ export default function Home({ sliderList, sponsors, newsList, scheduleList, abo
         <link rel="icon" href="/favicon.ico" />
       </Head>
       <div className="">
-        <SliderList sliderList={sliderList} />  
         <div className="row">
+          <SliderList sliderList={sliderList} />  
           <News newsList={newsList} lang={json.news} />
           <About about={aboutSchool}/>
           <Mission mission={mission}/>
@@ -60,6 +61,7 @@ export default function Home({ sliderList, sponsors, newsList, scheduleList, abo
 }
 
 export const getStaticProps = async (context) => {
+
   // get slider
   let sliderList = await getSlider()
 
@@ -110,7 +112,8 @@ const getSlider = async () => {
  */
 const getNews = async () => {
   const database = await getDatabase("cc0b1eb3570842ba926cc71ecaf5df4d")
-  return database
+  let params = await getDetailList(database)
+  return params
 }
 
 const getSponsors = async () => {
@@ -131,7 +134,6 @@ const getCalender = async () => {
 
 const getAbout = async () => {
   const database = await getDatabase("d4eb3828e74c469b9179ca7be9edb5cf")
-  console.log(database)
   let props = []
   for(let item of database){
     props.push(item.properties)
@@ -170,10 +172,6 @@ export async function generateMetadata({ params }) {
 let getNewsFromGSS = async () => {
   let news = await fetchGss("news")
   let sponsors = await fetchGss("sponsors")
-  // console.log("===================================")
-  // console.log(news)
-  // console.log(sponsors)
-  // console.log("===================================")
 
   return {
     news,

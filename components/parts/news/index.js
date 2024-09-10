@@ -5,10 +5,25 @@ import React, { useContext } from "react";
 import NewsDetail from "./detail";
 import LocaleContext from "../../context/localeContext";
 import { useLocale } from "../../../utils/locale";
+import NewsEntity from "../../../entity/newsEntity";
 
 export default function News({ newsList }) {
+  // console.log(newsList)
   const { locale } = useContext(LocaleContext);
   const { json } = useLocale(locale)
+
+  let params = []
+  for(let news of newsList){
+    
+    let entity = new NewsEntity(news.detail, news.locale == "ja")
+    console.log(entity.title)
+    if(news.locale == locale && entity.title[0]){
+      let param = {id: news.detailId, detail:entity, newsLocale:news.locale}
+      params.push(param)
+    }
+  }
+
+
 
   return (
     <section className="py-8 md:py-12 lg:py-20 bg-white">
@@ -20,9 +35,9 @@ export default function News({ newsList }) {
       </div>
       <div className="container px-6 mx-auto">
         <div className="grid justify-center gap-20 pt-20 lg:grid-cols-3">
-          {newsList.map((item) => {
+          {params.map((param) => {
               return (
-                <NewsDetail news={item}/>
+                <NewsDetail param={param}/>
               )
           })}
           </div>
