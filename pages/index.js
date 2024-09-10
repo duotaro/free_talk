@@ -70,6 +70,7 @@ export const getStaticProps = async (context) => {
 
   // get news
   let newsList = await getNews()
+  // 件数フィルター
 
   // get calender
   let scheduleList = await getCalender()

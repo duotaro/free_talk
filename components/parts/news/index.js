@@ -23,6 +23,8 @@ export default function News({ newsList }) {
     }
   }
 
+   // pagination できる？？
+
 
 
   return (
