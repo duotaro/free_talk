@@ -13,7 +13,11 @@ export default function NewsDetail({ param }) {
  let {id, detail, newsLocale} = param
   return (
     <div key={detail.id} className="max-w-xd text-center lg:max-w-sm">
-        <h3 className="text-2xl font-bold">
+        <h3 className="text-xl font-black md:text-2xl font-bold" style={{
+            minHeight: "3em",
+            lineHeight: "1.5em",
+            overflow: "hidden"
+            }}>
             {detail.title.map((title) => {
                 return title.href ? (
                     <Link href={title.href} className="link-secondary">{title.text.content}</Link>
@@ -23,7 +27,7 @@ export default function NewsDetail({ param }) {
             })}
         </h3>
         {detail.text && (
-            <div className="pt-2 text-lg mb-5">
+            <div className="pt-3 text-md mb-5 line-clamp-3 md:text-lg">
             {detail.text.map((text) => {
                 return text.href ? (
                     <Link href={text.href} className="link-secondary">{text.text.content}</Link>
@@ -33,9 +37,9 @@ export default function NewsDetail({ param }) {
             })}
             </div>
         )}
-        {/* <Link href={`/news/${newsLocale}/${id}`} className="px-6 py-3 text-lg transition-colors rounded-md bg-blue-600 text-white hover:bg-blue-700">
+        <Link href={`/news/${newsLocale}/${id}`} className="px-3 py-2 text-md md:text-lg transition-colors rounded-md bg-blue-600 text-white hover:bg-blue-700">
             {json.common.show_more}
-        </Link> */}
+        </Link>
     </div>
   );
 }

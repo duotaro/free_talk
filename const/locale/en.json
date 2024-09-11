@@ -23,9 +23,11 @@
     "footer": {
       "title": "CONTACT INFO",
       "location": "Location",
-      "address": "Business Address",
+      "address": "Postal Address",
       "sns": "Social Media",
-      "email": "E-mail"
+      "email": "E-mail",
+      "class": "Class date and time",
+      "polycy": "Tucson Japanese School , as an educational institution and as an employer, values equality of opportunity, human dignity, and racial/ethnic and cultural diversity. Therefore, this organization prohibits and will not engage in discrimination or harassment of any kind based on race, color, creed, religion, national origin, sex, marital status, sexual orientation, status with regard to public assistance, disability or age."
     },
     "side": {
       "title": "CONTACT INFO",

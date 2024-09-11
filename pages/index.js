@@ -8,7 +8,6 @@ import SliderList from '../components/parts/slider/index.js';
 import News from '../components/parts/news/index.js';
 import SponsorEntity from '../entity/sponsorEntity.js';
 import { fetchGss } from '../lib/appscript.js';
-import Side from '../components/parts/widget/side.js'
 //import fs from 'fs';
 import LocaleContext from '../components/context/localeContext.js';
 import saveImageIfNeeded from '../components/download/index.js';
@@ -19,6 +18,7 @@ import Faq from '../components/parts/faq/index.js';
 import { convertAboutFromDatabase } from '../entity/aboutEntity.js';
 import About from '../components/parts/about/index.js';
 import { getDetailList } from '../entity/newsEntity.js';
+import Sponsor from '../components/parts/sponsor/index.js';
 
 
 export default function Home({ sliderList, sponsors, newsList, scheduleList, about }) {
@@ -48,7 +48,8 @@ export default function Home({ sliderList, sponsors, newsList, scheduleList, abo
           <About about={aboutSchool}/>
           <Mission mission={mission}/>
           <Vision vision={vision}/>
-          <Faq />
+          {/* <Faq /> */}
+          <Sponsor sponsor={sponsorList} />
           {/* Side widgets*/}
           {/* <section className="col-lg-4">
             <Side sponsorList={sponsorList} />
