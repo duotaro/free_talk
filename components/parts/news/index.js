@@ -5,21 +5,24 @@ import React, { useState, useCallback, useRef } from "react";
 import Link from "next/link";
 import TopNewsEntity from '../../../entity/newsEntity'
 
-export default function News({ newsList, lang }) {
-  const [currentTab, setCurrentTab] = useState(NEWS_GENRE.LATEST)
-  let resList = []
-  let latestList = []
-  let parentList = []
-  let entryList = []
-  for(let item of newsList) {
-    let res = new TopNewsEntity(item)
-    resList.push(res)
-    if(res.tag == NEWS_GENRE.LATEST){
-        latestList.push(res)
-    }else if(res.tag == NEWS_GENRE.PARENT){
-        parentList.push(res)
-    }else if(res.tag == NEWS_GENRE.ENTRY){
-        entryList.push(res)
+
+import React, { useContext } from "react";
+import NewsDetail from "./detail";
+import LocaleContext from "../../context/localeContext";
+import { useLocale } from "../../../utils/locale";
+import NewsEntity from "../../../entity/newsEntity";
+
+export default function News({ newsList }) {
+  // console.log(newsList)
+  const { locale } = useContext(LocaleContext);
+  const { json } = useLocale(locale)
+
+  let params = []
+  for(let news of newsList){
+    let entity = new NewsEntity(news.detail, news.locale == "ja")
+    if(news.locale == locale && entity.title[0]){
+      let param = {id: news.detailId, detail:entity, newsLocale:news.locale}
+      params.push(param)
     }
   }
 

@@ -1,9 +1,7 @@
 import Head from "next/head";
 import Navbar from './navbar'
 import Footer from './footer'
-import Nav from './nav'
-import 'bootstrap/dist/css/bootstrap.min.css'
-import 'bootstrap-icons/font/bootstrap-icons.min.css'
+import Nav from './parts/nav/nav'
 export default function Layout({ children }) {
   return (
     <>

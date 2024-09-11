@@ -3,7 +3,7 @@ User-agent: *
 Allow: /
 
 # Host
-Host: https://duotaro.github.io/
+Host: https://tjschool.org/
 
 # Sitemaps
-Sitemap: https://duotaro.github.io/sitemap.xml
+Sitemap: https://tjschool.org/sitemap.xml
