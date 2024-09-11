@@ -1,14 +1,10 @@
-import {HeaderMenuEntity, DropDownsEntity} from "../entity/menuEntity"
+import {HeaderMenuEntity} from "../entity/menuEntity"
 import {DOMAIN, URLS} from "../const/pageUrl"
 
-/** 最新情報 */
-export const NEWS_GENRE = {
-    LATEST : '最新情報', 
-    PARENT : '保護者の皆様へ', 
-    ENTRY : '登録/募集のお知らせ'
-}
-/** ジャンル */
-export const NEWS_GENRES = [NEWS_GENRE.LATEST, NEWS_GENRE.PARENT, NEWS_GENRE.ENTRY]
+export const DOWNLOAD_IMAGE_PATH = 'public/image/download'
+export const ACCESABLE_IMAGE_PATH = 'image/download'
+export const DOWNLOAD_IMAGE_EXTENSION = '.png'
+
 /** ジャンル */
 export const GENRE_ENUM = {
     GENRE1 : 'ai', 
@@ -69,15 +65,37 @@ export const GENRE_TITLE_MAP = {
 export const AD_CLIENT_ID = process.env.NEXT_PUBLIC_AD_CLIENT_ID
 
 /** header menu */
-/** 学園紹介 */
+/** 学校概要 */
 const ABOUT_DROPDOWNS = [
-    new DropDownsEntity(URLS.ABOUT_URL, []),
-    new DropDownsEntity(URLS.MESSAGE_URL, []),
-    new DropDownsEntity(URLS.GENERAL_URL, [])
+    new HeaderMenuEntity(URLS.STAFF_URL, []),
+    new HeaderMenuEntity(URLS.EVENT_URL, []),
+    new HeaderMenuEntity(URLS.SPONSORS_URL, []),
+    new HeaderMenuEntity(URLS.KANJI_URL, [])
 ]
-
+/** 入学案内 */
+const ADMISSION_DROPDOWNS = [
+    new HeaderMenuEntity(URLS.ABOUT_URL, []),
+    new HeaderMenuEntity(URLS.ABOUT_URL, [])
+]
+/** お問い合わせ */
+const CONTACT_DROPDOWNS = [
+    new HeaderMenuEntity(URLS.ABOUT_URL, []),
+    new HeaderMenuEntity(URLS.ABOUT_URL, []),
+    new HeaderMenuEntity(URLS.ABOUT_URL, [])
+]
+/** 大人向けプラグラム */
+const ADULT_DROPDOWNS = [
+    new HeaderMenuEntity(URLS.ABOUT_URL, []),
+    new HeaderMenuEntity(URLS.ABOUT_URL, []),
+    new HeaderMenuEntity(URLS.ABOUT_URL, [])
+]
 export const HEADER_MENU = {
     HOME: new HeaderMenuEntity(URLS.HOME_URL, []),
-    ABOUT: new HeaderMenuEntity(URLS.ABOUT_URL, ABOUT_DROPDOWNS)
+    ABOUT: new HeaderMenuEntity(URLS.ABOUT_URL, ABOUT_DROPDOWNS),
+    ADMISSION: new HeaderMenuEntity(URLS.ADMISSION_URL, ADMISSION_DROPDOWNS),
+    FAQ: new HeaderMenuEntity(URLS.FAQ_URL, []),
+    CONTACT: new HeaderMenuEntity(URLS.CONTACT_URL, CONTACT_DROPDOWNS),
+    PAYMANET: new HeaderMenuEntity(URLS.PAYMENT_URL, []),
+    ADULT: new HeaderMenuEntity(URLS.ADULT_URL, ADULT_DROPDOWNS)
 }
 

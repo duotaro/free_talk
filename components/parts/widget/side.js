@@ -1,12 +1,16 @@
 export const databaseId = process.env.NEXT_PUBLIC_NOTION_DATABASE_ID;
-import POPULAR from '../popular/list.js'
-import RECOMMEND from '../recommend/list.js'
+import LocaleContext from '../../context/localeContext.js';
+import React, { useContext } from 'react';
 import SponsorList from '../sponsor/index.js';
-export default function Side({ sponsorList, lang }) {
+import { useLocale } from '../../../utils/locale.js';
+import Side_Contact from '../contact/side.js';
+export default function Side({ sponsorList }) {
+  const { locale } = useContext(LocaleContext);
+  const { json } = useLocale(locale)
+  let lang = json.side
   let sponsors = sponsorList[0]
+  var title = lang["sponsors"].replace("{year}", 2023);
 
-  let title = lang[sponsors.i18nkey].replace("{year}", sponsors.year);
-  console.log(title)
 
   return (
       <>
@@ -14,24 +18,30 @@ export default function Side({ sponsorList, lang }) {
             <div className="card-header  bg-dark text-white">sns</div>
             
         </div> */}
+        {sponsorList.length && (
         <div className="card mb-4">
             <div className="card-header  bg-dark text-white">
               <i class="bi bi-emoji-smile text-warning m-1"></i>{title}
             </div>
-            <SponsorList sponsors={sponsors} />
+            {sponsorList.map((sponsor) => {
+              return (
+                <SponsorList sponsor={sponsor} />
+              )
+            })}
+            
+        </div>
+        )}
+        {/* <div className="card mb-4">
+            <div className="card-header  bg-dark text-white">
+              <i className="bi bi-graph-up-arrow text-warning m-1">{lang.contact}</i>
+            </div>
+            <Side_Contact />
         </div>
         <div className="card mb-4">
             <div className="card-header  bg-dark text-white">
-              <i className="bi bi-graph-up-arrow text-warning m-1"></i>人気記事
+              <i className="bi bi-hand-index text-danger m-1"></i>{lang.archives}
             </div>
-            <POPULAR />
-        </div>
-        <div className="card mb-4">
-            <div className="card-header  bg-dark text-white">
-              <i className="bi bi-hand-index text-danger m-1"></i>おすすめ記事
-            </div>
-            <RECOMMEND />
-        </div>
+        </div> */}
     </>
   );
 }

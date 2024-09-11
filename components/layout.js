@@ -2,6 +2,7 @@ import Head from "next/head";
 import Navbar from './navbar'
 import Footer from './footer'
 import Nav from './parts/nav/nav'
+
 export default function Layout({ children }) {
   return (
     <>
@@ -13,7 +14,7 @@ export default function Layout({ children }) {
       </Head>
         <Navbar />
         <Nav />
-        <main>{children}</main>
+        <main className="">{children}</main>
         <Footer />
     </>
   )

@@ -1,4 +1,4 @@
-import React, { Fragment } from 'react';
+import React, { useContext } from 'react';
 import Head from "next/head.js";
 import { useLocale } from "../utils/locale";
 import { getDatabase } from "../lib/notion.js";
@@ -6,108 +6,53 @@ import Layout from '../components/layout.js'
 export const databaseId = process.env.NEXT_PUBLIC_NOTION_DATABASE_ID;
 import SliderList from '../components/parts/slider/index.js';
 import News from '../components/parts/news/index.js';
-import ContentEntity from '../entity/contentEntity.js';
+import SponsorEntity from '../entity/sponsorEntity.js';
 import { fetchGss } from '../lib/appscript.js';
 import Side from '../components/parts/widget/side.js'
+//import fs from 'fs';
+import LocaleContext from '../components/context/localeContext.js';
+import saveImageIfNeeded from '../components/download/index.js';
+import Calender from '../components/parts/calender/index.js';
+import Mission from '../components/parts/mission/index.js';
+import Vision from '../components/parts/vision/index.js';
+import Faq from '../components/parts/faq/index.js';
+import { convertAboutFromDatabase } from '../entity/aboutEntity.js';
+import About from '../components/parts/about/index.js';
+import { getDetailList } from '../entity/newsEntity.js';
 
 
-export const Text = ({ text }) => {
-  if (!text) {
-    return null;
-  }
-  return text.map((value) => {
-    const {
-      annotations: { bold, code, color, italic, strikethrough, underline },
-      text,
-    } = value;
-    return (
-      <span
-        className={[
-          bold ? styles.bold : "",
-          code ? styles.code : "",
-          italic ? styles.italic : "",
-          strikethrough ? styles.strikethrough : "",
-          underline ? styles.underline : "",
-        ].join(" ")}
-        style={color !== "default" ? { color } : {}}
-        key={text.content}
-      >
-        {text.link ? <a href={text.link.url}>{text.content}</a> : text.content}
-      </span>
-    );
-  });
-};
-
-export default function Home({ sliderList, newsList, sponsors }) {
-
+export default function Home({ sliderList, sponsors, newsList, scheduleList, about }) {
+  const { locale } = useContext(LocaleContext);
+  const { json, metaTitleExtension } = useLocale(locale)
+  let lang = json.navigation
   let sponsorList = []
-  
+
   for(let item of sponsors){
-    let sponsor = new ContentEntity(item)
+    let sponsor = new SponsorEntity(item)
     sponsorList.push(sponsor)
   }
 
-  
+  let {aboutSchool, mission, vision} = convertAboutFromDatabase(about, locale == "ja")
 
-  const { json } = useLocale()
-
-  console.log(json)
   return (
     <Layout>
       <Head>
-        <title>ツーソン日本語補習校 - トップ -</title>
+        <title>{metaTitleExtension}</title>
+        <meta name="description" content={`${lang.home} - ${lang.description}`} />
         <link rel="icon" href="/favicon.ico" />
       </Head>
-      <div className="container mt-5">
-        {/* Slider */}
-        <SliderList sliderList={sliderList}></SliderList>        
+      <div className="">
         <div className="row">
-          <section className="col-lg-8">
-            <News newsList={newsList} lang={json.news}></News>
-            <div className="row gx-4 gx-lg-5 row-cols-sm-2 row-cols-1 justify-content-center">
-               
-            {/* {mainContent.map((item) => {
-              return (
-                <div className="col mb-3" key={item.ordering}>
-                  {item.mainLink && (
-                    <a className="card h-100 text-decoration-none"  href={item.mainLink}>
-                      <div className="card-body p-4">
-                          <div className="text-center">
-                              <p className="fw-bolder">{item.contentText}</p>
-                          </div>
-                          <div className="text-center">
-                            <img className="p-3 w-50" src={item.image1} alt="..." />
-                          </div>
-                      </div>
-                    </a>
-                  )}
-                  {!item.mainLink && (
-                    <div className="card h-100 text-decoration-none"  href={item.mainLink}>
-                      <div className="card-body p-4">
-                          <div className="text-center">
-                          <p className="fw-bolder">{item.contentText}</p>
-                          </div>
-                          <div className="text-center">
-                            <a href={item.image1Link}><img className="p-3 w-50" src={item.image1} alt="..." /></a>
-                            </div>
-                          <div className="text-center">
-                            <a href={item.image2Link}><img className="p-3 w-50" src={item.image2} alt="..." /></a>
-                          </div>
-                          <div className="text-center">
-                            <a href={item.image3Link}><img className="p-3 w-50" src={item.image3} alt="..." /></a>
-                          </div>
-                      </div>
-                    </div>
-                  )}
-                </div>
-              )
-            })} */}
-            </div>
-          </section>
+          <SliderList sliderList={sliderList} />  
+          <News newsList={newsList} lang={json.news} />
+          <About about={aboutSchool}/>
+          <Mission mission={mission}/>
+          <Vision vision={vision}/>
+          <Faq />
           {/* Side widgets*/}
-          <section className="col-lg-4">
-            <Side sponsorList={sponsorList} lang={json.sponsors}/>
-          </section>
+          {/* <section className="col-lg-4">
+            <Side sponsorList={sponsorList} />
+          </section> */}
        
         </div>{/* .row */}
       </div>{/* .container */}
@@ -116,24 +61,29 @@ export default function Home({ sliderList, newsList, sponsors }) {
 }
 
 export const getStaticProps = async (context) => {
+
   // get slider
   let sliderList = await getSlider()
-  // get news
-  let newsList = await getNews()
-  // get content
+
+  // get sponsor
   let sponsors = await getSponsors()
 
-  //let sponsors = item.sponsors
-  // for(let sponsor in sponsors) {
-  //   let res = sponsors[sponsor]
-  //   console.log(res)
-  //   console.log(res.image)
-  // }
+  // get news
+  let newsList = await getNews()
+  // 件数フィルター
+
+  // get calender
+  let scheduleList = await getCalender()
+
+  // get about
+  let about = await getAbout()
   return {
     props: {
       sliderList: sliderList,
+      sponsors: sponsors,
       newsList: newsList,
-      sponsors: sponsors
+      scheduleList: scheduleList,
+      about: about
     },
     revalidate: 1
   };
@@ -144,9 +94,17 @@ export const getStaticProps = async (context) => {
  * @returns list [SliderEntity]
  */
 const getSlider = async () => {
-  const topBannerId = "110fbaeb5f264e91a12487969cc4c214"
+  const topBannerId = "f2bd94d61f7c45958755562d366af5ea"
   const database = await getDatabase(topBannerId)
-  return database
+  let props = []
+  for(let item of database){
+    props.push(item.properties)
+  }
+
+  await saveImageIfNeeded(props, "slider")
+
+  return database;
+ 
 }
 
 /**
@@ -154,14 +112,35 @@ const getSlider = async () => {
  * @returns list [SliderEntity]
  */
 const getNews = async () => {
-  const topNewsBannerID = "e48122663a9641bc8c786a16694dd364"
-  const database = await getDatabase(topNewsBannerID)
-  return database
+  const database = await getDatabase("cc0b1eb3570842ba926cc71ecaf5df4d")
+  let params = await getDetailList(database)
+  return params
 }
 
 const getSponsors = async () => {
-  const topContentId = "15f19797da4c4a958182b8d7971d17d4"
-  const database = await getDatabase(topContentId)
+  const database = await getDatabase("1e302ac5bce442b797e491aee309e7c4")
+  let props = []
+  for(let item of database){
+    props.push(item.properties)
+  }
+
+  await saveImageIfNeeded(props, "sponsor")
+  return database
+}
+
+const getCalender = async () => {
+  const database = await getDatabase("8d87080f73f14e8a9e7ba934c1d928c6")
+  return database
+}
+
+const getAbout = async () => {
+  const database = await getDatabase("d4eb3828e74c469b9179ca7be9edb5cf")
+  let props = []
+  for(let item of database){
+    props.push(item.properties)
+  }
+
+  await saveImageIfNeeded(props, "about")
   return database
 }
 
@@ -194,10 +173,6 @@ export async function generateMetadata({ params }) {
 let getNewsFromGSS = async () => {
   let news = await fetchGss("news")
   let sponsors = await fetchGss("sponsors")
-  console.log("===================================")
-  console.log(news)
-  console.log(sponsors)
-  console.log("===================================")
 
   return {
     news,

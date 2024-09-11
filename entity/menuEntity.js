@@ -7,11 +7,3 @@ export class HeaderMenuEntity {
         this.hasDropdowns = dropdowns.length > 0
     }
 }
-
-export class DropDownsEntity {
-    constructor(pageItem){
-        this.key = pageItem.PAGE_KEY
-        this.title = pageItem.PAGE_TITLE
-        this.link = pageItem.PAGE_URL
-    }
-}

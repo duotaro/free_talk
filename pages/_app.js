@@ -1,25 +1,20 @@
 import "../styles/globals.css";
 import "../firebase/client.js"
 import Script from "next/script";
-import * as gtag from "../lib/gtag";
-import { useRouter } from "next/router";
-import { useEffect } from "react";
+import { LocaleProvider } from "../components/context/localeContext.js"
+// import { useEffect } from "react";
 
 function MyApp({ Component, pageProps }) {
-  const router = useRouter();
-  useEffect(() => {
-    const handleRouterChange = (url) => {
-      gtag.pageview(url);
-    };
-    router.events.on("routeChangeComplete", handleRouterChange);
-    return () => {
-      router.events.off("routeChangeComplete", handleRouterChange);
-    };
-  }, [router.events]);
+  
+//  useEffect(() => {
+//     require("bootstrap/dist/js/bootstrap.bundle.min.js");
+//   }, []);
 
   return (
   <>
-    <Component {...pageProps} />
+    <LocaleProvider>
+      <Component {...pageProps} />
+    </LocaleProvider>
   </>
   );
 }
