@@ -9,6 +9,10 @@ var savePath = downloadImagePath
 /// 拡張子がjpeg, pngでわかれているとパスの取得時に判定が必要になるので、.pngで統一する
 const saveImageIfNeeded = async (blocksWithChildren, path) => {
   savePath = `${downloadImagePath}/${path}`
+  const tmpPath = `${downloadImagePath}/${path}`
+  savePath = tmpPath
+  console.log(savePath)
+  
   if (!fs.existsSync(savePath)) {
     fs.mkdirSync(savePath)
   }
@@ -62,6 +66,7 @@ const isImageExist = (keyName) => {
 }
 
 const saveImage = (imageBinary, keyName) => {
+  console.log(savePath + '/' + keyName + downloadImageExtention)
   fs.writeFile(savePath + '/' + keyName + downloadImageExtention, imageBinary, (error) => {
     if (error) {
       console.log(error)
