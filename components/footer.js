@@ -7,32 +7,40 @@ import {
   EnvelopeIcon,
   ClockIcon
 } from '@heroicons/react/24/outline'
+import SocialMedia from './parts/sns';
+import Link from 'next/link';
+
+
 export default function Footer({  }) {
   const { locale } = useContext(LocaleContext);
   const { json } = useLocale(locale)
   const lang = json.footer
 
+  let hClass = "text-md hidden xl:block"
+  let vClass = "list-unstyled mb-0 block xl:hidden border-b pb-3"
+
+
   return (
-    <footer id="contact" className="border-neutral-300 text-lg-start text-white text-dark p-3 bg-blue-800 text-white">
+    <footer id="contact" className="border-neutral-300 text-lg-start p-3 bg-gradient-to-b from-cyan-500 to-cyan-600 text-white">
 			<div className="mx-auto max-w-7xl px-4 lg:px-8">
-        <div class="flex flex-col md:flex-row justify-between">
-				<div className="lg:w-1/2 mb-6 md:mb-0">
+        <div className="flex flex-col md:flex-row justify-between">
+				<div className="md:w-1/2 mb-6 md:mb-0 p-3">
           <div>
-            <h3 className="text-lg font-bold">{lang.title}</h3>
-            <ul className="mt-4 space-y-4 [&>li]:text-neutral-500">
+            <Link href={`/contact/`}><h3 className="text-lg font-bold">{lang.title}</h3></Link>
+            <ul className="mt-4 space-y-4 ">
               <div className="col-md-6 mb-4 mb-md-0">
                 <div className="flex items-center p-4">
                   <div className="flex items-center justify-center w-10 h-10 border-2 border-white-300 p-1 mr-3">
                     <MapPinIcon className="w-8 h-8" />
                   </div>
                   <span className="text-md font-semibold p-1 mr-3">{lang.location}:</span>
-                  <span className="text-md "><a href="https://www.google.com/maps?q=1701+E+Seneca+St,+Tucson,+AZ+85719,+USA" target="_blank" className="text-white text-left">International School of Tucson <br />1701 East Seneca Street, Tucson, AZ 85719</a></span> 
+                  <span className={hClass}><a href="https://www.google.com/maps?q=1701+E+Seneca+St,+Tucson,+AZ+85719,+USA" target="_blank" className="text-white text-left">International School of Tucson <br />1701 East Seneca Street, Tucson, AZ 85719</a></span> 
                 </div>
-                {/* <ul className="list-unstyled mb-0">
+                <ul className={vClass}>
                   <li>
                     <a href="https://www.google.com/maps?q=1701+E+Seneca+St,+Tucson,+AZ+85719,+USA" target="_blank" className="text-white text-left">International School of Tucson <br />1701 East Seneca Street, Tucson, AZ 85719</a>
                   </li>
-                </ul> */}
+                </ul>
               </div>
               <div className="col-md-6 mb-4 mb-md-0">
                 <div className="flex items-center p-4">
@@ -40,13 +48,13 @@ export default function Footer({  }) {
                     <BuildingOfficeIcon className="w-8 h-8 " />
                   </div>
                   <span className="text-md font-semibold p-1 mr-3">{lang.address}:</span>
-                  <span className="text-md "><a href="https://www.google.com/maps?q=1803+E+Seneca+St,+Tucson,+AZ+85719,+USA" target="_blank" className="text-white">1803 East Seneca Street,<br />Tucson, AZ 85719</a></span> 
+                  <span className={hClass}><a href="https://www.google.com/maps?q=1803+E+Seneca+St,+Tucson,+AZ+85719,+USA" target="_blank" className="text-white">1803 East Seneca Street,<br />Tucson, AZ 85719</a></span> 
                 </div>
-                {/* <ul className="list-unstyled mb-0">
+                <ul className={vClass}>
                   <li>
                     <a href="https://www.google.com/maps?q=1701+E+Seneca+St,+Tucson,+AZ+85719,+USA" target="_blank" className="text-white text-left">International School of Tucson <br />1701 East Seneca Street, Tucson, AZ 85719</a>
                   </li>
-                </ul> */}
+                </ul>
               </div>
               <div className="col-md-6 mb-4 mb-md-0">
                 <div className="flex items-center p-4">
@@ -54,13 +62,13 @@ export default function Footer({  }) {
                     <EnvelopeIcon className="w-8 h-8" />
                   </div>
                   <span className="text-md font-semibold p-1 mr-3">{lang.email}:</span>
-                  <span className="text-md "><a href="mailto:info@tucson.nihongo.hosyuko@gmail.com" target="_blank" className="text-white ">tucson.nihongo.hosyuko@gmail.com</a></span> 
+                  <span className={hClass}><a href="mailto:info@tucson.nihongo.hosyuko@gmail.com" target="_blank" className="text-white ">tucson.nihongo.hosyuko@gmail.com</a></span> 
                 </div>
-                {/* <ul className="list-unstyled mb-0">
+                <ul className={vClass}>
                   <li>
                   <a href="mailto:info@tucson.nihongo.hosyuko@gmail.com" target="_blank" className="text-white ">tucson.nihongo.hosyuko@gmail.com</a>
                   </li>
-                </ul> */}
+                </ul>
               </div>
               <div className="col-md-6 mb-4 mb-md-0">
                 <div className="flex items-center p-4">
@@ -68,13 +76,13 @@ export default function Footer({  }) {
                     <ClockIcon className="w-8 h-8" />
                   </div>
                   <span className="text-md font-semibold p-1 mr-3">{lang.class}:</span>
-                  <span className="text-md ">何時？？</span>
+                  <span className={hClass}>何時？？</span>
                 </div>
-                {/* <ul className="list-unstyled mb-0">
+                <ul className={vClass}>
                   <li>
                   何時？？
                   </li>
-                </ul> */}
+                </ul>
               </div>
               <div className="col-md-6 mb-4 mb-md-0">
                 <div className="flex items-center p-4">
@@ -82,24 +90,22 @@ export default function Footer({  }) {
                     <ClockIcon className="w-8 h-8" />
                   </div>
                   <span className="text-md font-semibold p-1 mr-3">{lang.sns}:</span>
-                  <span className="text-md "><a href="https://www.facebook.com/tucsonnihongohosyuko/" target="_blank" className="text-white text-center">
-                      <img src="image/fb.png" width="30" className='text-center'></img>
-                    </a></span>
+                  <span className={`${hClass} flex space-x-4`}>
+                    <ul className={`border-b-0 flex space-x-4`}>
+                      <SocialMedia />
+                    </ul>
+                  </span>
                 </div>
-                {/* <ul className="list-unstyled mb-0">
-                  <li>
-                    <a href="https://www.facebook.com/tucsonnihongohosyuko/" target="_blank" className="text-white text-center">
-                      <img src="image/fb.png" width="30" className='text-center'></img>
-                    </a>
-                  </li>
-                </ul> */}
+                <ul className={`${vClass} border-b-0 flex space-x-4`}>
+                  <SocialMedia />
+                </ul>
               </div>
             </ul>
           </div>
 				</div>
 
-				<div className="lg:w-1/2 flex items-center justify-center">
-          <div className='p-3 border-1 bg-white text-black'>
+				<div className="md:w-1/2 p-3 pt-20">
+          <div className='p-3 '>
           {lang.polycy}
           </div>
         </div>
@@ -113,7 +119,7 @@ export default function Footer({  }) {
 					</div>
 				)} */}
 
-				<div className="text-center border-t border-neutral-200 py-10 sm:flex-row my-5">
+				<div className="text-center border-t border-neutral-200 py-5 sm:flex-row ">
 					<p className="text-sm text-neutral-100">&copy; 2015- Tucson Japanese School All rights reserved.</p>
 
 				</div>

@@ -20,7 +20,7 @@ export default function Nav({ }) {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false)
 
   return (
-    <header className="bg-blue-800">
+    <header className="bg-gradient-to-b from-cyan-500 to-cyan-600">
     <nav aria-label="Global" className="mx-auto flex max-w-7xl items-center justify-between p-6 lg:px-8">
   
       <div className="flex lg:hidden">
