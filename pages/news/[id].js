@@ -6,7 +6,7 @@ import Link from "next/link";
 import Layout from "../../components/layout"
 import LocaleContext from "../../components/context/localeContext";
 import { useLocale } from "../../utils/locale";
-import { getNewsList } from "../../entity/newsEntity";
+import NewsEntity, { getNewsList } from "../../entity/newsEntity";
 
 export const Text = ({ text }) => {
   if (!text) {
@@ -29,7 +29,7 @@ export const Text = ({ text }) => {
         style={color !== "default" ? { color } : {}}
         key={text.content}
       >
-        {text.link ? <a href={text.link.url}>{text.content}</a> : text.content}
+        {text.link ? <Link className="text-black hover:text-blue-500 underline hover:no-underline transition duration-300" href={text.link.url}>{text.content}</Link> : text.content}
       </span>
     );
   });
@@ -87,32 +87,40 @@ const renderBlock = (block) => {
       );
     case "heading_1":
       return (
-        <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-extrabold text-gray-900 mb-4">
+        <h1 className="text-xl sm:text-2xl md:text-3xl lg:text-4xl font-semibold text-gray-700 mb-2 mt-10">
           <Text text={value.rich_text} />
         </h1>
       );
     case "heading_2":
       return (
-        <h2 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold text-gray-800 mb-3">
+        <h2 className="text-lg sm:text-xl md:text-2xl lg:text-3xl font-semibold text-gray-700 mb-2 mt-10">
           <Text text={value.rich_text} />
         </h2>
       );
     case "heading_3":
       return (
-        <h3 className="text-xl sm:text-2xl md:text-3xl lg:text-4xl font-semibold text-gray-700 mb-2">
+        <h3 className="text-base sm:text-lg md:text-xl lg:text-2xl font-semibold text-gray-700 mb-2 mt-2">
           <Text text={value.rich_text} />
         </h3>
       );
     case "bulleted_list": {
-      return <ul>{value.children.map((child) => renderBlock(child))}</ul>;
+      return (
+        <ul className="space-y-2 text-left text-gray-500 dark:text-gray-400 p-5 mt-5 mb-5 rounded-lg bg-gray-100">
+          {value.children.map((child) => renderBlock(child))}
+        </ul>
+      );
     }
     case "numbered_list": {
-      return <ol>{value.children.map((child) => renderBlock(child))}</ol>;
+      return (
+        <ol className="space-y-2 text-left text-gray-500 dark:text-gray-400 p-5 mt-5 mb-5 rounded-lg bg-gray-100">
+          {value.children.map((child) => renderBlock(child))}
+        </ol>
+      );
     }
     case "bulleted_list_item":
     case "numbered_list_item":
       return (
-        <li key={block.id}>
+        <li key={block.id} className="flex items-center space-x-3 rtl:space-x-reverse">
           <Text text={value.rich_text} />
           {!!value.children && renderNestedList(block, genre)}
         </li>
@@ -128,8 +136,8 @@ const renderBlock = (block) => {
       );
     case "toggle":
       return (
-        <details>
-          <summary>
+        <details className="hover:bg-gray-50  transition duration-200 rounded-md hover:shadow-lg">
+          <summary className="py-6 px-4 text-2xl  font-semibold w-full cursor-pointer marker:text-blue-500 list-none">
             <Text text={value.rich_text} />
           </summary>
           {block.children?.map((child) => (
@@ -150,8 +158,8 @@ const renderBlock = (block) => {
       const caption = value.caption ? value.caption[0]?.plain_text : "";
       return (
         <figure>
-          <img src={src} alt={caption} style={{width : '100%'}}/>
-          {caption && <figcaption>{caption}</figcaption>}
+          <img src={src} alt={caption} className="h-auto max-w-full rounded-lg" style={{width : '100%'}}/>
+          {caption && <figcaption className="mt-2 text-sm text-center text-gray-500 dark:text-gray-400">{caption}</figcaption>}
         </figure>
       );
     case "divider":
@@ -251,37 +259,36 @@ const renderBlock = (block) => {
   }
 };
 
-export default function Post({ pageMap, blockMap}) {
-    const { locale } = useContext(LocaleContext);
-    const { json, metaTitleExtension } = useLocale(locale)
-    let lang = json.navigation
+export default function Post({ pageMap, blockMap, detailPage}) {
+  const { locale } = useContext(LocaleContext);
+  const { json, metaTitleExtension } = useLocale(locale)
+  let lang = json.navigation
 
-    console.log("++++++++++++++++++++")
-    console.log(pageMap)
-    console.log("------------------")
-    console.log(blockMap)
-    console.log("++++++++++++++++++++")
+  const page = locale == "ja" ? pageMap.ja : pageMap.en
+  const blocks = locale == "ja" ? blockMap.ja : blockMap.en
+  let entity = new NewsEntity(detailPage, locale == "ja")
 
-
-    const page = locale == "ja" ? pageMap.ja : pageMap.en
-    const blocks = locale == "ja" ? blockMap.ja : blockMap.en
-
+  console.log("entity")
+  console.log(entity)
+  console.log("-------")
 
   if (!page || !blocks) {
     return <div>{json.common.not_found_article}</div>;
   }
   let pageTitle = ""
-  console.log("-------------")
-    console.log(page.properties)
-    console.log("-------**********")
-  for(const t of page.properties.locale.title){
-    pageTitle += t.plain_text
+  if(entity && entity.title[0]){
+    pageTitle = entity.title[0].plain_text
   }
+  // console.log("-------------")
+  //   console.log(pageTitle)
+  //   console.log("-------**********")
+  // for(const t of page.properties.locale.title){
+  //   pageTitle += t.plain_text
+  // }
 
-  console.log("open detail")
 
   const createtDate = new Date(page.created_time).toLocaleString(
-    "ja",
+    locale,
     {
       month: "short",
       day: "2-digit",
@@ -289,30 +296,36 @@ export default function Post({ pageMap, blockMap}) {
     }
   );
   const lastEditDate = new Date(page.last_edited_time).toLocaleString(
-    "ja",
+    locale,
     {
       month: "short",
       day: "2-digit",
       year: "numeric",
     }
   );  
+  let breadcrumb = {
+    parents: [{title:"news", link:"news"}],
+    current: pageTitle
+  }
 
   const adIndex = Math.ceil(blocks.length/2)
   return (
-    <Layout>
+    <Layout breadcrumb={breadcrumb}>
       <Head>
         <title>{pageTitle} - {metaTitleExtension} </title>
         <meta name="description" content={`${lang.about} - ${lang.description}`} />
       </Head>
 
-      <div className="container mt-5">
-            <div className="row">
-                <div className="col-lg-8">
+      <div className="">
+        <div className="row">
+          <section className="py-8 md:py-12 lg:py-10 ">
+            <div className="container px-6 mx-auto">
+              <div className="items-center gap-4 md:gap-8">
                     {/* Post content*/}
                     <article>
                         <header className="mb-4">
-                            {/* <h1 className="fw-bolder mb-1">{pageTitle}</h1> */}
-                            <div className="text-muted fst-italic mb-2">
+                            <h1 className="text-xl sm:text-2xl md:text-3xl lg:text-4xl font-semibold text-gray-700 mb-2 mt-10">{pageTitle}</h1>
+                            <div className="mt-4 uppercase text-gray-600 italic font-semibold text-xs agility-field">
                               <strong>作成日</strong> {createtDate} / 更新日 {lastEditDate}
                             </div>
                         </header>
@@ -336,10 +349,11 @@ export default function Post({ pageMap, blockMap}) {
                           
                           })}
                     </article>
-                    <Link href="/">← Go home</Link>
-                </div>
+              </div>
             </div>
+          </section>
         </div>
+      </div>
     </Layout>
   );
 }
@@ -373,11 +387,10 @@ export const getStaticProps = async (context) => {
   
   let pageMap = {"ja" : null, "en": null}
   let blockMap =  {"ja" : null, "en": null}
-
+  const detailPage = await getPage(id);
   const detailBlock = await getBlocks(id)
   // detailBlock[0].idはレコードID
   const localeList = await getDatabase(detailBlock[0].id);
-
 
   const paramsPromises = localeList.map(async (localeItem) => {
       // pageはレコードのこと（ニュース概要）
@@ -400,7 +413,8 @@ export const getStaticProps = async (context) => {
   return {
     props: {
       pageMap,
-      blockMap
+      blockMap,
+      detailPage
     },
     revalidate: 1,
   };

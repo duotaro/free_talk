@@ -13,6 +13,10 @@ export default function NewsDetail({ item }) {
 
   let {id, page} = item
   let entity = new NewsEntity(page, locale == "ja")
+
+  if(!entity.title.length){
+    return <></>
+  }
   return (
     <div key={entity.id} className="max-w-xd text-center lg:max-w-sm shadow-md rounded-xl bg-slate-100 p-5">
         <h3 className="text-xl font-black md:text-2xl font-bold" style={{

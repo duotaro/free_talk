@@ -36,7 +36,9 @@
       "archive": "アーカイブ"
     },
     "news": {
-      "title": "お知らせ"
+      "title": "お知らせ",
+      "created" : "作成日",
+      "updated" : "更新日"
     },
     "calender": {
       "title": "カレンダー"

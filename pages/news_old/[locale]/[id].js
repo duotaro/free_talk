@@ -303,7 +303,7 @@ export default function Post({ page, blocks}) {
                         <header className="mb-4">
                             {/* <h1 className="fw-bolder mb-1">{pageTitle}</h1> */}
                             <div className="text-muted fst-italic mb-2">
-                              <strong>作成日</strong> {createtDate} / 更新日 {lastEditDate}
+                              <strong>{json.news.created}</strong> {createtDate} / {json.news.updated} {lastEditDate}
                             </div>
                         </header>
                         {/* <p>広告</p> */}

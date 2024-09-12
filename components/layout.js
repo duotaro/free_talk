@@ -2,8 +2,9 @@ import Head from "next/head";
 import Navbar from './navbar'
 import Footer from './footer'
 import Nav from './parts/nav/nav'
+import Breadcrumb from "./parts/nav/breadcrumb";
 
-export default function Layout({ children }) {
+export default function Layout({ children, breadcrumb }) {
   return (
     <>
       <Head>
@@ -14,6 +15,7 @@ export default function Layout({ children }) {
       </Head>
         <Navbar />
         <Nav />
+        {breadcrumb && ( <Breadcrumb parents={breadcrumb.parents} current={breadcrumb.current} /> )}
         <main className="">{children}</main>
         <Footer />
     </>

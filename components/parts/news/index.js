@@ -11,7 +11,7 @@ export default function News({ list, isTop }) {
   const { locale } = useContext(LocaleContext);
   const { json } = useLocale(locale)
 
-  var sectionClass = "py-4 md:py-8 lg:py-12 bg-white"
+  var sectionClass = "md:py-2 bg-white"
   if(isTop){
     sectionClass = "py-8 md:py-12 lg:py-20 bg-white"
   }
@@ -20,6 +20,13 @@ export default function News({ list, isTop }) {
   if(isTop){
     divClass = "grid justify-center gap-10 pt-20 md:grid-cols-2 lg:grid-cols-3"
   }
+
+  // 作成日順で並び替え
+
+  // isTopなら件数フィルタ 
+
+
+
 
   return (
     <section className={sectionClass}>
@@ -34,7 +41,6 @@ export default function News({ list, isTop }) {
       <div className="container px-6 mx-auto">
         <div className={divClass}>
           {list.map((item) => {
-              
               return (
                 // <Link href={`/testnews/${id}`}>{id}</Link>
                 <NewsDetail item={item}/>

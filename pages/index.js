@@ -46,7 +46,7 @@ export default function Home({ sliderList, sponsors, newsList, scheduleList, abo
           <SliderList sliderList={sliderList} />  
           <News list={newsList} isTop={true} />
           <About about={aboutSchool}/>
-          <Mission mission={mission}/>
+          <Mission mission={mission} className="bg-gray-50"/>
           <Vision vision={vision}/>
           {/* <Faq /> */}
           <Sponsor sponsor={sponsorList} />
@@ -112,7 +112,7 @@ const getSlider = async () => {
  */
 const getNews = async () => {
   const database = await getDatabase("cc0b1eb3570842ba926cc71ecaf5df4d")
-  let params = await getNewsList(database)
+  let params = await getNewsList(database, 3)
   return params
 }
 

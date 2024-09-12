@@ -16,9 +16,9 @@
       "contact": "CONTACT",
       "payment": "MAKE PAYMENT",
       "adultjapanese": "ADULT LEARNING",
-      "news": "Announce",
-      "mission": "Mission",
-      "vision": "Vision"
+      "news": "News",
+      "mission": "Our Mission",
+      "vision": "Our Vision"
    },
     "footer": {
       "title": "CONTACT INFO",
@@ -36,7 +36,9 @@
       "archive": "Archives"
     },
     "news": {
-      "title": "News"
+      "title": "News",
+      "created" : "Created",
+      "updated" : "Updated"
     },
     "calender": {
       "title": "Event"

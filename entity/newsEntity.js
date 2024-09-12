@@ -13,9 +13,19 @@ export default class NewsEntity {
         if(!isJapanease && item.properties["en"].rich_text[0]){
             this.title = item.properties["en"].rich_text
         }
-        
+        console.log("DATE")
+        console.log(item)
+        console.log("D--------------")
         // 
-        this.date = formatDate(item.properties["date"].rich_text[0].text.content, isJapanease ? "ja" : "en")
+        this.rawDate = item.properties["date"].start
+        this.date = new Date(item.properties["date"].start).toLocaleString(
+            isJapanease ? "ja" : "en",
+            {
+              month: "short",
+              day: "2-digit",
+              year: "numeric",
+            }
+          );
         this.text = []
         if(isJapanease && item.properties["text"].rich_text[0]){
             this.text = item.properties["text"].rich_text
@@ -28,10 +38,20 @@ export default class NewsEntity {
     }
 }
 
-export const getNewsList = async (database) => {
+export const getNewsList = async (database, limit = null) => {
+
+
+    // 並び替え
+    const sortedDatabase = database.sort((a, b) => new Date(b.created_time) - new Date(a.created_time));
+
+    let limitedDatabase = sortedDatabase
+    if(limit){
+        limitedDatabase = sortedDatabase.slice(0, limit);    
+    }
+    
 
     let params = []
-    database.map((page) => {
+    limitedDatabase.map((page) => {
         params.push({
             id: page.id,
             page:page
@@ -41,25 +61,25 @@ export const getNewsList = async (database) => {
     return params;
 }
 
-export const getDetailList = async (database) => {
-    let params = []
-    // 詳細からテーブルビューの情報を取得する
-    // databaseには親テーブルの全てが入っている
-    const paramsPromises = database.map(async (page) => {
-        // pageはレコードのこと（ニュース概要）
-        const detailBlock = await getBlocks(page.id)
-        // detailBlock[0].idはレコードID
-        const detailList = await getDatabase(detailBlock[0].id);
-        // つまりサイドピーク内の要素が全て取れる。jaとenがあるテーブルが取れるはず
-        return detailList.map((detail) => ({
-            detailId: detail.id,
-            detail: page,
-            locale: detail.properties["locale"].title[0].plain_text,
-        }));
+// export const getDetailList = async (database) => {
+//     let params = []
+//     // 詳細からテーブルビューの情報を取得する
+//     // databaseには親テーブルの全てが入っている
+//     const paramsPromises = database.map(async (page) => {
+//         // pageはレコードのこと（ニュース概要）
+//         const detailBlock = await getBlocks(page.id)
+//         // detailBlock[0].idはレコードID
+//         const detailList = await getDatabase(detailBlock[0].id);
+//         // つまりサイドピーク内の要素が全て取れる。jaとenがあるテーブルが取れるはず
+//         return detailList.map((detail) => ({
+//             detailId: detail.id,
+//             detail: page,
+//             locale: detail.properties["locale"].title[0].plain_text,
+//         }));
 
-    })
-    // すべての Promise が解決するのを待つ
-    const paramsArrays = await Promise.all(paramsPromises);
+//     })
+//     // すべての Promise が解決するのを待つ
+//     const paramsArrays = await Promise.all(paramsPromises);
 
-    return paramsArrays.flat();
-}
+//     return paramsArrays.flat();
+// }

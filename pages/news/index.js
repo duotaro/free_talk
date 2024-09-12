@@ -1,35 +1,31 @@
 import Head from "next/head";
 import Layout from '../../components/layout'
-import { META_ABOUT_TITLE, META_ABOUT_DESCRIPTION } from "../../const/meta";
 import { getDatabase } from "../../lib/notion";
 import { useLocale } from "../../utils/locale";
-import NewsEntity, { getNewsList } from "../../entity/newsEntity";
-import Link from "next/link";
-import NewsDetail from "../../components/parts/news/detail";
+import LocaleContext from "../../components/context/localeContext";
+import React, { useContext } from 'react';
 import News from "../../components/parts/news";
+import { getNewsList } from "../../entity/newsEntity";
 
 export const databaseId = process.env.NEXT_PUBLIC_NOTION_DATABASE_ID;
 
 export default function NewsPage({ list }) {
+  const { locale } = useContext(LocaleContext);
+  const { json, metaTitleExtension } = useLocale(locale)
+  let lang = json.navigation
+
+  let breadcrumb = {
+    parents: [],
+    current: lang.news
+  }
   
   return (
-    <Layout>
+    <Layout breadcrumb={breadcrumb}>
       <Head>
-        <title>{META_ABOUT_TITLE}</title>
-        <meta name="description" content="TechnologyとConvenienceを組み合わせた造語。​ITがもたらす便利なものを紹介します。最近はAI関連の記事が多いです。ChatGPT / Google Bard / OpenAI GPT / Replika" />
+        <title>{lang.news} - {metaTitleExtension} </title>
+        <meta name="description" content={`${lang.about} - ${lang.description}`} />
       </Head>
       <News list={list} isTop={false}/>
-      
-      {/* <div className="container px-6 mx-auto">
-        <div className="grid justify-center gap-20 pt-20 lg:grid-cols-3">
-          {list.map((item) => {
-              return (
-                // <Link href={`/testnews/${id}`}>{id}</Link>
-                <NewsDetail item={item}/>
-              )
-          })}
-          </div>
-      </div> */}
     </Layout>
   );
 }
