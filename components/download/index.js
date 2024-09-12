@@ -3,33 +3,40 @@ import { DOWNLOAD_IMAGE_EXTENSION, DOWNLOAD_IMAGE_PATH } from '../../const'
 
 export const downloadImagePath = DOWNLOAD_IMAGE_PATH
 export const downloadImageExtention = DOWNLOAD_IMAGE_EXTENSION
-var savePath = downloadImagePath
+// var savePath = downloadImagePath
 
 /// Notion内の画像は一時ファイル扱いなので、ブロックの画像をpublic/blogImagesに保存する
 /// 拡張子がjpeg, pngでわかれているとパスの取得時に判定が必要になるので、.pngで統一する
 const saveImageIfNeeded = async (blocksWithChildren, path) => {
-  savePath = `${downloadImagePath}/${path}`
+  // savePath = `${downloadImagePath}/${path}`
   const tmpPath = `${downloadImagePath}/${path}`
-  savePath = tmpPath
-  console.log(savePath)
+  const tmpBlock = blocksWithChildren
+  // savePath = tmpPath
+  // console.log(savePath)
+  console.log(blocksWithChildren)
   
-  if (!fs.existsSync(savePath)) {
-    fs.mkdirSync(savePath)
+  try { fs.rmSync(tmpPath, { recursive: true, force: true }); }
+  catch(err) { console.error(err)}
+  
+  if (!fs.existsSync(tmpPath)) {
+    fs.mkdirSync(tmpPath)
   }
 
-  blocksWithChildren.forEach(async (block) => {
+  tmpBlock.forEach(async (block) => {
     const image = block.image
     if(!image){
+      console.log("not found image")
         return
     }
-    checkBlock(block)
+    
+    await checkBlock(block, tmpPath)
     if (block.has_children) {
-      block.children?.forEach((block) => checkBlock(block))
+      block.children?.forEach(async (block) => await checkBlock(block, tmpPath))
     }
   })
 }
 
-const checkBlock = async (block) => {
+const checkBlock = async (block, path) => {
 
   if (block.image.type == 'files') {
     const name = block.image.files[0].name
@@ -37,15 +44,18 @@ const checkBlock = async (block) => {
     const blob = await getTemporaryImage(url)
 
     if (!blob) {
+      console.log("not found blob")
       return ''
     }
 
     const extension = blob.type.replace('image/', '')
 
-    if (!isImageExist(name)) {
+    if (!isImageExist(path, name)) {
       const binary = (await blob.arrayBuffer())
       const buffer = Buffer.from(binary)
-      saveImage(buffer, name)
+      await saveImage(buffer, path, name)
+    } else {
+      console.log("already exist image.")
     }
   }
 }
@@ -61,13 +71,14 @@ const getTemporaryImage = async (url) => {
   }
 }
 
-const isImageExist = (keyName) => {
-  return fs.existsSync(savePath + '/' + keyName + downloadImageExtention)
+const isImageExist = (path, keyName) => {
+  return fs.existsSync(path + '/' + keyName + downloadImageExtention)
 }
 
-const saveImage = (imageBinary, keyName) => {
-  console.log(savePath + '/' + keyName + downloadImageExtention)
-  fs.writeFile(savePath + '/' + keyName + downloadImageExtention, imageBinary, (error) => {
+const saveImage = (imageBinary, path, keyName) => {
+  console.log("into saveImage")
+  console.log(path + '/' + keyName + downloadImageExtention)
+  fs.writeFile(path + '/' + keyName + downloadImageExtention, imageBinary, (error) => {
     if (error) {
       console.log(error)
       throw error

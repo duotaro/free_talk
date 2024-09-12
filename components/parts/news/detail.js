@@ -20,9 +20,9 @@ export default function NewsDetail({ param }) {
             }}>
             {detail.title.map((title) => {
                 return title.href ? (
-                    <Link href={title.href} className="link-secondary">{title.text.content}</Link>
+                    <Link href={title.href} className="link-secondary" key={title.text.content}>{title.text.content}</Link>
                 ) : (
-                    <span>{title.text.content}</span>
+                    <span key={title.text.content}>{title.text.content}</span>
                 )
             })}
         </h3>
@@ -30,9 +30,9 @@ export default function NewsDetail({ param }) {
             <div className="pt-3 text-md mb-5 line-clamp-3 md:text-lg">
             {detail.text.map((text) => {
                 return text.href ? (
-                    <Link href={text.href} className="link-secondary">{text.text.content}</Link>
+                    <Link href={text.href} className="link-secondary" key={text.text.content}>{text.text.content}</Link>
                 ) : (
-                    <span>{text.text.content}</span>
+                    <span key={text.text.content}>{text.text.content}</span>
                 )
             })}
             </div>

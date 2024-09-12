@@ -101,9 +101,10 @@ const getSlider = async () => {
   for(let item of database){
     props.push(item.properties)
   }
-
+  console.log("start save image for slider")
+  console.log(props)
   await saveImageIfNeeded(props, "slider")
-
+  console.log("end save image for slider")
   return database;
  
 }
