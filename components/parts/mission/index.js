@@ -26,16 +26,13 @@ export default function Mission({ mission }) {
                 className="rounded-lg"
               />
             </div>
-            <div className="flex flex-col items-center text-center md:items-start md:text-left">
-                <h2 className="text-3xl font-black sm:text-4xl lg:text-5xl">
+            <div className="flex flex-col items-center text-center ">
+            <h2 className="text-2xl font-black sm:text-3xl lg:text-4xl">
                 {mission.title}
                 </h2>
-                <div className="max-w-md mt-4 text-lg font-light leading-relaxed text-gray-500 sm:text-xl lg:text-2xl">
+                <div className="max-w-md mt-4 text-md font-light leading-relaxed text-gray-500 sm:text-lg lg:text-xl">
                     {mission.text}
                 </div>
-                {/* <Link href={`/mission/`} className="px-6 py-3 text-lg transition-colors rounded-md bg-blue-600 text-white hover:bg-blue-700">
-                    {json.common.show_more}
-                </Link> */}
             </div>
         </div>
       </div>

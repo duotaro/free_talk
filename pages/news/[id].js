@@ -318,8 +318,8 @@ export default function Post({ pageMap, blockMap, detailPage}) {
 
       <div className="">
         <div className="row">
-          <section className="py-8 md:py-12 lg:py-10 ">
-            <div className="container px-6 mx-auto">
+          <section className="py-4 md:py-6 lg:py-8 ">
+            <div className="container px-10 lg:px-40 xl:px-80 mx-auto">
               <div className="items-center gap-4 md:gap-8">
                     {/* Post content*/}
                     <article>

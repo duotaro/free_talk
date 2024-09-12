@@ -13,12 +13,12 @@ export default function News({ list, isTop }) {
 
   var sectionClass = "md:py-2 bg-white"
   if(isTop){
-    sectionClass = "py-8 md:py-12 lg:py-20 bg-white"
+    sectionClass = "py-4 md:py-6 lg:py-8 bg-white"
   }
 
-  var divClass = "grid justify-center gap-10 pt-10 md:grid-cols-2 lg:grid-cols-3"
+  var divClass = "grid justify-center gap-10 pt-5 pb-5 md:grid-cols-2 lg:grid-cols-3"
   if(isTop){
-    divClass = "grid justify-center gap-10 pt-20 md:grid-cols-2 lg:grid-cols-3"
+    divClass = "grid justify-center gap-10 pt-5 md:grid-cols-2 lg:grid-cols-3"
   }
 
   // 作成日順で並び替え
@@ -32,9 +32,9 @@ export default function News({ list, isTop }) {
     <section className={sectionClass}>
       {isTop && (
       <div className="container px-6 mx-auto text-center" >
-        <h4 className="text-2xl font-black sm:text-4xl md:text-4xl lg:text-5xl hover:text-zinc-700">
+        <h2 className="text-2xl font-black sm:text-3xl lg:text-4xl">
           <Link href={`/news`}>{json.news.title}</Link>
-        </h4>
+        </h2>
         {/* {links?.length ? <Links links={links} /> : null} */}
       </div>
       )}

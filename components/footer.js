@@ -24,7 +24,7 @@ export default function Footer({  }) {
     <footer id="contact" className="border-neutral-300 text-lg-start p-3 bg-gradient-to-b from-cyan-500 to-cyan-600 text-white">
 			<div className="mx-auto max-w-7xl px-4 lg:px-8">
         <div className="flex flex-col md:flex-row justify-between">
-				<div className="md:w-1/2 mb-6 md:mb-0 p-3">
+				<div className="md:w-1/2 md:mb-6 md:mb-0 p-3">
           <div>
             <Link href={`/contact/`}><h3 className="text-lg font-bold hover:text-zinc-200">{lang.title}</h3></Link>
             <ul className="mt-4 space-y-4 ">
@@ -104,7 +104,7 @@ export default function Footer({  }) {
           </div>
 				</div>
 
-				<div className="md:w-1/2 p-3 pt-20">
+				<div className="md:w-1/2 p-3 md:pt-20">
           <div className='p-3 '>
           {lang.polycy}
           </div>

@@ -19,9 +19,10 @@ import { convertAboutFromDatabase } from '../entity/aboutEntity.js';
 import About from '../components/parts/about/index.js';
 import { getNewsList } from '../entity/newsEntity.js';
 import Sponsor from '../components/parts/sponsor/index.js';
+import Opportunity from '../components/parts/opportunity/index.js';
 
 
-export default function Home({ sliderList, sponsors, newsList, scheduleList, about }) {
+export default function Home({ sliderList, sponsors, newsList, scheduleList, about, opportunity }) {
   const { locale } = useContext(LocaleContext);
   const { json, metaTitleExtension } = useLocale(locale)
   let lang = json.navigation
@@ -46,8 +47,9 @@ export default function Home({ sliderList, sponsors, newsList, scheduleList, abo
           <SliderList sliderList={sliderList} />  
           <News list={newsList} isTop={true} />
           <About about={aboutSchool}/>
-          <Mission mission={mission} className="bg-gray-50"/>
+          <Mission mission={mission} />
           <Vision vision={vision}/>
+          <Opportunity opportunity={opportunity} />
           {/* <Faq /> */}
           <Sponsor sponsor={sponsorList} />
           {/* Side widgets*/}
@@ -78,13 +80,18 @@ export const getStaticProps = async (context) => {
 
   // get about
   let about = await getAbout()
+
+
+  let opportunity = await getOpportunity()
+  console.log(opportunity)
   return {
     props: {
       sliderList: sliderList,
       sponsors: sponsors,
       newsList: newsList,
       scheduleList: scheduleList,
-      about: about
+      about: about,
+      opportunity: opportunity
     },
     revalidate: 1
   };
@@ -140,6 +147,17 @@ const getAbout = async () => {
   }
 
   await saveImageIfNeeded(props, "about")
+  return database
+}
+
+const getOpportunity = async () => {
+  const database = await getDatabase("d9037016a0524f08adecdbab0c7302b7")
+  let props = []
+  for(let item of database){
+    props.push(item.properties)
+  }
+
+  await saveImageIfNeeded(props, "opportunity")
   return database
 }
 

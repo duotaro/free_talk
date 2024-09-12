@@ -26,16 +26,16 @@ export default function Vision({ vision }) {
                 className="rounded-lg"
               />
             </div>
-            <div className="flex flex-col items-center text-center md:items-start md:text-left">
-                <h2 className="text-3xl font-black sm:text-4xl lg:text-5xl">
+            <div className="flex flex-col items-center text-center ">
+                <h2 className="text-2xl font-black sm:text-3xl lg:text-4xl">
                 {vision.title}
                 </h2>
-                <div className="max-w-md mt-4 text-lg font-light leading-relaxed text-gray-500 sm:text-xl lg:text-2xl">
+                <div className="max-w-md mt-4 text-md font-light leading-relaxed text-gray-500 sm:text-lg lg:text-xl">
                     {vision.text}
                 </div>
-                {/* <Link href={`/vision/`} className="px-6 py-3 text-lg transition-colors rounded-md bg-blue-600 text-white hover:bg-blue-700">
-                {json.common.show_more}
-                </Link> */}
+                <Link href={`/about/`} className="p-6 py-3 mt-3 rounded-md bg-blue-600 hover:bg-blue-700 mt-4 text-lg transition-colors text-white ">
+                    {json.common.show_more}
+                </Link>
             </div>
         </div>
       </div>

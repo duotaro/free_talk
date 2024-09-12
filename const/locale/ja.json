@@ -16,7 +16,7 @@
       "contact": "お問い合わせ",
       "payment": "オンライン決済",
       "adultjapanese": "大人向けプログラム",
-      "news": "ニュース",
+      "news": "お知らせ",
       "mission": "Mission",
       "vision": "Vision"
     },
@@ -44,7 +44,7 @@
       "title": "カレンダー"
     },
     "common": {
-      "show_more": "もっと見る",
+      "show_more": "もっと詳しく",
       "not_found_article": "記事がありません"
     }
 }

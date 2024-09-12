@@ -44,7 +44,7 @@
       "title": "Event"
     },
     "common": {
-      "show_more": "show more",
-      "not_found_article": "not found"
+      "show_more": "See More",
+      "not_found_article": "Not Found"
     }
 }
