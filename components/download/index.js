@@ -3,17 +3,10 @@ import { DOWNLOAD_IMAGE_EXTENSION, DOWNLOAD_IMAGE_PATH } from '../../const'
 
 export const downloadImagePath = DOWNLOAD_IMAGE_PATH
 export const downloadImageExtention = DOWNLOAD_IMAGE_EXTENSION
-// var savePath = downloadImagePath
 
-/// Notion内の画像は一時ファイル扱いなので、ブロックの画像をpublic/blogImagesに保存する
-/// 拡張子がjpeg, pngでわかれているとパスの取得時に判定が必要になるので、.pngで統一する
 const saveImageIfNeeded = async (blocksWithChildren, path) => {
-  // savePath = `${downloadImagePath}/${path}`
   const tmpPath = `${downloadImagePath}/${path}`
   const tmpBlock = blocksWithChildren
-  // savePath = tmpPath
-  // console.log(savePath)
-  console.log(blocksWithChildren)
   
   try { fs.rmSync(tmpPath, { recursive: true, force: true }); }
   catch(err) { console.error(err)}
@@ -76,8 +69,6 @@ const isImageExist = (path, keyName) => {
 }
 
 const saveImage = (imageBinary, path, keyName) => {
-  console.log("into saveImage")
-  console.log(path + '/' + keyName + downloadImageExtention)
   fs.writeFile(path + '/' + keyName + downloadImageExtention, imageBinary, (error) => {
     if (error) {
       console.log(error)

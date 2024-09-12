@@ -23,20 +23,34 @@ export default class NewsEntity {
         if(!isJapanease && item.properties["text_en"].rich_text[0]){
             this.text = item.properties["text_en"].rich_text
         }
+        // 今はなし　やるならダウンロード処理入れないと
+        //this.image = item.properties["image"].files[0].name
     }
 }
-const getNewsDetail = async (id) => {
-    const detail = await getDatabase(id)
-    // get page?
-    return detail
+
+export const getNewsList = async (database) => {
+
+    let params = []
+    database.map((page) => {
+        params.push({
+            id: page.id,
+            page:page
+        })
+    })
+
+    return params;
 }
 
 export const getDetailList = async (database) => {
     let params = []
+    // 詳細からテーブルビューの情報を取得する
+    // databaseには親テーブルの全てが入っている
     const paramsPromises = database.map(async (page) => {
+        // pageはレコードのこと（ニュース概要）
         const detailBlock = await getBlocks(page.id)
-
+        // detailBlock[0].idはレコードID
         const detailList = await getDatabase(detailBlock[0].id);
+        // つまりサイドピーク内の要素が全て取れる。jaとenがあるテーブルが取れるはず
         return detailList.map((detail) => ({
             detailId: detail.id,
             detail: page,

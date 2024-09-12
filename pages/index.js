@@ -17,7 +17,7 @@ import Vision from '../components/parts/vision/index.js';
 import Faq from '../components/parts/faq/index.js';
 import { convertAboutFromDatabase } from '../entity/aboutEntity.js';
 import About from '../components/parts/about/index.js';
-import { getDetailList } from '../entity/newsEntity.js';
+import { getNewsList } from '../entity/newsEntity.js';
 import Sponsor from '../components/parts/sponsor/index.js';
 
 
@@ -44,7 +44,7 @@ export default function Home({ sliderList, sponsors, newsList, scheduleList, abo
       <div className="">
         <div className="row">
           <SliderList sliderList={sliderList} />  
-          <News newsList={newsList} lang={json.news} />
+          <News list={newsList} isTop={true} />
           <About about={aboutSchool}/>
           <Mission mission={mission}/>
           <Vision vision={vision}/>
@@ -101,10 +101,7 @@ const getSlider = async () => {
   for(let item of database){
     props.push(item.properties)
   }
-  console.log("start save image for slider")
-  console.log(props)
   await saveImageIfNeeded(props, "slider")
-  console.log("end save image for slider")
   return database;
  
 }
@@ -115,7 +112,7 @@ const getSlider = async () => {
  */
 const getNews = async () => {
   const database = await getDatabase("cc0b1eb3570842ba926cc71ecaf5df4d")
-  let params = await getDetailList(database)
+  let params = await getNewsList(database)
   return params
 }
 

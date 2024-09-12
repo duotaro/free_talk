@@ -33,7 +33,7 @@ export default function Nav({ }) {
           <Bars3Icon aria-hidden="true" className="h-6 w-6" />
         </button>
       </div>
-      <PopoverGroup className="hidden lg:flex lg:gap-x-12">
+      <PopoverGroup className="hidden lg:flex lg:gap-x-12 justify-center">
         {Object.keys(HEADER_MENU).map((key) => {
             const item = HEADER_MENU[key]
             return (
