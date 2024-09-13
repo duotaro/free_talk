@@ -23,15 +23,16 @@ export default function NewsDetail({ item }) {
 
   if(!entity.image){
     let random = getRandomInt(1,5)
-    entity.image = `/image//blog/image${random}.jpeg`
+    entity.image = `/image/blog/image${random}.jpeg`
   }
   return (
     <div key={entity.id} className="max-w-xd text-center lg:max-w-sm shadow-md rounded-xl bg-slate-100">
+        
+        <div className="mt-3p-5 bg-gray-100border-2 border-t-0 rounded-b-lg">
         <div className="relative h-48">
           <img loading="lazy" src={entity.image} className="object-cover object-center rounded-t-lg w-full h-full absolute inset-0" />
         </div>
-        <div className="mt-3p-5 bg-gray-100 p-8 border-2 border-t-0 rounded-b-lg">
-        <h2 className="text-lg font-black sm:text-xl mt-2" style={{
+        <h2 className="text-lg font-black sm:text-xl mt-2 pr-8 pl-8" style={{
             minHeight: "3em",
             lineHeight: "1.5em",
             overflow: "hidden"
@@ -45,7 +46,7 @@ export default function NewsDetail({ item }) {
             })}
         </h2>
         {entity.text && (
-            <div className="line-clamp-3 max-w-md mt-4 mb-4 text-md font-light leading-relaxed text-gray-500 sm:text-lg ">
+            <div className="line-clamp-3 pr-8 pl-8 min-h-20 max-w-md mt-4 mb-4 text-md font-light leading-relaxed text-gray-500 sm:text-lg ">
             {entity.text.map((text) => {
                 return text.href ? (
                     <Link href={text.href} className="link-secondary" key={text.text.content}>{text.text.content}</Link>
@@ -55,9 +56,11 @@ export default function NewsDetail({ item }) {
             })}
             </div>
         )}
-        <Link href={`/news/${id}`} className="px-3 py-2 text-md md:text-lg transition-colors rounded-md bg-blue-600 text-white hover:bg-blue-700">
+        <div className="mb-5">
+          <Link href={`/news/${id}`} className="px-3 py-2 text-md md:text-lg transition-colors rounded-md bg-blue-600 text-white hover:bg-blue-700">
             {json.common.show_more}
-        </Link>
+          </Link>
+        </div>
         </div>
     </div>
   );

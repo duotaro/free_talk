@@ -9,7 +9,7 @@ export default class SponsorEntity {
         this.title = item.properties["title"].title[0].text.content
         this.label_en = item.properties["en"].rich_text[0].text.content
 
-        this.image = `./${ACCESABLE_IMAGE_PATH}/sponsor/${name}${DOWNLOAD_IMAGE_EXTENSION}`
+        this.image = `/${ACCESABLE_IMAGE_PATH}/sponsor/${name}${DOWNLOAD_IMAGE_EXTENSION}`
         this.tag = item.properties["タグ"].multi_select.name
         this.active = item.properties["active"].checkbox
         this.link = item.properties["link"].rich_text[0].text.content

@@ -3,8 +3,16 @@ import Navbar from './navbar'
 import Footer from './footer'
 import Nav from './parts/nav/nav'
 import Breadcrumb from "./parts/nav/breadcrumb";
+import Sponsor from "./parts/sponsor";
 
 export default function Layout({ children, breadcrumb }) {
+  let sponsorList = []
+
+  // for(let item of sponsors){
+  //   let sponsor = new SponsorEntity(item)
+  //   sponsorList.push(sponsor)
+  // }
+
   return (
     <>
       <Head>
@@ -17,6 +25,8 @@ export default function Layout({ children, breadcrumb }) {
         <Nav />
         {breadcrumb && ( <Breadcrumb parents={breadcrumb.parents} current={breadcrumb.current} /> )}
         <main className="">{children}</main>
+
+        {/* <Sponsor sponsor={commonData} /> */}
         <Footer />
     </>
   )

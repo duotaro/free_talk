@@ -8,8 +8,8 @@ const saveImageIfNeeded = async (blocksWithChildren, path) => {
   const tmpPath = `${downloadImagePath}/${path}`
   const tmpBlock = blocksWithChildren
   
-  try { fs.rmSync(tmpPath, { recursive: true, force: true }); }
-  catch(err) { console.error(err)}
+  // try { fs.rmSync(tmpPath, { recursive: true, force: true }); }
+  // catch(err) { console.error(err)}
   
   if (!fs.existsSync(tmpPath)) {
     fs.mkdirSync(tmpPath)

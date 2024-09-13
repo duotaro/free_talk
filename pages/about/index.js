@@ -5,7 +5,6 @@ import LocaleContext from "../../components/context/localeContext";
 import { useLocale } from "../../utils/locale";
 import About from "../../components/parts/about";
 import { getDatabase } from "../../lib/notion";
-import saveImageIfNeeded from "../../components/download/index.js";
 import { convertAboutFromDatabase } from "../../entity/aboutEntity";
 
 export default function AboutPage({ about }) {
@@ -46,11 +45,7 @@ export const getStaticProps = async (context) => {
 
 const getAbout = async () => {
   const database = await getDatabase("d4eb3828e74c469b9179ca7be9edb5cf")
-  let props = []
-  for(let item of database){
-    props.push(item.properties)
-  }
 
-  await saveImageIfNeeded(props, "about")
+
   return database
 }
