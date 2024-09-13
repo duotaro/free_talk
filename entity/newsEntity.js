@@ -43,21 +43,24 @@ export default class NewsEntity {
 }
 
 export const getNewsList = async (database, limit = null) => {
-
-    // 並び替え
-    const sortedDatabase = database.sort((a, b) => new Date(b.created_time) - new Date(a.created_time));
-
-    let limitedDatabase = sortedDatabase
-    if(limit){
-        limitedDatabase = sortedDatabase.slice(0, limit);    
-    }
     let params = []
-    limitedDatabase.map((page) => {
-        params.push({
-            id: page.id,
-            page:page
+    if(database){
+
+        // 並び替え
+        const sortedDatabase = database.sort((a, b) => new Date(b.created_time) - new Date(a.created_time));
+
+        let limitedDatabase = sortedDatabase
+        if(limit){
+            limitedDatabase = sortedDatabase.slice(0, limit);    
+        }
+        
+        limitedDatabase.map((page) => {
+            params.push({
+                id: page.id,
+                page:page
+            })
         })
-    })
+    }
 
     return params;
 }
