@@ -31,8 +31,10 @@ const saveImageIfNeeded = async (blocksWithChildren, path) => {
 
 const checkBlock = async (block, path) => {
 
-  if (block.image.type == 'files') {
+  if (block.image.type == 'files' && block.image.files[0]) {
+
     const name = block.image.files[0].name
+
     const url = block.image.files[0].file.url
     const blob = await getTemporaryImage(url)
 

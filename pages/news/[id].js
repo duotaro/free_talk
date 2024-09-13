@@ -268,10 +268,6 @@ export default function Post({ pageMap, blockMap, detailPage}) {
   const blocks = locale == "ja" ? blockMap.ja : blockMap.en
   let entity = new NewsEntity(detailPage, locale == "ja")
 
-  console.log("entity")
-  console.log(entity)
-  console.log("-------")
-
   if (!page || !blocks) {
     return <div>{json.common.not_found_article}</div>;
   }
@@ -394,6 +390,8 @@ export const getStaticProps = async (context) => {
       const locale = localeItem.properties["locale"].title[0].plain_text
       const page = await getPage(localeItem.id);
       const blocks = await getBlocks(localeItem.id);
+
+      console.log(blocks)
       
       if(locale == "ja"){
         pageMap[locale] = page

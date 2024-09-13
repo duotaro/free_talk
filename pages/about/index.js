@@ -46,7 +46,6 @@ export const getStaticProps = async (context) => {
 
 const getAbout = async () => {
   const database = await getDatabase("d4eb3828e74c469b9179ca7be9edb5cf")
-  console.log(database)
   let props = []
   for(let item of database){
     props.push(item.properties)

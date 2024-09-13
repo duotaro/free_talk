@@ -4,6 +4,7 @@ import { useLocale } from "../utils/locale";
 import { getDatabase } from "../lib/notion.js";
 import Layout from '../components/layout.js'
 export const databaseId = process.env.NEXT_PUBLIC_NOTION_DATABASE_ID;
+export const newsId = process.env.NEXT_PUBLIC_NOTION_NEWS_DATABASE_ID;
 import SliderList from '../components/parts/slider/index.js';
 import News from '../components/parts/news/index.js';
 import SponsorEntity from '../entity/sponsorEntity.js';
@@ -115,7 +116,7 @@ const getSlider = async () => {
 
 
 const getNews = async (limit = null) => {
-  const database = await getDatabase(process.env.NEXT_PUBLIC_NOTION_NEWS_DATABASE_ID)
+  const database = await getDatabase(newsId)
   let props = []
   for(let item of database){
       props.push(item.properties)
