@@ -1,8 +1,12 @@
-import { getBlocks, getDatabase, getPage } from "../lib/notion"
+import { ACCESABLE_IMAGE_PATH, DOWNLOAD_IMAGE_EXTENSION } from "../const"
+import { getDatabase } from "../lib/notion"
 import { formatDate } from "../utils/dateUtils"
 
 export default class NewsEntity {
     constructor(item, isJapanease){
+        if(!item){
+            return
+        }
         // title
         this.title = []
 
@@ -13,10 +17,6 @@ export default class NewsEntity {
         if(!isJapanease && item.properties["en"].rich_text[0]){
             this.title = item.properties["en"].rich_text
         }
-        console.log("DATE")
-        console.log(item)
-        console.log("D--------------")
-        // 
         this.rawDate = item.properties["date"].start
         this.date = new Date(item.properties["date"].start).toLocaleString(
             isJapanease ? "ja" : "en",
@@ -34,12 +34,15 @@ export default class NewsEntity {
             this.text = item.properties["text_en"].rich_text
         }
         // 今はなし　やるならダウンロード処理入れないと
-        //this.image = item.properties["image"].files[0].name
+        if(item.properties["image"].files[0]){
+            const name = item.properties["image"].files[0].name
+            this.image = `./${ACCESABLE_IMAGE_PATH}/news/${name}${DOWNLOAD_IMAGE_EXTENSION}`
+        }
+        
     }
 }
 
 export const getNewsList = async (database, limit = null) => {
-
 
     // 並び替え
     const sortedDatabase = database.sort((a, b) => new Date(b.created_time) - new Date(a.created_time));
@@ -48,8 +51,6 @@ export const getNewsList = async (database, limit = null) => {
     if(limit){
         limitedDatabase = sortedDatabase.slice(0, limit);    
     }
-    
-
     let params = []
     limitedDatabase.map((page) => {
         params.push({
@@ -61,25 +62,8 @@ export const getNewsList = async (database, limit = null) => {
     return params;
 }
 
-// export const getDetailList = async (database) => {
-//     let params = []
-//     // 詳細からテーブルビューの情報を取得する
-//     // databaseには親テーブルの全てが入っている
-//     const paramsPromises = database.map(async (page) => {
-//         // pageはレコードのこと（ニュース概要）
-//         const detailBlock = await getBlocks(page.id)
-//         // detailBlock[0].idはレコードID
-//         const detailList = await getDatabase(detailBlock[0].id);
-//         // つまりサイドピーク内の要素が全て取れる。jaとenがあるテーブルが取れるはず
-//         return detailList.map((detail) => ({
-//             detailId: detail.id,
-//             detail: page,
-//             locale: detail.properties["locale"].title[0].plain_text,
-//         }));
-
-//     })
-//     // すべての Promise が解決するのを待つ
-//     const paramsArrays = await Promise.all(paramsPromises);
-
-//     return paramsArrays.flat();
-// }
+export const getNewsFromNotion = async () => {
+    let id = process.env.NEXT_PUBLIC_NOTION_NEWS_DATABASE_ID
+    const database = await getDatabase(id)
+    return database
+}

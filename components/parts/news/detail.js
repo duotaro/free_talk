@@ -6,6 +6,8 @@ import LocaleContext from "../../context/localeContext";
 import Link from "next/link";
 import { useLocale } from "../../../utils/locale";
 import NewsEntity from "../../../entity/newsEntity";
+import { getRandomInt } from "../../../utils/numberUtils";
+import { ACCESABLE_IMAGE_PATH } from "../../../const";
 
 export default function NewsDetail({ item }) {
   const { locale } = useContext(LocaleContext);
@@ -17,9 +19,19 @@ export default function NewsDetail({ item }) {
   if(!entity.title.length){
     return <></>
   }
+
+
+  if(!entity.image){
+    let random = getRandomInt(1,5)
+    entity.image = `/image//blog/image${random}.jpeg`
+  }
   return (
-    <div key={entity.id} className="max-w-xd text-center lg:max-w-sm shadow-md rounded-xl bg-slate-100 p-5">
-        <h2 className="text-lg font-black sm:text-xl" style={{
+    <div key={entity.id} className="max-w-xd text-center lg:max-w-sm shadow-md rounded-xl bg-slate-100">
+        <div className="relative h-48">
+          <img loading="lazy" src={entity.image} class="object-cover object-center rounded-t-lg w-full h-full absolute inset-0" />
+        </div>
+        <div className="mt-3p-5 bg-gray-100 p-8 border-2 border-t-0 rounded-b-lg">
+        <h2 className="text-lg font-black sm:text-xl mt-2" style={{
             minHeight: "3em",
             lineHeight: "1.5em",
             overflow: "hidden"
@@ -46,6 +58,7 @@ export default function NewsDetail({ item }) {
         <Link href={`/news/${id}`} className="px-3 py-2 text-md md:text-lg transition-colors rounded-md bg-blue-600 text-white hover:bg-blue-700">
             {json.common.show_more}
         </Link>
+        </div>
     </div>
   );
 }

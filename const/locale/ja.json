@@ -6,19 +6,30 @@
       "description": "ツーソン日本語補習校で日本語を学びませんか？当校は、ツーソンで日本語を習得したい方々に最適な教育環境を提供します。入学に関する情報やコースの詳細はこちらからご確認ください。",
       "keyword": "Japan, Japanese, School, Tucson, children, class, culture, kids, language, クラス, ツーソン, 子ども, 学校, 日本, 日本語",
       "home": "ホーム",
-      "about": "学校概要",
-      "staff": "職員紹介",
-      "event": "年間行事",
-      "sponsors": "協賛者一覧",
-      "kanji": "漢字検定",
+      "about": "学校案内",
+      "welcome": "ようこそＴＪＳへ",
+      "mission": "理念・目標",
+      "governance": "学校運営",
+      "staff": "講師紹介",
+      "policy": "規則・規約",
+      "report": "年間報告書",
+      "program": "プログラム",
+      "calendar": "年間カレンダー",
+      "class": "クラス紹介",
+      "kanjikentei": "漢字検定",
+      "nihongocafe": "にほんごかふぇ",
+      "event": "イベント",
       "admissions": "入学案内",
-      "faq": "よくある質問",
-      "contact": "お問い合わせ",
-      "payment": "オンライン決済",
-      "adultjapanese": "大人向けプログラム",
+      "forms": "入学手続き・見学",
       "news": "お知らせ",
-      "mission": "Mission",
-      "vision": "Vision"
+      "contact": "お問い合わせ",
+      "contact2": "お問い合わせ先",
+      "faq": "よくある質問",
+      "opportunity": "スタッフ募集",
+      "donation": "協賛・寄付について",
+      "tucsonlife": "ツーソン生活情報",
+      "payment": "オンライン決済",
+      "sponsors": "スポンサー"
     },
     "footer": {
       "title": "お問い合わせ",
@@ -27,7 +38,8 @@
       "sns": "SNS",
       "email": "メールアドレス",
       "class": "授業日時",
-      "polycy": "ツーソン日本語学校は、教育機関および雇用主として、機会の平等、人間の尊厳、人種/民族および文化の多様性を重視します。従って、人種、肌の色、信条、宗教、出身国、性別、婚姻状況、性的指向、公的支援に関する状況、障害、または年齢に基づくいかなる種類の差別や嫌がらせを禁止し、これに関与しません。"
+      "polycy": "ツーソン日本語学校は、教育機関および雇用主として、機会の平等、人間の尊厳、人種/民族および文化の多様性を重視します。従って、人種、肌の色、信条、宗教、出身国、性別、婚姻状況、性的指向、公的支援に関する状況、障害、または年齢に基づくいかなる種類の差別や嫌がらせを禁止し、これに関与しません。",
+      "datetime": "毎週土曜日9時〜11時"
     },
     "side": {
       "title": "CONTACT INFO",
@@ -45,6 +57,8 @@
     },
     "common": {
       "show_more": "もっと詳しく",
-      "not_found_article": "記事がありません"
+      "not_found_article": "記事がありません",
+      "not_found_page": "ページが見つかりません",
+      "back_home": "Homeに戻る"
     }
 }

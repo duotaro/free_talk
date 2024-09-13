@@ -1,4 +1,3 @@
-import {HeaderMenuEntity} from "../entity/menuEntity"
 import {DOMAIN, URLS} from "../const/pageUrl"
 
 export const DOWNLOAD_IMAGE_PATH = 'public/image/download'
@@ -65,37 +64,44 @@ export const GENRE_TITLE_MAP = {
 export const AD_CLIENT_ID = process.env.NEXT_PUBLIC_AD_CLIENT_ID
 
 /** header menu */
-/** 学校概要 */
-const ABOUT_DROPDOWNS = [
-    new HeaderMenuEntity(URLS.STAFF_URL, []),
-    new HeaderMenuEntity(URLS.EVENT_URL, []),
-    new HeaderMenuEntity(URLS.SPONSORS_URL, []),
-    new HeaderMenuEntity(URLS.KANJI_URL, [])
-]
-/** 入学案内 */
-const ADMISSION_DROPDOWNS = [
-    new HeaderMenuEntity(URLS.ABOUT_URL, []),
-    new HeaderMenuEntity(URLS.ABOUT_URL, [])
-]
-/** お問い合わせ */
-const CONTACT_DROPDOWNS = [
-    new HeaderMenuEntity(URLS.ABOUT_URL, []),
-    new HeaderMenuEntity(URLS.ABOUT_URL, []),
-    new HeaderMenuEntity(URLS.ABOUT_URL, [])
-]
-/** 大人向けプラグラム */
-const ADULT_DROPDOWNS = [
-    new HeaderMenuEntity(URLS.ABOUT_URL, []),
-    new HeaderMenuEntity(URLS.ABOUT_URL, []),
-    new HeaderMenuEntity(URLS.ABOUT_URL, [])
-]
-export const HEADER_MENU = {
-    HOME: new HeaderMenuEntity(URLS.HOME_URL, []),
-    ABOUT: new HeaderMenuEntity(URLS.ABOUT_URL, ABOUT_DROPDOWNS),
-    ADMISSION: new HeaderMenuEntity(URLS.ADMISSION_URL, ADMISSION_DROPDOWNS),
-    FAQ: new HeaderMenuEntity(URLS.FAQ_URL, []),
-    CONTACT: new HeaderMenuEntity(URLS.CONTACT_URL, CONTACT_DROPDOWNS),
-    PAYMANET: new HeaderMenuEntity(URLS.PAYMENT_URL, []),
-    ADULT: new HeaderMenuEntity(URLS.ADULT_URL, ADULT_DROPDOWNS)
+const createHeaderMenu = () => {
+    let urlList = []
+    Object.values(URLS).map((val) => {
+        urlList.push(val)
+    })
+    // 1. IS_ACTIVEがtrueのアイテムのみをフィルタリング
+    const activeItems = urlList.filter(item => item.IS_ACTIVE);
+    // 2. GROUPでグルーピング
+    const groupedItems = activeItems.reduce((acc, item) => {
+        const group = item.GROUP;
+        
+        if (!acc[group]) {
+            acc[group] = {
+                parent: null,
+                dropdowns: []
+            };
+        }
+        
+        if (item.IS_PARENT) {
+            acc[group].parent = item;
+        } else {
+            acc[group].dropdowns.push(item);
+        }
+        
+        return acc;
+    }, {});
+
+    // 3. 各グループ内でdropdownsをGROUP_ORDERINGでソート
+    for (const group in groupedItems) {
+        groupedItems[group].dropdowns.sort((a, b) => (a.GROUP_ORDERING || Infinity) - (b.GROUP_ORDERING || Infinity));
+    }
+
+    // 4. 結果を配列に変換
+    const resultArray = Object.keys(groupedItems).map(group => ({
+        GROUP: group,
+        ...groupedItems[group]
+    }));
+    return resultArray
 }
 
+export const HEADER_MENU = createHeaderMenu()

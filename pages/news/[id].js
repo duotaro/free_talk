@@ -6,7 +6,7 @@ import Link from "next/link";
 import Layout from "../../components/layout"
 import LocaleContext from "../../components/context/localeContext";
 import { useLocale } from "../../utils/locale";
-import NewsEntity, { getNewsList } from "../../entity/newsEntity";
+import NewsEntity, { getNewsFromNotion, getNewsList } from "../../entity/newsEntity";
 
 export const Text = ({ text }) => {
   if (!text) {
@@ -357,12 +357,9 @@ export default function Post({ pageMap, blockMap, detailPage}) {
     </Layout>
   );
 }
-
-const PARENT_NEWS_ID = "cc0b1eb3570842ba926cc71ecaf5df4d"
 export const getStaticPaths = async () => {
-    const database = await getDatabase(PARENT_NEWS_ID)
-    // 
-    let list = await getNewsList(database)
+    let database = await getNewsFromNotion()
+    let list = await getNewsList(database, null)
 
     // {detailId: detail.id, detail:page, locale: detail.properties["locale"].title[0].plain_text}
     let resList = []

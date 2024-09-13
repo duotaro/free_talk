@@ -5,20 +5,31 @@
       "meta_title": "Tucson Japanese School | Japanese Education in Tucson, USA",
       "description": "Looking to learn Japanese in Tucson? Tucson Japanese School provides an excellent educational environment for Japanese learners. Check out our enrollment information and course offerings here.",
       "keyword": "Japan, Japanese, School, Tucson, children, class, culture, kids, language, クラス, ツーソン, 子ども, 学校, 日本, 日本語",
-      "home": "HOME",
-      "about": "ABOUT",
-      "staff": "STAFF",
-      "event": "EVENT",
-      "sponsors": "SPONSORS",
-      "kanji": "KANJI KENTEI",
-      "admissions": "ENDROLLMENT",
-      "faq": "FAQ",
-      "contact": "CONTACT",
-      "payment": "MAKE PAYMENT",
-      "adultjapanese": "ADULT LEARNING",
+      "home": "Home",
+      "about": "About",
+      "welcome": "Welcome to TJS",
+      "mission": "Mission",
+      "governance": "Governance",
+      "staff": "Our Staff",
+      "policy": "Policies",
+      "report": "Annual Report",
+      "program": "Program",
+      "calendar": "Calendar",
+      "class": "Classes",
+      "kanjikentei": "Kanji Kentei",
+      "nihongocafe": "Nihongo Cafe",
+      "event": "Events",
+      "admissions": "Admission",
+      "forms": "Enrollment",
       "news": "News",
-      "mission": "Our Mission",
-      "vision": "Our Vision"
+      "contact": "Contact",
+      "contact2": "Contact Info",
+      "faq": "FAQ",
+      "opportunity": "Opportunity",
+      "donation": "Sponsorship and Donation",
+      "tucsonlife": "Tucson Life Info",
+      "payment": "Payment",
+      "sponsors": "Sponsors"
    },
     "footer": {
       "title": "CONTACT INFO",
@@ -27,7 +38,8 @@
       "sns": "Social Media",
       "email": "E-mail",
       "class": "Class date and time",
-      "polycy": "Tucson Japanese School , as an educational institution and as an employer, values equality of opportunity, human dignity, and racial/ethnic and cultural diversity. Therefore, this organization prohibits and will not engage in discrimination or harassment of any kind based on race, color, creed, religion, national origin, sex, marital status, sexual orientation, status with regard to public assistance, disability or age."
+      "polycy": "Tucson Japanese School , as an educational institution and as an employer, values equality of opportunity, human dignity, and racial/ethnic and cultural diversity. Therefore, this organization prohibits and will not engage in discrimination or harassment of any kind based on race, color, creed, religion, national origin, sex, marital status, sexual orientation, status with regard to public assistance, disability or age.",
+      "datetime": "Sat 9-11 AM"
     },
     "side": {
       "title": "CONTACT INFO",
@@ -45,6 +57,8 @@
     },
     "common": {
       "show_more": "See More",
-      "not_found_article": "Not Found"
+      "not_found_article": "Not Found",
+      "not_found_page": "Not Found Page",
+      "back_home": "Home"
     }
 }

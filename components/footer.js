@@ -76,11 +76,11 @@ export default function Footer({  }) {
                     <ClockIcon className="w-8 h-8" />
                   </div>
                   <span className="text-md font-semibold p-1 mr-3">{lang.class}:</span>
-                  <span className={hClass}>何時？？</span>
+                  <span className={hClass}>{lang.datetime}</span>
                 </div>
                 <ul className={vClass}>
                   <li>
-                  何時？？
+                  {lang.datetime}
                   </li>
                 </ul>
               </div>

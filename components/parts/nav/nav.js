@@ -4,8 +4,7 @@ import { useLocale } from "../../../utils/locale";
 import LocaleContext from "../../context/localeContext";
 import {
   Dialog,
-  DialogPanel,
-  PopoverGroup
+  DialogPanel
 } from '@headlessui/react'
 import {
   Bars3Icon,
@@ -21,9 +20,9 @@ export default function Nav({ }) {
 
   return (
     <header className="bg-gradient-to-b from-cyan-500 to-cyan-600">
-    <nav aria-label="Global" className="mx-auto flex max-w-7xl items-center justify-between p-6 lg:px-8">
-  
-      <div className="flex lg:hidden">
+
+    <nav aria-label="Global" className="mx-auto flex max-w-7xl items-center justify-between p-6 lg:px-8 lg:hidden">
+      <div className="flex justify-center">
         <button
           type="button"
           onClick={() => setMobileMenuOpen(true)}
@@ -33,16 +32,17 @@ export default function Nav({ }) {
           <Bars3Icon aria-hidden="true" className="h-6 w-6" />
         </button>
       </div>
-      <PopoverGroup className="hidden lg:flex lg:gap-x-12 justify-center">
-        {Object.keys(HEADER_MENU).map((key) => {
-            const item = HEADER_MENU[key]
+    </nav>
+    <nav aria-label="Global" className="mx-auto flex max-w-7xl items-center justify-center p-6 lg:px-8 hidden lg:flex">
+      <div className="flex md:gap-x-12">
+        {HEADER_MENU.map((item) => {
             return (
               <>
                <PopoverDetail item={item}/>
               </>
             )}
         )}
-      </PopoverGroup>
+      </div>
     </nav>
     <Dialog open={mobileMenuOpen} onClose={setMobileMenuOpen} className="lg:hidden">
       <div className="fixed inset-0 z-10" />
@@ -62,8 +62,7 @@ export default function Nav({ }) {
           <div className="-my-6 divide-y divide-gray-500/10">
             <div className="space-y-2 py-6">
               
-              {Object.keys(HEADER_MENU).map((key) => {
-                  const item = HEADER_MENU[key]
+              {HEADER_MENU.map((item) => {
                   return (
                     <DisclosureDetail item={item} />
                   )}

@@ -12,7 +12,7 @@ export default function Navigation({  }) {
 
   let textClass = "text-secondary me-auto mb-2 mb-lg-0 ms-lg-4"
   return (
-    <nav className="static top-0 z-50 flex-shrink-0 py-4 bg-white md:sticky">
+    <nav className="static top-0 z-50 flex-shrink-0 py-4 bg-white ">
         <div className="container flex flex-col items-start justify-between px-6 mx-auto md:flex-row md:items-center">
             {/* <Link href={`/`} className="navbar-brand ml-3 "><img src={logoSrc} className=""/></Link> */}
             <Link href={`/`} className="text-lg font-bold">{json.navigation.title}</Link>

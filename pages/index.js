@@ -17,9 +17,9 @@ import Vision from '../components/parts/vision/index.js';
 import Faq from '../components/parts/faq/index.js';
 import { convertAboutFromDatabase } from '../entity/aboutEntity.js';
 import About from '../components/parts/about/index.js';
-import { getNewsList } from '../entity/newsEntity.js';
 import Sponsor from '../components/parts/sponsor/index.js';
 import Opportunity from '../components/parts/opportunity/index.js';
+import { getNewsList } from '../entity/newsEntity.js';
 
 
 export default function Home({ sliderList, sponsors, newsList, scheduleList, about, opportunity }) {
@@ -72,7 +72,7 @@ export const getStaticProps = async (context) => {
   let sponsors = await getSponsors()
 
   // get news
-  let newsList = await getNews()
+  let newsList = await getNews(3)
   // 件数フィルター
 
   // get calender
@@ -113,13 +113,16 @@ const getSlider = async () => {
  
 }
 
-/**
- * get latest news 
- * @returns list [SliderEntity]
- */
-const getNews = async () => {
-  const database = await getDatabase("cc0b1eb3570842ba926cc71ecaf5df4d")
-  let params = await getNewsList(database, 3)
+
+const getNews = async (limit = null) => {
+  const database = await getDatabase(process.env.NEXT_PUBLIC_NOTION_NEWS_DATABASE_ID)
+  let props = []
+  for(let item of database){
+      props.push(item.properties)
+  }
+  await saveImageIfNeeded(props, "news")
+  
+  let params = await getNewsList(database, limit)
   return params
 }
 
