@@ -4,7 +4,7 @@
   "private": true,
   "scripts": {
     "dev": "next dev",
-    "build": "next build && output: export && next-sitemap --config next-sitemap.js",
+    "build": "next build && next export && next-sitemap --config next-sitemap.js",
     "start": "next start",
     "lint": "next lint",
     "deploy": "next-sitemap --config next-sitemap.js && git add . && git commit -m 'release' && git push origin main"
