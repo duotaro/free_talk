@@ -1,5 +1,4 @@
 import { ACCESABLE_IMAGE_PATH, DOWNLOAD_IMAGE_EXTENSION } from "../const"
-import { formatDateForCalander, formatDateForHHmm } from "../utils/dateUtils"
 
 export class AboutEntity {
     constructor(item, isJpn){

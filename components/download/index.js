@@ -17,25 +17,35 @@ const saveImageIfNeeded = async (blocksWithChildren, path) => {
 
   tmpBlock.forEach(async (block) => {
     const image = block.image
-    if(!image){
-      console.log("not found image")
-        return
-    }
-    
-    await checkBlock(block, tmpPath)
-    if (block.has_children) {
-      block.children?.forEach(async (block) => await checkBlock(block, tmpPath))
-    }
+    await save(tmpPath, image)
+    const image1 = block.image1
+    await save(tmpPath, image1)
+    const image2 = block.image2
+    await save(tmpPath, image2)
+    const image3 = block.image3
+    await save(tmpPath, image3)
   })
 }
 
-const checkBlock = async (block, path) => {
+const save = async (tmpPath, image) => {
+  if(!image){
+    console.log("not found image")
+      return
+  }
+  
+  await checkBlock(tmpPath, image)
+  // if (block.has_children) {
+  //   block.children?.forEach(async (block) => await checkBlock(block, tmpPath))
+  // }
+}
 
-  if (block.image.type == 'files' && block.image.files[0]) {
+const checkBlock = async (path, image) => {
 
-    const name = block.image.files[0].name
+  if (image.type == 'files' && image.files[0]) {
 
-    const url = block.image.files[0].file.url
+    const name = image.files[0].name
+
+    const url = image.files[0].file.url
     const blob = await getTemporaryImage(url)
 
     if (!blob) {

@@ -8,6 +8,7 @@ import {
 import { ChevronDownIcon, ArrowTopRightOnSquareIcon } from '@heroicons/react/20/solid'
 import { useLocale } from "../../../utils/locale";
 import { createNavUrl, PAYMENT_URL } from "../../../const/pageUrl";
+import Link from "next/link";
 // モバイル用
 export default function DisclosureDetail({ item }) {
   const { locale } = useContext(LocaleContext);
@@ -21,11 +22,18 @@ export default function DisclosureDetail({ item }) {
     
     <Disclosure as="div" className="-mx-3">
     {item.dropdowns.length == 0 && (
-      <a className="-mx-3 block rounded-lg px-3 py-2 text-base font-semibold leading-7 text-blue-800 hover:bg-gray-50" href={parentLink}>{parentTitle}</a>
+      parentKey === PAYMENT_URL.PAGE_KEY ? (
+        <div className="flex px-3 py-2 items-center no-underline text-blue-800 hover:bg-gray-50 leading-7 -mx-3 rounded-lg">
+          <ArrowTopRightOnSquareIcon  aria-hidden="true" className="h-4 w-4 mr-1" />
+          <Link className="text-base font-semibold text-blue-800 hover:bg-gray-50" href={parentLink}>{parentTitle}</Link>
+        </div>
+      ) : (
+        <Link className="-mx-3 block rounded-lg px-3 py-2 text-base font-semibold leading-7 text-blue-800 hover:bg-gray-50" href={parentLink}>{parentTitle}</Link>
+      )
     )}
     {item.dropdowns.length > 0 && (
       <>
-        <DisclosureButton className="group flex w-full items-center justify-between rounded-lg py-2 pl-3 pr-3.5 text-base font-semibold leading-7 text-blue-800 hover:bg-gray-50">
+        <DisclosureButton className="group w-full font-semibold flex px-3 py-2 items-center no-underline text-blue-800 hover:bg-gray-50 leading-7 -mx-3 rounded-lg">
           {parentTitle}
           <ChevronDownIcon aria-hidden="true" className="h-5 w-5 flex-none group-data-[open]:rotate-180" />
         </DisclosureButton>

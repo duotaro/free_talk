@@ -29,7 +29,7 @@ export default function PopoverDetail({ item }) {
     {item.dropdowns.length == 0 && (
           parentKey === PAYMENT_URL.PAGE_KEY ? (
             <div className="flex items-center justify-center text-white no-underline hover:text-gray-200">
-              <ArrowTopRightOnSquareIcon  aria-hidden="true" className="h-5 w-5 mr-1" />
+              <ArrowTopRightOnSquareIcon aria-hidden="true" className="h-4 w-4 mr-1" />
               <Link className="text-sm font-semibold leading-6 " href={parentLink} target="_blank">{parentTitle}</Link>
             </div>
           ) : (
@@ -42,7 +42,7 @@ export default function PopoverDetail({ item }) {
         onMouseLeave={() => setIsHovered(false)} // ホバー終了時に呼ばれる
         >
             <div className="flex items-center gap-x-1 text-sm text-white font-semibold leading-6 hover:text-gray-200">
-              <Link href={parentLink}>{parentTitle}</Link><ChevronDownIcon aria-hidden="true" className="h-5 w-5 flex-none " />
+              <span href={parentLink}>{parentTitle}</span><ChevronDownIcon aria-hidden="true" className="h-5 w-5 flex-none " />
             </div>
 
             <div

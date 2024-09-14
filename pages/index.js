@@ -47,7 +47,7 @@ export default function Home({ sliderList, sponsors, newsList, scheduleList, abo
         <div className="row">
           <SliderList sliderList={sliderList} />  
           <News list={newsList} isTop={true} />
-          <About about={aboutSchool}/>
+          <About about={aboutSchool} isTop={true}/>
           <Mission mission={mission} />
           <Vision vision={vision}/>
           <Opportunity opportunity={opportunity} />

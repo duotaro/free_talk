@@ -24,7 +24,7 @@ export default function AboutPage({ about }) {
 
       <div className="">
         <div className="row">
-          <About about={aboutSchool}/>
+          <About about={aboutSchool} isTop={false}/>
         </div>
       </div>
     </Layout>
