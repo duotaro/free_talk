@@ -30,7 +30,7 @@ export default function PopoverDetail({ item }) {
           parentKey === PAYMENT_URL.PAGE_KEY ? (
             <div className="flex items-center justify-center text-white no-underline hover:text-gray-200">
               <ArrowTopRightOnSquareIcon aria-hidden="true" className="h-4 w-4 mr-1" />
-              <Link className="text-sm font-semibold leading-6 " href={parentLink} target="_blank">{parentTitle}</Link>
+              <a className="text-sm font-semibold leading-6 " href="https://tucsonhosyuko.square.site/" target="_blank">{parentTitle}</a>
             </div>
           ) : (
             <Link className="text-sm font-semibold leading-6 text-white no-underline hover:text-gray-200" href={parentLink}>{parentTitle}</Link>

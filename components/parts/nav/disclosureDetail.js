@@ -25,7 +25,7 @@ export default function DisclosureDetail({ item }) {
       parentKey === PAYMENT_URL.PAGE_KEY ? (
         <div className="flex px-3 py-2 items-center no-underline text-blue-800 hover:bg-gray-50 leading-7 -mx-3 rounded-lg">
           <ArrowTopRightOnSquareIcon  aria-hidden="true" className="h-4 w-4 mr-1" />
-          <Link className="text-base font-semibold text-blue-800 hover:bg-gray-50" href={parentLink}>{parentTitle}</Link>
+          <a className="text-base font-semibold text-blue-800 hover:bg-gray-50" href="https://tucsonhosyuko.square.site/">{parentTitle}</a>
         </div>
       ) : (
         <Link className="-mx-3 block rounded-lg px-3 py-2 text-base font-semibold leading-7 text-blue-800 hover:bg-gray-50" href={parentLink}>{parentTitle}</Link>
