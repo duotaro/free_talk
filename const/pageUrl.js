@@ -177,7 +177,7 @@ export const OPPORTUNITY_URL ={
     ORDERING: null,
     GROUP_ORDERING: 3,
     IS_PARENT:false,
-    IS_ACTIVE:true
+    IS_ACTIVE:false
 }
 export const DONATION_URL ={
     PAGE_KEY:"donation",

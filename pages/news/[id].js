@@ -7,6 +7,8 @@ import Layout from "../../components/layout"
 import LocaleContext from "../../components/context/localeContext";
 import { useLocale } from "../../utils/locale";
 import NewsEntity, { getNewsFromNotion, getNewsList } from "../../entity/newsEntity";
+import savBlogImageIfNeeded from "../../components/download/blogDetail";
+import { ACCESABLE_BLOG_IMAGE_PATH, DOWNLOAD_IMAGE_EXTENSION } from "../../const";
 
 export const Text = ({ text }) => {
   if (!text) {
@@ -154,7 +156,7 @@ const renderBlock = (block) => {
       );
     case "image":
       const src =
-        value.type === "external" ? value.external.url : value.file.url;
+        value.type === "external" ? value.external.url : `/${ACCESABLE_BLOG_IMAGE_PATH}/${block.parent.page_id}/${block.id}${DOWNLOAD_IMAGE_EXTENSION}`;
       const caption = value.caption ? value.caption[0]?.plain_text : "";
       return (
         <figure>
@@ -391,7 +393,18 @@ export const getStaticProps = async (context) => {
       const page = await getPage(localeItem.id);
       const blocks = await getBlocks(localeItem.id);
 
-      console.log(blocks)
+      // ループして type:imageをセーブ　
+      savBlogImageIfNeeded(blocks, localeItem.id)
+
+      for(let block of blocks){
+        
+        if(block.type == "image" && !block.image.external){
+          console.log(block)
+          // ここでセーブ処理
+          // block.image.FILE.URLとfilePath
+        }
+      }
+        
       
       if(locale == "ja"){
         pageMap[locale] = page

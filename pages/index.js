@@ -50,7 +50,7 @@ export default function Home({ sliderList, sponsors, newsList, scheduleList, abo
           <About about={aboutSchool} isTop={true}/>
           <Mission mission={mission} />
           <Vision vision={vision}/>
-          <Opportunity opportunity={opportunity} />
+          {/* <Opportunity opportunity={opportunity} /> */}
           {/* <Faq /> */}
           <Sponsor sponsor={sponsorList} />
           {/* Side widgets*/}

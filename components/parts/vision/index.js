@@ -33,9 +33,10 @@ export default function Vision({ vision }) {
                 <div className="max-w-md mt-4 text-md font-light leading-relaxed text-gray-500 sm:text-lg lg:text-xl">
                     {vision.text}
                 </div>
-                <Link href={`/about/`} className="p-6 py-3 mt-3 rounded-md bg-blue-600 hover:bg-blue-700 mt-4 text-lg transition-colors text-white ">
+                {/* link先どこ */}
+                {/* <Link href={`/about/`} className="p-6 py-3 mt-3 rounded-md bg-blue-600 hover:bg-blue-700 mt-4 text-lg transition-colors text-white ">
                     {json.common.show_more}
-                </Link>
+                </Link> */}
             </div>
         </div>
       </div>

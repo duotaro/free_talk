@@ -1,21 +1,31 @@
 import Head from "next/head";
 import Layout from '../../components/layout'
-import { META_ABOUT_TITLE, META_ABOUT_DESCRIPTION } from "../../const/meta";
-import Prepare from "../../components/parts/prepare";
+import React, { useContext } from 'react';
+import LocaleContext from "../../components/context/localeContext";
+import { useLocale } from "../../utils/locale";
+import Contact from "../../components/parts/contact";
 
-export const databaseId = process.env.NEXT_PUBLIC_NOTION_DATABASE_ID;
 
-export default function Privacy({  }) {
+export default function ContactPage({ isTop }) {
+  const { locale } = useContext(LocaleContext);
+  const { json, metaTitleExtension } = useLocale(locale)
+  let lang = json.navigation
+
   return (
     <Layout>
       <Head>
-        <title>{META_ABOUT_TITLE}</title>
-        <meta name="description" content="TechnologyとConvenienceを組み合わせた造語。​ITがもたらす便利なものを紹介します。最近はAI関連の記事が多いです。ChatGPT / Google Bard / OpenAI GPT / Replika" />
+        <title>{lang.contact} - {metaTitleExtension} </title>
+        <meta name="description" content={`${lang.contact} - ${lang.description}`} />
       </Head>
 
       <div className="container mt-5">
-        <Prepare />
-      </div>
+          <section className="py-2 md:py-4 lg:py-6">
+            <div className="container px-6 mx-auto">
+              <Contact />
+            </div>
+          </section>
+        </div>
+      
     </Layout>
   );
 }

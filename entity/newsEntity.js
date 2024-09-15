@@ -47,7 +47,7 @@ export const getNewsList = async (database, limit = null) => {
     if(database){
 
         // 並び替え
-        const sortedDatabase = database.sort((a, b) => new Date(b.created_time) - new Date(a.created_time));
+        const sortedDatabase = database.sort((a, b) => new Date(b.last_edited_time) - new Date(a.last_edited_time));
 
         let limitedDatabase = sortedDatabase
         if(limit){
