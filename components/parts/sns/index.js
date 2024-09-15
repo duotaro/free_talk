@@ -17,7 +17,7 @@ export default function SocialMedia({  }) {
                 <FbIcon />
             </a>
         </li>
-        <li>
+        {/* <li>
             <a href="https://www.facebook.com/tucsonnihongohosyuko/" target="_blank" className="text-white text-center p-2">
                 <GoogleIcon />
             </a>
@@ -36,7 +36,7 @@ export default function SocialMedia({  }) {
             <a href="https://www.facebook.com/tucsonnihongohosyuko/" target="_blank" className="text-white text-center p-2">
                 <XIcon />
             </a>
-        </li>
+        </li> */}
       </>
     );
   }
