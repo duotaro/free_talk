@@ -3,6 +3,7 @@ import Layout from '../../../components/layout'
 import LocaleContext from "../../../components/context/localeContext";
 import { useLocale } from "../../../utils/locale";
 import { getDatabase } from "../../../lib/notion";
+import { useContext } from "react";
 
 export default function ContactOpportunityPage({ opportunities }) {
   const { locale } = useContext(LocaleContext);
@@ -18,7 +19,7 @@ export default function ContactOpportunityPage({ opportunities }) {
 
       <div className="container mt-5">
         <div className="row">
-         
+         スタッフ募集
         </div>
       </div>
     </Layout>
