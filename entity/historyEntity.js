@@ -11,13 +11,16 @@ export class HistoryEntity {
         this.text = null
         if(isJpn){
             if(item.properties["text"].rich_text[0]){
-                this.text = item.properties["text"].rich_text[0].text.content
+                this.text = item.properties["text"].rich_text
             }
         } else {
             if(item.properties["text_en"].rich_text[0]){
-                this.text = item.properties["text_en"].rich_text[0].text.content
+                this.text = item.properties["text_en"].rich_text
             }
         }
+
+        console.log(this.text)
+        console.log(this.text[0])
 
         this.image1 = `/${ACCESABLE_IMAGE_PATH}/history/${fileName1}${DOWNLOAD_IMAGE_EXTENSION}`
         this.image2 = `/${ACCESABLE_IMAGE_PATH}/history/${fileName2}${DOWNLOAD_IMAGE_EXTENSION}`

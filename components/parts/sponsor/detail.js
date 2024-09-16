@@ -11,7 +11,7 @@ export default function SponsorDetail({ item }) {
   const { json } = useLocale(locale)
 
   return (
-    <div key={item.ordering} className="max-w-56 mx-auto text-center lg:max-w-xs">
+    <div key={item.ordering} className="max-w-32 mx-auto text-center lg:max-w-40">
         <a href={item.link} target="_blank" rel="noopener noreferrer"><img src={item.image} /></a>
     </div>
   );

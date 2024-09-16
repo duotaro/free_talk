@@ -7,6 +7,7 @@ import Link from "next/link"
 import LocaleContext from "../../../context/localeContext";
 import { useLocale } from "../../../../utils/locale";
 import { HistoryEntity } from "../../../../entity/historyEntity";
+import { Text } from "../../../../pages/news/[id]"
 
 export default function History({ history }) {
   const { locale } = useContext(LocaleContext);
@@ -25,9 +26,19 @@ export default function History({ history }) {
             <h2 className="text-2xl font-black sm:text-3xl lg:text-4xl">
               {entity.title}
             </h2>
-            <div className="max-w-ml mt-4 text-md font-light leading-relaxed text-gray-500 sm:text-lg lg:text-xl">
-                {entity.text}
-            </div>
+            {entity.text && (
+                <div className="max-w-ml mt-4 text-md font-light leading-relaxed text-gray-500 sm:text-lg lg:text-xl" style={{ whiteSpace: 'pre-wrap' }}>
+                  <Text text={entity.text} />
+                {/* {entity.text.map((text) => {
+                    // return text.href ? (
+                    //     <Link href={text.href} className="link-secondary" key={text.text.content}>{text.text.content}</Link>
+                    // ) : (
+                    //     <span key={text.text.content}>{text.plain_text}</span>
+                    // )
+                    return ( <Text text={text} /> )
+                })} */}
+                </div>
+            )}
         </div>
       </div>
     </section>

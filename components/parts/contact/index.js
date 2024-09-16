@@ -9,6 +9,7 @@ import {
   ClockIcon
 } from '@heroicons/react/24/outline'
 import SocialMedia from '../sns';
+import Caution from '../caution';
 
 export default function Contact({ isFooter }) {
 
@@ -32,11 +33,15 @@ export default function Contact({ isFooter }) {
                     <MapPinIcon className="w-8 h-8" />
                   </div>
                   <span className="text-md font-semibold p-1 mr-3">{lang.location}:</span>
-                  <span className={hClass}><a href="https://www.google.com/maps?q=1701+E+Seneca+St,+Tucson,+AZ+85719,+USA" target="_blank" className={textClass}>International School of Tucson <br />1701 East Seneca Street, Tucson, AZ 85719</a></span> 
+                  <span className={hClass}>
+                    <a href="https://www.google.com/maps?q=1701+E+Seneca+St,+Tucson,+AZ+85719,+USA" target="_blank" className={textClass}>International School of Tucson <br />1701 East Seneca Street, Tucson, AZ 85719</a><br />
+                    <Caution text={lang.caution} />
+                  </span> 
                 </div>
                 <ul className={vClass}>
                   <li>
-                    <a href="https://www.google.com/maps?q=1701+E+Seneca+St,+Tucson,+AZ+85719,+USA" target="_blank" className={textClass}>International School of Tucson <br />1701 East Seneca Street, Tucson, AZ 85719</a>
+                    <a href="https://www.google.com/maps?q=1701+E+Seneca+St,+Tucson,+AZ+85719,+USA" target="_blank" className={textClass}>International School of Tucson <br />1701 East Seneca Street, Tucson, AZ 85719</a><br />
+                    <Caution text={lang.caution} />
                   </li>
                 </ul>
               </div>
