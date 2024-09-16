@@ -14,9 +14,7 @@ export default function Navigation({  }) {
   return (
     <nav className="static top-0 z-50 flex-shrink-0 py-4 bg-white ">
         <div className="container flex flex-col items-start justify-between px-6 mx-auto md:flex-row md:items-center">
-            {/* <Link href={`/`} className="navbar-brand ml-3 "><img src={logoSrc} className=""/></Link> */}
             <Link href={`/`} className="text-lg font-bold">{json.navigation.title}</Link>
-            {/* <p className={textClass}><small>{lang.sub_title}</small></p> */}
             <div className="absolute flex justify-end md:static top-2 right-4">
               <SwitchLang currentLocale={locale} />
            </div>

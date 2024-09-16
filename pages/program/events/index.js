@@ -1,8 +1,9 @@
 import Head from "next/head";
-import Layout from '../../components/layout'
+import Layout from '../../../components/layout'
 import React, { useContext } from 'react';
-import LocaleContext from "../../components/context/localeContext";
-import { useLocale } from "../../utils/locale";
+import LocaleContext from "../../../components/context/localeContext";
+import { useLocale } from "../../../utils/locale";
+import Prepare from "../../../components/parts/prepare";
 
 
 export default function Event({  }) {
@@ -20,7 +21,7 @@ export default function Event({  }) {
       <div className="container mt-5">
         <div className="row">
           <section className="col">
-            イベントのページ
+            <Prepare />
           </section>
         </div>
       </div>

@@ -1,13 +1,12 @@
 import Head from "next/head";
-import Layout from '../../components/layout'
+import Layout from '../../../components/layout'
 import React, { useContext } from 'react';
-import LocaleContext from "../../components/context/localeContext";
-import { useLocale } from "../../utils/locale";
-import About from "../../components/parts/about";
-import { getDatabase } from "../../lib/notion";
-import saveImageIfNeeded from "../../components/download/index.js";
-import { convertAboutFromDatabase } from "../../entity/aboutEntity";
-import Mission from "../../components/parts/mission/index.js";
+import LocaleContext from "../../../components/context/localeContext";
+import { useLocale } from "../../../utils/locale";
+import { getDatabase } from "../../../lib/notion";
+import saveImageIfNeeded from "../../../components/download/index.js";
+import { convertAboutFromDatabase } from "../../../entity/aboutEntity";
+import Mission from "../../../components/parts/mission/index.js";
 
 export default function MissionPage({ about }) {
   const { locale } = useContext(LocaleContext);

@@ -11,15 +11,15 @@ export default function Sponsor({ sponsor }) {
     const { locale } = useContext(LocaleContext);
     const { json } = useLocale(locale)
     return (
-      <section className="py-8 md:py-12 lg:py-20 bg-gray-50">
+      <section className="py-2 md:py-4 lg:py-8 bg-gray-50 px-10">
         <div className="container px-6 mx-auto text-center" >
-          <h4 className="text-2xl font-black sm:text-4xl md:text-4xl lg:text-5xl">
+          <h2 className="text-xl font-black sm:text-2xl lg:text-3xl">
             {json.navigation.sponsors}
-          </h4>
+          </h2>
           {/* {links?.length ? <Links links={links} /> : null} */}
         </div>
         <div className="container px-6 mx-auto">
-          <div className="grid justify-center gap-10 pt-10 grid-cols-3">
+          <div className="grid justify-center gap-10 pt-5 grid-cols-3">
             {sponsor.map((item) => {
                 return (
                   <SponsorDetail item={item}/>

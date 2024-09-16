@@ -107,3 +107,4 @@ const createHeaderMenu = () => {
 }
 
 export const HEADER_MENU = createHeaderMenu()
+export const HEADER_MENU_ALL = createHeaderMenu()

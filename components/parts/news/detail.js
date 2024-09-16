@@ -8,6 +8,7 @@ import { useLocale } from "../../../utils/locale";
 import NewsEntity from "../../../entity/newsEntity";
 import { getRandomInt } from "../../../utils/numberUtils";
 import { ACCESABLE_IMAGE_PATH } from "../../../const";
+import Image from "next/image";
 
 export default function NewsDetail({ item }) {
   const { locale } = useContext(LocaleContext);
@@ -30,7 +31,7 @@ export default function NewsDetail({ item }) {
         
         <div className="mt-3p-5 bg-gray-100border-2 border-t-0 rounded-b-lg">
         <div className="relative h-48">
-          <img loading="lazy" src={entity.image} className="object-cover object-center rounded-t-lg w-full h-full absolute inset-0" />
+          <Image loading="lazy" src={entity.image} width={200} height={100} style={{ objectFit: 'cover' }} className="object-cover object-center rounded-t-lg w-full h-full absolute inset-0" />
         </div>
         <h2 className="text-lg font-black sm:text-xl mt-2 pr-8 pl-8" style={{
             minHeight: "3em",

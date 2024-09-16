@@ -7,12 +7,10 @@ import { getDatabase } from "../../lib/notion";
 import { convertAboutFromDatabase } from "../../entity/aboutEntity";
 import Prepare from "../../components/parts/prepare";
 
-export default function AboutPage({ about }) {
+export default function ProgramPage({ about }) {
   const { locale } = useContext(LocaleContext);
   const { json, metaTitleExtension } = useLocale(locale)
   let lang = json.navigation
-
-  let {aboutSchool} = convertAboutFromDatabase(about, locale == "ja")
 
 
   return (
@@ -21,31 +19,30 @@ export default function AboutPage({ about }) {
         <title>{lang.about} - {metaTitleExtension} </title>
         <meta name="description" content={`${lang.about} - ${lang.description}`} />
       </Head>
-
       <div className="">
         <div className="row">
-          <Prepare groupKey="about" />
+          <Prepare groupKey="" />
         </div>
       </div>
     </Layout>
   );
 }
 
-export const getStaticProps = async (context) => {
+// export const getStaticProps = async (context) => {
 
-  // get about
-  let about = await getAbout()
-  return {
-    props: {
-      about: about
-    },
-    revalidate: 1
-  };
-};
+//   // get about
+//   let about = await getAbout()
+//   return {
+//     props: {
+//       about: about
+//     },
+//     revalidate: 1
+//   };
+// };
 
-const getAbout = async () => {
-  const database = await getDatabase("d4eb3828e74c469b9179ca7be9edb5cf")
+// const getAbout = async () => {
+//   const database = await getDatabase("d4eb3828e74c469b9179ca7be9edb5cf")
 
 
-  return database
-}
+//   return database
+// }

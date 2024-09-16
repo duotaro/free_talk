@@ -9,6 +9,7 @@ import { useLocale } from "../../utils/locale";
 import NewsEntity, { getNewsFromNotion, getNewsList } from "../../entity/newsEntity";
 import savBlogImageIfNeeded from "../../components/download/blogDetail";
 import { ACCESABLE_BLOG_IMAGE_PATH, DOWNLOAD_IMAGE_EXTENSION } from "../../const";
+import Image from "next/image";
 
 export const Text = ({ text }) => {
   if (!text) {
@@ -274,8 +275,12 @@ export default function Post({ pageMap, blockMap, detailPage}) {
     return <div>{json.common.not_found_article}</div>;
   }
   let pageTitle = ""
+  let pageImage = ""
   if(entity && entity.title[0]){
     pageTitle = entity.title[0].plain_text
+  }
+  if(entity && entity.title[0]){
+    pageImage = entity.image
   }
   // console.log("-------------")
   //   console.log(pageTitle)
@@ -316,13 +321,28 @@ export default function Post({ pageMap, blockMap, detailPage}) {
 
       <div className="">
         <div className="row">
-          <section className="py-4 md:py-6 lg:py-8 ">
+          <section className="py-1 mb-4 pb-4">
             <div className="container px-10 lg:px-40 xl:px-80 mx-auto">
               <div className="items-center gap-4 md:gap-8">
                     {/* Post content*/}
                     <article>
-                        <header className="mb-4">
+                        <header className="mb-4 ">
                             <h1 className="text-xl sm:text-2xl md:text-3xl lg:text-4xl font-semibold text-gray-700 mb-2 mt-10">{pageTitle}</h1>
+                            {pageImage && (
+                              <div className="relative w-full overflow-hidden rounded-lg">
+                                <Image
+                                  src={pageImage}
+                                  alt="Mission"
+                                  width={800}  // サイズを大きめに設定
+                                  height={400}
+                                  layout="responsive"
+                                  objectFit="cover"
+                                  className="transition-transform duration-500 ease-in-out transform hover:scale-105"
+                                />
+                                {/* <div className="absolute inset-0 bg-gradient-to-t from-black via-transparent to-transparent rounded-lg" /> */}
+                              </div>
+                              
+                            )}
                             <div className="mt-4 uppercase text-gray-600 italic font-semibold text-xs agility-field">
                               <strong>作成日</strong> {createtDate} / 更新日 {lastEditDate}
                             </div>
