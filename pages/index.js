@@ -84,7 +84,6 @@ export const getStaticProps = async (context) => {
 
 
   let opportunity = await getOpportunity()
-  console.log(opportunity)
   return {
     props: {
       sliderList: sliderList,

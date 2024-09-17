@@ -19,9 +19,6 @@ export class HistoryEntity {
             }
         }
 
-        console.log(this.text)
-        console.log(this.text[0])
-
         this.image1 = `/${ACCESABLE_IMAGE_PATH}/history/${fileName1}${DOWNLOAD_IMAGE_EXTENSION}`
         this.image2 = `/${ACCESABLE_IMAGE_PATH}/history/${fileName2}${DOWNLOAD_IMAGE_EXTENSION}`
         this.image3 = `/${ACCESABLE_IMAGE_PATH}/history/${fileName3}${DOWNLOAD_IMAGE_EXTENSION}`

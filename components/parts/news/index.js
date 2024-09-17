@@ -7,7 +7,6 @@ import { useLocale } from "../../../utils/locale";
 import Link from "next/link";
 
 export default function News({ list, isTop }) {
-  // console.log(newsList)
   const { locale } = useContext(LocaleContext);
   const { json } = useLocale(locale)
 
@@ -20,13 +19,6 @@ export default function News({ list, isTop }) {
   if(isTop){
     divClass = "grid justify-center gap-10 pt-5 md:grid-cols-2 lg:grid-cols-3"
   }
-
-  // 作成日順で並び替え
-
-  // isTopなら件数フィルタ 
-
-
-
 
   return (
     <section className={sectionClass}>

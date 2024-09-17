@@ -27,9 +27,5 @@ export class SchaduleEntity {
         }
         this.link = item.properties["link"].url
         this.location = item.properties["location"].rich_text[0].text.content
-
-
-            console.log(this)
-
     }
 }

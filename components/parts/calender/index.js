@@ -17,7 +17,6 @@ export default function Calender({ scheduleList }) {
   let entityList = []
   for(const schedule of scheduleList){
     let entity = new SchaduleEntity(schedule, isJpn)
-    console.log(entity)
     entityList.push(entity)
   }
   entityList.sort((a, b) => new Date(b.dateTime) - new Date(a.dateTime));

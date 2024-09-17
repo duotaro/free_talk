@@ -22,8 +22,6 @@ export default class ContentEntity {
             this.image3Link = item.properties["image3Link"].rich_text[0].text.content
             this.mainLink = undefined
         }
-
-        console.log(this)
         
     }
 }

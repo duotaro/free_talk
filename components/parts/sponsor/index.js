@@ -7,7 +7,6 @@ import SponsorDetail from "./detail";
 
 export default function Sponsor({ sponsor }) {
 
-    // console.log(newsList)
     const { locale } = useContext(LocaleContext);
     const { json } = useLocale(locale)
     return (

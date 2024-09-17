@@ -13,11 +13,6 @@ export default function SwitchLang({}) {
     const selectedValue = locale == "ja" ? "日本語" : "English"
     const handleClick = (locale) => {
         setLocale(locale)
-        const currentPath = router.pathname;
-        console.log("handleClick")
-        console.log(currentPath)
-        console.log("end handleClick")
-
     };
 
     let buttonClass = "flex items-center justify-center p-2 uppercase text-black hover:text-gray-600 transition duration-300 ease-in-out"

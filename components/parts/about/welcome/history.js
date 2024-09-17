@@ -14,9 +14,6 @@ export default function History({ history }) {
   const { json } = useLocale(locale)
 
   let entity = new HistoryEntity(history, locale == "ja")
-
-  console.log("HistoryEntity")
-  console.log(entity)
   
   return (
     <>

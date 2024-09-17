@@ -26,9 +26,6 @@ export default function Prepare({ groupKey }) {
         })
     }
 
-    console.log(group)
-
-
     return (
         <section className="py-8 md:py-12 lg:py-20 ">
           <div className="container px-6 mx-auto">

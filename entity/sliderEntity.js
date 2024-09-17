@@ -10,7 +10,5 @@ export default class SliderEntity {
         this.label = item.properties["title"].title[0].text.content
         this.label_en = item.properties["en"].rich_text[0].text.content
         this.image = `/${ACCESABLE_IMAGE_PATH}/slider/${name}${DOWNLOAD_IMAGE_EXTENSION}`
-        
-        //console.log(item.properties["image"].files[0])
     }
 }

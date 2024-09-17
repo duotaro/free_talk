@@ -62,9 +62,6 @@ const getWelcome = async () => {
   for(let item of history){
     props2.push(item.properties)
   }
-  console.log("history props2")
-  console.log(props2)
-  
   await saveImageIfNeeded(props2, "history")
 
   return {

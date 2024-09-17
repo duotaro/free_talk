@@ -282,13 +282,6 @@ export default function Post({ pageMap, blockMap, detailPage}) {
   if(entity && entity.title[0]){
     pageImage = entity.image
   }
-  // console.log("-------------")
-  //   console.log(pageTitle)
-  //   console.log("-------**********")
-  // for(const t of page.properties.locale.title){
-  //   pageTitle += t.plain_text
-  // }
-
 
   const createtDate = new Date(page.created_time).toLocaleString(
     locale,
@@ -386,9 +379,6 @@ export const getStaticPaths = async () => {
       resList.push({params: res})
     }
 
-    // console.log("resList")
-    // console.log(resList)
-
    return {
         paths: resList,
         fallback: false,
@@ -415,16 +405,6 @@ export const getStaticProps = async (context) => {
 
       // ループして type:imageをセーブ　
       savBlogImageIfNeeded(blocks, localeItem.id)
-
-      for(let block of blocks){
-        
-        if(block.type == "image" && !block.image.external){
-          console.log(block)
-          // ここでセーブ処理
-          // block.image.FILE.URLとfilePath
-        }
-      }
-        
       
       if(locale == "ja"){
         pageMap[locale] = page

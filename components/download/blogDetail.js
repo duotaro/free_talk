@@ -70,6 +70,7 @@ const getTemporaryImage = async (url) => {
     const blob = await fetch(url).then((r) => r.blob())
     return blob
   } catch (error) {
+    console.log('error during getTemporaryImage')
     console.log(error)
     return null
   }
@@ -80,12 +81,33 @@ const isImageExist = (path, keyName) => {
 }
 
 const saveImage = (imageBinary, path, keyName) => {
-  fs.writeFile(path + '/' + keyName + downloadImageExtention, imageBinary, (error) => {
-    if (error) {
-      console.log(error)
-      throw error
-    }
-  })
+  // fs.writeFile(path + '/' + keyName + downloadImageExtention, imageBinary, (error) => {
+  //   if (error) {
+  //     console.log('error during saveImage')
+  //     console.log(error)
+  //     throw error
+  //   }
+  // })
+  const maxRetries = 3
+  const saveWithRetry = (attempt) => {
+    
+    fs.writeFile(path + '/' + keyName + downloadImageExtention, imageBinary, (error) => {
+      if (error) {
+        if (attempt < maxRetries) {
+          console.log(`Error during saveImage, attempt ${attempt + 1} of ${maxRetries}. Retrying in ${retryDelay}ms...`);
+          setTimeout(() => save(attempt + 1), retryDelay);
+        } else {
+          console.log('Max retries reached. Error during saveImage:');
+          console.log(error);
+          throw error;
+        }
+      } else {
+        console.log('Image saved successfully.');
+      }
+    });
+  };
+
+  saveWithRetry(0)
 }
 
 export default savBlogImageIfNeeded
