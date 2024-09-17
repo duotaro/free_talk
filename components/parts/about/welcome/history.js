@@ -3,7 +3,6 @@
 
 import React, { useContext } from "react";
 import Image from "next/image"
-import Link from "next/link"
 import LocaleContext from "../../../context/localeContext";
 import { useLocale } from "../../../../utils/locale";
 import { HistoryEntity } from "../../../../entity/historyEntity";
@@ -17,10 +16,10 @@ export default function History({ history }) {
   
   return (
     <>
-    <section className="py-8 md:py-12 lg:py-20 bg-slate-300">
+    <section className="py-8 md:py-12 lg:py-20 bg-slate-200">
       <div className="container px-6 mx-auto items-center">
         <div className="flex flex-col items-center  ">
-            <h2 className="text-2xl font-black sm:text-3xl lg:text-4xl">
+            <h2 className="text-2xl font-black sm:text-3xl lg:text-4xl text-center">
               {entity.title}
             </h2>
             {entity.text && (
@@ -39,7 +38,7 @@ export default function History({ history }) {
         </div>
       </div>
     </section>
-    <section className="py-2 md:py-4 lg:py-6 bg-slate-300">
+    <section className="py-2 md:py-4 lg:py-6 bg-slate-200">
       <div className="container px-6 mx-auto">
         <div className="grid items-center gap-8 md:grid-flow-col-dense md:grid-cols-3 md:gap-12">
             <div className="md:col-start-1">
