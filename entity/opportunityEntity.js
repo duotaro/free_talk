@@ -4,7 +4,10 @@ import { DOWNLOAD_IMAGE_EXTENSION, ACCESABLE_IMAGE_PATH } from "../const"
 export default class OpportunityEntity {
     constructor(item, isJpn){
 
-        const name = item.properties["image"].files[0].name
+        //const name = item.properties["image"].files[0].name
+
+        const tmpName = item.properties["image"].files[0].name
+        const name = tmpName.replace(/ /g, '_')
 
         this.title = isJpn ? item.properties["title"].title[0].text.content : item.properties["en"].rich_text[0].text.content
         

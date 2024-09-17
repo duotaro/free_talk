@@ -43,7 +43,8 @@ const checkBlock = async (path, image) => {
 
   if (image.type == 'files' && image.files[0]) {
 
-    const name = image.files[0].name
+    const tmpName = image.files[0].name
+    const name = tmpName.replace(/ /g, '_')
 
     const url = image.files[0].file.url
     const blob = await getTemporaryImage(url)

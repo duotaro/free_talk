@@ -35,7 +35,10 @@ export default class NewsEntity {
         }
         // 今はなし　やるならダウンロード処理入れないと
         if(item.properties["image"].files[0]){
-            const name = item.properties["image"].files[0].name
+            //const name = item.properties["image"].files[0].name
+
+            const tmpName = item.properties["image"].files[0].name
+            const name = tmpName.replace(/ /g, '_')
             this.image = `/${ACCESABLE_IMAGE_PATH}/news/${name}${DOWNLOAD_IMAGE_EXTENSION}`
         }
         

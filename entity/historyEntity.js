@@ -3,9 +3,21 @@ import { ACCESABLE_IMAGE_PATH, DOWNLOAD_IMAGE_EXTENSION } from "../const"
 export class HistoryEntity {
     constructor(item, isJpn){
         
-        const fileName1 = item.properties["image1"].files[0].name
-        const fileName2 = item.properties["image2"].files[0].name
-        const fileName3 = item.properties["image3"].files[0].name
+        // const fileName1 = item.properties["image1"].files[0].name
+        // const fileName2 = item.properties["image2"].files[0].name
+        // const fileName3 = item.properties["image3"].files[0].name
+
+        const tmpName1 = item.properties["image1"].files[0].name
+        const fileName1 = tmpName1.replace(/ /g, '_')
+        //const fileName = item.properties["image"].files[0].name
+
+        const tmpName2 = item.properties["image2"].files[0].name
+        const fileName2 = tmpName2.replace(/ /g, '_')
+        //const fileName = item.properties["image"].files[0].name
+
+        const tmpName3 = item.properties["image3"].files[0].name
+        const fileName3 = tmpName3.replace(/ /g, '_')
+        //const fileName = item.properties["image"].files[0].name
 
         this.title = isJpn ? item.properties["title"].title[0].text.content : item.properties["en"].rich_text[0].text.content
         this.text = null
