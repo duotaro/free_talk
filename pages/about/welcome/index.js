@@ -11,6 +11,8 @@ import saveImageIfNeeded from "../../../components/download";
 
 export default function AboutPage({ welcome }) {
   const { locale } = useContext(LocaleContext);
+  console.log("========================")
+  console.log(locale)
   const { json, metaTitleExtension } = useLocale(locale)
   let lang = json.navigation
 

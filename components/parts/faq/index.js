@@ -2,6 +2,7 @@
 import React, { useContext } from "react";
 import LocaleContext from "../../context/localeContext";
 import { useLocale } from "../../../utils/locale";
+import Title from "../text/title";
 
 export default function Faq({ }) {
   const { locale } = useContext(LocaleContext);
@@ -29,9 +30,7 @@ export default function Faq({ }) {
   return (
     <section className="py-8 md:py-12 lg:py-20 bg-gray-50">
       <div className="container px-6 mx-auto text-center" >
-        <h3 className="text-2xl font-black sm:text-4xl md:text-4xl lg:text-5xl">
-            {json.navigation.faq}
-        </h3>
+        <Title title={json.navigation.faq} />
       </div>
       <div className="container px-6 mx-auto">
         {faqList.length > 0 && (

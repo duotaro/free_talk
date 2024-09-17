@@ -63,10 +63,10 @@ export default function PopoverDetail({ item }) {
                         <dropdown.icon aria-hidden="true" className="h-6 w-6 text-gray-600 group-hover:text-indigo-600" />
                     </div> */}
                     <div className="flex-auto">
-                        <a href={createNavUrl(dropdown)} className="block font-semibold ">
+                        <Link href={createNavUrl(dropdown)} className="block font-semibold ">
                         {json.navigation[dropdown.PAGE_KEY]}
                         <span className="absolute inset-0" />
-                        </a>
+                        </Link>
                         {/* <p className="mt-1 text-gray-600">{item.description}</p> */}
                     </div>
                     </div>

@@ -6,6 +6,8 @@ import Image from "next/image"
 import Link from "next/link"
 import LocaleContext from "../../context/localeContext";
 import { useLocale } from "../../../utils/locale";
+import Title from "../text/title";
+import Paragraphs from "../text/paragraphs";
 
 export default function Mission({ mission }) {
   const { locale } = useContext(LocaleContext);
@@ -27,12 +29,8 @@ export default function Mission({ mission }) {
               />
             </div>
             <div className="flex flex-col items-center text-center ">
-            <h2 className="text-2xl font-black sm:text-3xl lg:text-4xl">
-                {mission.title}
-                </h2>
-                <div className="max-w-md mt-4 text-md font-light leading-relaxed text-gray-500 sm:text-lg lg:text-xl">
-                    {mission.text}
-                </div>
+                <Title title={mission.title} />
+                <Paragraphs text={mission.text} />
             </div>
         </div>
       </div>

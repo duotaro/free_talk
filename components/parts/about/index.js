@@ -6,6 +6,8 @@ import Image from "next/image"
 import Link from "next/link"
 import LocaleContext from "../../context/localeContext";
 import { useLocale } from "../../../utils/locale";
+import Title from "../text/title";
+import Paragraphs from "../text/paragraphs";
 
 export default function About({ about, isTop }) {
   const { locale } = useContext(LocaleContext);
@@ -27,12 +29,8 @@ export default function About({ about, isTop }) {
               />
             </div>
             <div className="flex flex-col items-center text-center ">
-                <h2 className="text-2xl font-black sm:text-3xl lg:text-4xl">
-                {about.title}
-                </h2>
-                <div className="max-w-md mt-4 text-md font-light leading-relaxed text-gray-500 sm:text-lg lg:text-xl">
-                    {about.text}
-                </div>
+                <Title title={about.title} />
+                <Paragraphs text={about.text} />
                 { isTop && (
                   <Link href={`/about/welcome/`} className="p-6 py-3 mt-3 rounded-md bg-blue-600 hover:bg-blue-700 mt-4 text-lg transition-colors text-white max-w-sm">
                       {json.common.show_more}

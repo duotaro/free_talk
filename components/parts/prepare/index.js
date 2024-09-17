@@ -6,6 +6,7 @@ import Link from "next/link";
 import { AcademicCapIcon, HomeIcon } from "@heroicons/react/24/outline";
 import { createNavUrl } from "../../../const/pageUrl";
 import { BuildingLibraryIcon, EnvelopeIcon, NewspaperIcon } from "@heroicons/react/20/solid";
+import Title from "../text/title";
 
 export default function Prepare({ groupKey }) {
     const { locale } = useContext(LocaleContext);
@@ -25,13 +26,12 @@ export default function Prepare({ groupKey }) {
             }
         })
     }
+    const title = groupKey ? json.navigation[groupKey] : json.navigation.prepare
 
     return (
         <section className="py-8 md:py-12 lg:py-20 ">
           <div className="container px-6 mx-auto">
-            <h2 className="text-center text-2xl font-black sm:text-3xl lg:text-4xl mb-6">
-                {groupKey ? json.navigation[groupKey] : json.navigation.prepare}
-            </h2>
+            <Title title={title} />
             <div className="grid items-center justify-center md:grid-cols-2 lg:grid-cols-3 md:gap-4 lg:gap-5">
               {group.map((item) => {
                 return (

@@ -7,6 +7,8 @@ import { Text } from "../../../../pages/news/[id]"
 import LocaleContext from "../../../context/localeContext";
 import { useLocale } from "../../../../utils/locale";
 import { GreetingEntity } from "../../../../entity/greetingEntity";
+import Title from "../../text/title";
+import Paragraphs from "../../text/paragraphs";
 
 export default function Greeting({ greeting }) {
   const { locale } = useContext(LocaleContext);
@@ -30,12 +32,8 @@ export default function Greeting({ greeting }) {
               />
             </div>
             <div className="flex flex-col items-center  ">
-                <h2 className="text-2xl font-black sm:text-3xl lg:text-4xl text-center">
-                {entity.title}
-                </h2>
-                <div className="max-w-md mt-4 text-md font-light leading-relaxed text-gray-500 sm:text-lg lg:text-xl" style={{ whiteSpace: 'pre-wrap' }}>
-                    <Text text={entity.text} />
-                </div>
+                <Title title={entity.title} />
+                <Paragraphs text={entity.text} />
             </div>
         </div>
       </div>

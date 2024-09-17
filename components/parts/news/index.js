@@ -5,6 +5,7 @@ import NewsDetail from "./detail";
 import LocaleContext from "../../context/localeContext";
 import { useLocale } from "../../../utils/locale";
 import Link from "next/link";
+import Title from "../text/title";
 
 export default function News({ list, isTop }) {
   const { locale } = useContext(LocaleContext);
@@ -24,10 +25,7 @@ export default function News({ list, isTop }) {
     <section className={sectionClass}>
       {isTop && (
       <div className="container px-6 mx-auto text-center" >
-        <h2 className="text-2xl font-black sm:text-3xl lg:text-4xl">
-          <Link href={`/news`}>{json.news.title}</Link>
-        </h2>
-        {/* {links?.length ? <Links links={links} /> : null} */}
+        <Title title={json.navigation.news} link={`/news`}/>
       </div>
       )}
       <div className="container px-6 mx-auto">

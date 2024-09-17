@@ -7,6 +7,8 @@ import LocaleContext from "../../../context/localeContext";
 import { useLocale } from "../../../../utils/locale";
 import { HistoryEntity } from "../../../../entity/historyEntity";
 import { Text } from "../../../../pages/news/[id]"
+import Title from "../../text/title";
+import Paragraphs from "../../text/paragraphs";
 
 export default function History({ history }) {
   const { locale } = useContext(LocaleContext);
@@ -19,22 +21,8 @@ export default function History({ history }) {
     <section className="py-8 md:py-12 lg:py-20 bg-slate-200">
       <div className="container px-6 mx-auto items-center">
         <div className="flex flex-col items-center  ">
-            <h2 className="text-2xl font-black sm:text-3xl lg:text-4xl text-center">
-              {entity.title}
-            </h2>
-            {entity.text && (
-                <div className="max-w-ml mt-4 text-md font-light leading-relaxed text-gray-500 sm:text-lg lg:text-xl" style={{ whiteSpace: 'pre-wrap' }}>
-                  <Text text={entity.text} />
-                {/* {entity.text.map((text) => {
-                    // return text.href ? (
-                    //     <Link href={text.href} className="link-secondary" key={text.text.content}>{text.text.content}</Link>
-                    // ) : (
-                    //     <span key={text.text.content}>{text.plain_text}</span>
-                    // )
-                    return ( <Text text={text} /> )
-                })} */}
-                </div>
-            )}
+            <Title title={entity.title} />
+            <Paragraphs text={entity.text} />
         </div>
       </div>
     </section>

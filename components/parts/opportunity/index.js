@@ -4,6 +4,8 @@ import Link from "next/link"
 import LocaleContext from "../../context/localeContext";
 import { useLocale } from "../../../utils/locale";
 import OpportunityEntity from "../../../entity/opportunityEntity";
+import Title from "../text/title";
+import Paragraphs from "../text/paragraphs";
 
 export default function Opportunity({ opportunity }) {
   const { locale } = useContext(LocaleContext);
@@ -27,12 +29,8 @@ export default function Opportunity({ opportunity }) {
               />
             </div>
             <div className="flex flex-col items-center text-center ">
-                <h2 className="text-2xl font-black sm:text-3xl lg:text-4xl">
-                {entity.title}
-                </h2>
-                <div className="max-w-md mt-4 text-md font-light leading-relaxed text-gray-500 sm:text-lg lg:text-xl">
-                    {entity.text}
-                </div>
+                <Title title={entity.title} />
+                <Paragraphs text={entity.text} />
                 <Link href={`/contact/opportunity/`} className="px-6 py-3 mt-3 text-lg transition-colors rounded-md bg-blue-600 text-white hover:bg-blue-700">
                     {json.common.show_more}
                 </Link>
