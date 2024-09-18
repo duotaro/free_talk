@@ -31,7 +31,7 @@ export default function Opportunity({ opportunity }) {
             <div className="flex flex-col items-center text-center ">
                 <Title title={entity.title} />
                 <Paragraphs text={entity.text} />
-                <Link href={`/contact/opportunity/`} className="px-6 py-3 mt-3 text-lg transition-colors rounded-md bg-blue-600 text-white hover:bg-blue-700">
+                <Link href={`/contact/opportunity/`} className="px-6 py-3 mt-3 text-md transition-colors rounded-md bg-blue-600 text-white hover:bg-blue-700">
                     {json.common.show_more}
                 </Link>
             </div>

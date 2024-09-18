@@ -40,7 +40,7 @@ export default function Home({ sliderList, sponsors, newsList, scheduleList, abo
     <Layout>
       <Head>
         <title>{metaTitleExtension}</title>
-        <meta name="description" content={`${lang.home} - ${lang.description}`} />
+        <meta name="description" content={`${lang.title} - ${lang.description}`} />
         <link rel="icon" href="/favicon.ico" />
       </Head>
       <div className="">

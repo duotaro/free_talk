@@ -47,7 +47,7 @@ export default function NewsDetail({ item }) {
             })}
         </h2>
         {entity.text && (
-            <div className="line-clamp-3 pr-8 pl-8 min-h-20 max-w-md mt-4 mb-4 text-md font-light leading-relaxed text-gray-500 sm:text-lg ">
+            <div className="line-clamp-3 pr-8 pl-8 min-h-20 max-w-md mt-4 mb-4 text-md font-light leading-relaxed text-gray-500 ">
             {entity.text.map((text) => {
                 return text.href ? (
                     <Link href={text.href} className="link-secondary" key={text.text.content}>{text.text.content}</Link>
@@ -58,7 +58,7 @@ export default function NewsDetail({ item }) {
             </div>
         )}
         <div className="mb-5">
-          <Link href={`/news/${id}`} className="px-3 py-2 text-md md:text-lg transition-colors rounded-md bg-blue-600 text-white hover:bg-blue-700">
+          <Link href={`/news/${id}`} className="px-3 py-2 text-md transition-colors rounded-md bg-blue-600 text-white hover:bg-blue-700">
             {json.common.show_more}
           </Link>
         </div>

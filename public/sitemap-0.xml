@@ -1,4 +1,18 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9" xmlns:news="http://www.google.com/schemas/sitemap-news/0.9" xmlns:xhtml="http://www.w3.org/1999/xhtml" xmlns:mobile="http://www.google.com/schemas/sitemap-mobile/1.0" xmlns:image="http://www.google.com/schemas/sitemap-image/1.1" xmlns:video="http://www.google.com/schemas/sitemap-video/1.1">
-<url><loc>https://tjschool.org</loc><lastmod>2024-09-12T02:16:14.435Z</lastmod><changefreq>daily</changefreq><priority>0.7</priority></url>
+<url><loc>https://tjschool.org/</loc><lastmod>2024-09-18T01:19:50.467Z</lastmod><changefreq>daily</changefreq><priority>0.7</priority></url>
+<url><loc>https://tjschool.org/about/</loc><lastmod>2024-09-18T01:19:50.469Z</lastmod><changefreq>daily</changefreq><priority>0.7</priority></url>
+<url><loc>https://tjschool.org/about/mission/</loc><lastmod>2024-09-18T01:19:50.469Z</lastmod><changefreq>daily</changefreq><priority>0.7</priority></url>
+<url><loc>https://tjschool.org/about/staff/</loc><lastmod>2024-09-18T01:19:50.469Z</lastmod><changefreq>daily</changefreq><priority>0.7</priority></url>
+<url><loc>https://tjschool.org/about/welcome/</loc><lastmod>2024-09-18T01:19:50.469Z</lastmod><changefreq>daily</changefreq><priority>0.7</priority></url>
+<url><loc>https://tjschool.org/contact/</loc><lastmod>2024-09-18T01:19:50.469Z</lastmod><changefreq>daily</changefreq><priority>0.7</priority></url>
+<url><loc>https://tjschool.org/contact/donation/</loc><lastmod>2024-09-18T01:19:50.469Z</lastmod><changefreq>daily</changefreq><priority>0.7</priority></url>
+<url><loc>https://tjschool.org/contact/opportunity/</loc><lastmod>2024-09-18T01:19:50.469Z</lastmod><changefreq>daily</changefreq><priority>0.7</priority></url>
+<url><loc>https://tjschool.org/news/</loc><lastmod>2024-09-18T01:19:50.469Z</lastmod><changefreq>daily</changefreq><priority>0.7</priority></url>
+<url><loc>https://tjschool.org/program/</loc><lastmod>2024-09-18T01:19:50.469Z</lastmod><changefreq>daily</changefreq><priority>0.7</priority></url>
+<url><loc>https://tjschool.org/program/events/</loc><lastmod>2024-09-18T01:19:50.469Z</lastmod><changefreq>daily</changefreq><priority>0.7</priority></url>
+<url><loc>https://tjschool.org/program/kanji_kentei/</loc><lastmod>2024-09-18T01:19:50.469Z</lastmod><changefreq>daily</changefreq><priority>0.7</priority></url>
+<url><loc>https://tjschool.org/news/102a8c0e-cf8c-8096-b2f7-e91ec767e38e/</loc><lastmod>2024-09-18T01:19:50.469Z</lastmod><changefreq>daily</changefreq><priority>0.7</priority></url>
+<url><loc>https://tjschool.org/news/2c5574c7-67e7-4213-9c29-4bbee673f2a7/</loc><lastmod>2024-09-18T01:19:50.469Z</lastmod><changefreq>daily</changefreq><priority>0.7</priority></url>
+<url><loc>https://tjschool.org/news/57b1ff72-dbca-43d3-b6eb-8e3fd7d8c18f/</loc><lastmod>2024-09-18T01:19:50.469Z</lastmod><changefreq>daily</changefreq><priority>0.7</priority></url>
 </urlset>

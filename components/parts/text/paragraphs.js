@@ -5,7 +5,7 @@ export default function Paragraphs({ text, maxWidth = "ml" }) {
         return <></>
     }
 
-    const classname = `max-w-${maxWidth} mt-4 text-md font-light leading-relaxed text-gray-500 sm:text-lg lg:text-xl`
+    const classname = `max-w-${maxWidth} mt-4 text-md font-light leading-relaxed text-gray-500 `
 
     const isArray = Array.isArray(text);
 

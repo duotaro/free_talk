@@ -40,14 +40,13 @@ export default function DisclosureDetail({ item }) {
 
         <DisclosurePanel className="mt-2 space-y-2">
           {item.dropdowns.map((dropdown) => (
-            <DisclosureButton
+            <Link
               key={dropdown.PAGE_KEY}
-              as="a"
               href={createNavUrl(dropdown)}
               className="block rounded-lg py-2 pl-6 pr-3 text-sm font-semibold leading-7 text-blue-800 hover:bg-gray-50"
             >
               {json.navigation[dropdown.PAGE_KEY]}
-            </DisclosureButton>
+            </Link>
           ))}
         </DisclosurePanel>
       </>

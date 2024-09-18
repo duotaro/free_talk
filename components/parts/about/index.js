@@ -32,7 +32,7 @@ export default function About({ about, isTop }) {
                 <Title title={about.title} />
                 <Paragraphs text={about.text} />
                 { isTop && (
-                  <Link href={`/about/welcome/`} className="p-6 py-3 mt-3 rounded-md bg-blue-600 hover:bg-blue-700 mt-4 text-lg transition-colors text-white max-w-sm">
+                  <Link href={`/about/welcome/`} className="p-6 py-3 mt-3 rounded-md bg-blue-600 hover:bg-blue-700 mt-4 text-md transition-colors text-white max-w-sm">
                       {json.common.show_more}
                   </Link>
                 )}
