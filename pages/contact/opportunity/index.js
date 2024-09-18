@@ -10,6 +10,8 @@ export default function ContactOpportunityPage({ opportunities }) {
   const { json, metaTitleExtension } = useLocale(locale)
   let lang = json.navigation
 
+  console.log(opportunities)
+
   return (
     <Layout>
       <Head>
@@ -19,7 +21,14 @@ export default function ContactOpportunityPage({ opportunities }) {
 
       <div className="container mt-5">
         <div className="row">
-         スタッフ募集
+          スタッフ募集 (デザイン浮かばん。AIに聞く)
+          {opportunities.map((opportunity) => {
+            return (
+              <>
+               <p>{opportunity.properties["title"].title[0].text.content}</p>
+              </>
+            )
+          })}
         </div>
       </div>
     </Layout>

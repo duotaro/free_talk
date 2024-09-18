@@ -3,23 +3,24 @@
 
 import React, { useContext } from "react";
 import Image from "next/image"
-import Link from "next/link"
-import LocaleContext from "../../context/localeContext";
-import { useLocale } from "../../../utils/locale";
-import Title from "../text/title";
-import Paragraphs from "../text/paragraphs";
+import LocaleContext from "../../../context/localeContext";
+import Title from "../../text/title";
+import Paragraphs from "../../text/paragraphs";
+import PolicyEntity from "../../../../entity/policyEntity";
+import FileDownloads from "../../files/downloads";
 
-export default function Mission({ mission }) {
+export default function Policy({ policy }) {
   const { locale } = useContext(LocaleContext);
-  const { json } = useLocale(locale)
+
+  let entity = new PolicyEntity(policy, locale == "ja")
 
   return (
-    <section className="py-8 md:py-12 lg:py-20 bg-gray-50">
+    <section className="py-8 md:py-12 lg:py-20 ">
       <div className="container px-6 mx-auto">
         <div className="grid items-center gap-8 md:grid-flow-col-dense md:grid-cols-2 md:gap-12">
             <div className="md:col-start-1">
               <Image
-                src={mission.image}
+                src={entity.image}
                 alt="Mission"
                 width={500}
                 height={300}
@@ -29,8 +30,8 @@ export default function Mission({ mission }) {
               />
             </div>
             <div className="flex flex-col items-center text-center ">
-                <Title title={mission.title} />
-                <Paragraphs text={mission.text} />
+                <Title title={entity.title} />
+                <FileDownloads filePath={`/files/policy/policy.pdf`} title={""} />
             </div>
         </div>
       </div>

@@ -13,8 +13,8 @@ import { fetchGss } from '../lib/appscript.js';
 import LocaleContext from '../components/context/localeContext.js';
 import saveImageIfNeeded from '../components/download/index.js';
 import Calender from '../components/parts/calender/index.js';
-import Mission from '../components/parts/mission/index.js';
-import Vision from '../components/parts/vision/index.js';
+import Mission from '../components/parts/about/mission/mission.js';
+import Vision from '../components/parts/about/mission/vision.js';
 import Faq from '../components/parts/faq/index.js';
 import { convertAboutFromDatabase } from '../entity/aboutEntity.js';
 import About from '../components/parts/about/index.js';
@@ -50,14 +50,9 @@ export default function Home({ sliderList, sponsors, newsList, scheduleList, abo
           <About about={aboutSchool} isTop={true}/>
           <Mission mission={mission} />
           <Vision vision={vision}/>
-          {/* <Opportunity opportunity={opportunity} /> */}
+          <Opportunity opportunity={opportunity} />
           {/* <Faq /> */}
           <Sponsor sponsor={sponsorList} />
-          {/* Side widgets*/}
-          {/* <section className="col-lg-4">
-            <Side sponsorList={sponsorList} />
-          </section> */}
-       
         </div>{/* .row */}
       </div>{/* .container */}
     </Layout>

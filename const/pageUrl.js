@@ -34,7 +34,7 @@ export const MISSION_URL = {
     ORDERING: null,
     GROUP_ORDERING: 2,
     IS_PARENT:false,
-    IS_ACTIVE:false
+    IS_ACTIVE:true
 }
 export const GOVERNANCE_URL = {
     PAGE_KEY:"governance",
@@ -177,7 +177,7 @@ export const OPPORTUNITY_URL ={
     ORDERING: null,
     GROUP_ORDERING: 3,
     IS_PARENT:false,
-    IS_ACTIVE:false
+    IS_ACTIVE:true
 }
 export const DONATION_URL ={
     PAGE_KEY:"donation",
