@@ -51,11 +51,11 @@ export default function Contact({ isFooter }) {
                     <BuildingOfficeIcon className="w-8 h-8 " />
                   </div>
                   <span className="text-md font-semibold p-1 mr-3">{lang.address}:</span>
-                  <span className={hClass}><a href="https://www.google.com/maps?q=1803+E+Seneca+St,+Tucson,+AZ+85719,+USA" target="_blank" className={textClass}>1803 E Seneca Street,<br />Tucson AZ 85719</a></span> 
+                  <span className={hClass}><a href="https://www.google.com/maps?q=1803+E+Seneca+St,+Tucson,+AZ+85719,+USA" target="_blank" className={textClass}>1803 E Seneca Street, Tucson AZ 85719</a></span> 
                 </div>
                 <ul className={vClass}>
                   <li>
-                    <a href="https://www.google.com/maps?q=1803+E+Seneca+St,+Tucson,+AZ+85719,+USA" target="_blank" className={textClass}>1803 E Seneca St,<br />Tucson AZ 85719</a>
+                    <a href="https://www.google.com/maps?q=1803+E+Seneca+St,+Tucson,+AZ+85719,+USA" target="_blank" className={textClass}>1803 E Seneca St, Tucson AZ 85719</a>
                   </li>
                 </ul>
               </div>

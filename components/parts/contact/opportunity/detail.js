@@ -27,14 +27,14 @@ export default function OpportunityDetail({ opportunities }) {
     <div>
     <div className="mb-4 border-b border-gray-200 dark:border-gray-700">
       <ul
-        className="flex flex-wrap -mb-px text-sm font-medium text-center justify-center items-center"
+        className="flex flex-wrap -mb-px text-center justify-center items-center"
         role="tablist"
       >
         {list.map((item) => {
           return (
             <li className="me-2" role="presentation">
               <button
-                className={`inline-block p-4 border-b-2 rounded-t-lg ${
+                className={`min-w-18 md:min-w-32 lg:min-w-36 inline-block p-4 border-b-2 rounded-t-lg ${
                   activeTab === item.tag
                     ? "border-blue-500 text-blue-500"
                     : "hover:text-gray-600 hover:border-gray-300 dark:hover:text-gray-300"
@@ -45,7 +45,7 @@ export default function OpportunityDetail({ opportunities }) {
                 aria-controls={item.tag}
                 aria-selected={activeTab === "instructor"}
               >
-                <span className=" font-bold">{item.title}</span>
+                <span className="text-sm md:text-md lg:text-lg font-bold">{item.title}</span>
               </button>
           </li>
           )
@@ -60,7 +60,7 @@ export default function OpportunityDetail({ opportunities }) {
         }
           return (
             <div className="p-4 rounded-lg" id={item.tag} role="tabpanel">
-              <div className="text-sm text-gray-500 dark:text-gray-400">
+              <div className="text-md text-gray-500 dark:text-gray-400">
                 <Paragraphs text={item.text} />
               </div>
             </div>

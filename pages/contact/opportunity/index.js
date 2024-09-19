@@ -38,9 +38,9 @@ export default function ContactOpportunityPage({ opportunities, general }) {
       <div className="">
         <section className="py-2 md:py-4 lg:py-6">
           <div className="container px-6 mx-auto justify-center m-4">
-            <div className="w-full m-5">
+            <div className="frex w-full px-4 justify-center items-center mb-5">
               <Title title={title} />
-              <Paragraphs text={text} maxWidth="lg"/>
+              <Paragraphs text={text} maxWidth="full"/>
             </div>
             <OpportunityDetail opportunities={opportunities}/>
           </div>
