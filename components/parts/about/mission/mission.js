@@ -8,6 +8,7 @@ import LocaleContext from "../../../context/localeContext";
 import { useLocale } from "../../../../utils/locale";
 import Title from "../../text/title";
 import Paragraphs from "../../text/paragraphs";
+import CustomImage from "../../image/CustomImage";
 
 export default function Mission({ mission }) {
   const { locale } = useContext(LocaleContext);
@@ -17,7 +18,7 @@ export default function Mission({ mission }) {
     <section className="py-8 md:py-12 lg:py-20 bg-gray-50">
       <div className="container px-6 mx-auto">
         <div className="grid items-center gap-8 md:grid-flow-col-dense md:grid-cols-2 md:gap-12">
-            <div className="md:col-start-1">
+            {/* <div className="md:col-start-1">
               <Image
                 src={mission.image}
                 alt="Mission"
@@ -27,7 +28,8 @@ export default function Mission({ mission }) {
                 objectFit="cover"
                 className="rounded-lg"
               />
-            </div>
+            </div> */}
+            <CustomImage src={mission.image} alt="Mission" addClass="md:col-start-1" />
             <div className="flex flex-col items-center text-center ">
                 <Title title={mission.title} />
                 <Paragraphs text={mission.text} />

@@ -1,104 +1,72 @@
-import React, { useContext } from 'react';
-import Link from "next/link";
-import LocaleContext from "../../context/localeContext";
-import { useLocale } from "../../../utils/locale";
-import {
-  MapPinIcon,
-  BuildingOfficeIcon,
-  EnvelopeIcon,
-  ClockIcon
-} from '@heroicons/react/24/outline'
-import SocialMedia from '../sns';
+import React, { useContext, useState } from "react";
+import Image from "next/image"
+import Link from "next/link"
+import LocaleContext from "../../../context/localeContext";
+import { useLocale } from "../../../../utils/locale";
+import OpportunityEntity from "../../../../entity/opportunityEntity";
+import Title from "../../text/title";
+import Paragraphs from "../../text/paragraphs";
+import OpportunityDetailEntity from "../../../../entity/opportunityDetailEntity";
 
-export default function Contact({ isFooter }) {
+export default function OpportunityDetail({ opportunities }) {
 
+  const [activeTab, setActiveTab] = useState("instructor");
   const { locale } = useContext(LocaleContext);
   const { json } = useLocale(locale)
-  const lang = json.footer
 
-  let hClass = "text-md hidden xl:block"
-  let vClass = "list-unstyled mb-0 block xl:hidden border-b pb-3"
-  let textClass = isFooter ? "text-white text-left" : "text-black text-left"
+  let list = []
+  for(let opportunity of opportunities){
+    const entity = new OpportunityDetailEntity(opportunity, locale == "ja")
+    list.push(entity)
+  }
+  list.sort((a, b) => a.ordering - b.ordering);
 
-    return (
-        <div>
-            {isFooter && (
-              <Link href={`/contact/`}><h3 className="text-lg font-bold hover:text-zinc-200">{lang.title}</h3></Link>
-            )}
-            <ul className="mt-4 space-y-4 ">
-              <div className="col-md-6 mb-4 mb-md-0">
-                <div className="flex items-center p-4">
-                  <div className="flex items-center justify-center w-10 h-10 border-2 border-white-300 p-1 mr-3">
-                    <MapPinIcon className="w-8 h-8" />
-                  </div>
-                  <span className="text-md font-semibold p-1 mr-3">{lang.location}:</span>
-                  <span className={hClass}><a href="https://www.google.com/maps?q=1701+E+Seneca+St,+Tucson,+AZ+85719,+USA" target="_blank" className={textClass}>International School of Tucson <br />1701 East Seneca Street, Tucson, AZ 85719</a></span> 
-                </div>
-                <ul className={vClass}>
-                  <li>
-                    <a href="https://www.google.com/maps?q=1701+E+Seneca+St,+Tucson,+AZ+85719,+USA" target="_blank" className={textClass}>International School of Tucson <br />1701 East Seneca Street, Tucson, AZ 85719</a>
-                  </li>
-                </ul>
+
+
+  return (
+    <div>
+    <div className="mb-4 border-b border-gray-200 dark:border-gray-700">
+      <ul
+        className="flex flex-wrap -mb-px text-sm font-medium text-center justify-center items-center"
+        role="tablist"
+      >
+        {list.map((item) => {
+          return (
+            <li className="me-2" role="presentation">
+              <button
+                className={`inline-block p-4 border-b-2 rounded-t-lg ${
+                  activeTab === item.tag
+                    ? "border-blue-500 text-blue-500"
+                    : "hover:text-gray-600 hover:border-gray-300 dark:hover:text-gray-300"
+                }`}
+                onClick={() => setActiveTab(item.tag)}
+                type="button"
+                role="tab"
+                aria-controls={item.tag}
+                aria-selected={activeTab === "instructor"}
+              >
+                <span className=" font-bold">{item.title}</span>
+              </button>
+          </li>
+          )
+        })}
+      </ul>
+    </div>
+
+    <div>
+      {list.map((item) => {
+        if(activeTab != item.tag){
+          return
+        }
+          return (
+            <div className="p-4 rounded-lg" id={item.tag} role="tabpanel">
+              <div className="text-sm text-gray-500 dark:text-gray-400">
+                <Paragraphs text={item.text} />
               </div>
-              <div className="col-md-6 mb-4 mb-md-0">
-                <div className="flex items-center p-4">
-                  <div className="flex items-center justify-center w-10 h-10 border-2 border-white-300 p-1 mr-3">
-                    <BuildingOfficeIcon className="w-8 h-8 " />
-                  </div>
-                  <span className="text-md font-semibold p-1 mr-3">{lang.address}:</span>
-                  <span className={hClass}><a href="https://www.google.com/maps?q=1803+E+Seneca+St,+Tucson,+AZ+85719,+USA" target="_blank" className={textClass}>1803 East Seneca Street,<br />Tucson, AZ 85719</a></span> 
-                </div>
-                <ul className={vClass}>
-                  <li>
-                    <a href="https://www.google.com/maps?q=1701+E+Seneca+St,+Tucson,+AZ+85719,+USA" target="_blank" className={textClass}>International School of Tucson <br />1701 East Seneca Street, Tucson, AZ 85719</a>
-                  </li>
-                </ul>
-              </div>
-              <div className="col-md-6 mb-4 mb-md-0">
-                <div className="flex items-center p-4">
-                  <div className="flex items-center justify-center w-10 h-10 border-2 border-white-300 p-1 mr-3">
-                    <EnvelopeIcon className="w-8 h-8" />
-                  </div>
-                  <span className="text-md font-semibold p-1 mr-3">{lang.email}:</span>
-                  <span className={hClass}><a href="mailto:info@tucson.nihongo.hosyuko@gmail.com" target="_blank" className={textClass}>tucson.nihongo.hosyuko@gmail.com</a></span> 
-                </div>
-                <ul className={vClass}>
-                  <li>
-                  <a href="mailto:info@tucson.nihongo.hosyuko@gmail.com" target="_blank" className={textClass}>tucson.nihongo.hosyuko@gmail.com</a>
-                  </li>
-                </ul>
-              </div>
-              <div className="col-md-6 mb-4 mb-md-0">
-                <div className="flex items-center p-4">
-                  <div className="flex items-center justify-center w-10 h-10 border-2 border-white-300 p-1 mr-3">
-                    <ClockIcon className="w-8 h-8" />
-                  </div>
-                  <span className="text-md font-semibold p-1 mr-3">{lang.class}:</span>
-                  <span className={hClass}>{lang.datetime}</span>
-                </div>
-                <ul className={vClass}>
-                  <li>
-                  {lang.datetime}
-                  </li>
-                </ul>
-              </div>
-              <div className="col-md-6 mb-4 mb-md-0">
-                <div className="flex items-center p-4">
-                  <div className="flex items-center justify-center w-10 h-10 border-2 border-white-300 p-1 mr-3">
-                    <ClockIcon className="w-8 h-8" />
-                  </div>
-                  <span className="text-md font-semibold p-1 mr-3">{lang.sns}:</span>
-                  <span className={`${hClass} flex space-x-4`}>
-                    <ul className={`border-b-0 flex space-x-4`}>
-                      <SocialMedia isFooter={isFooter}/>
-                    </ul>
-                  </span>
-                </div>
-                <ul className={`${vClass} border-b-0 flex space-x-4`}>
-                  <SocialMedia isFooter={isFooter}/>
-                </ul>
-              </div>
-            </ul>
-        </div>
-    )
-};
+            </div>
+          )
+        })}
+    </div>
+  </div>
+  );
+}

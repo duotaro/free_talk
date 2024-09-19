@@ -19,7 +19,7 @@ import Faq from '../components/parts/faq/index.js';
 import { convertAboutFromDatabase } from '../entity/aboutEntity.js';
 import About from '../components/parts/about/index.js';
 import Sponsor from '../components/parts/sponsor/index.js';
-import Opportunity from '../components/parts/opportunity/index.js';
+import Opportunity from '../components/parts/contact/opportunity/index.js';
 import { getNewsList } from '../entity/newsEntity.js';
 
 

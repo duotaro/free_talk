@@ -4,32 +4,47 @@ import LocaleContext from "../../../components/context/localeContext";
 import { useLocale } from "../../../utils/locale";
 import { getDatabase } from "../../../lib/notion";
 import { useContext } from "react";
+import OpportunityDetail from "../../../components/parts/contact/opportunity/detail";
+import OpportunityEntity from "../../../entity/opportunityEntity";
+import Paragraphs from "../../../components/parts/text/paragraphs";
+import Title from "../../../components/parts/text/title";
 
-export default function ContactOpportunityPage({ opportunities }) {
+export default function ContactOpportunityPage({ opportunities, general }) {
   const { locale } = useContext(LocaleContext);
   const { json, metaTitleExtension } = useLocale(locale)
   let lang = json.navigation
 
-  console.log(opportunities)
+  console.log(general)
+  const title = locale == "ja" ? general.properties["title"].title[0].text.content : general.properties["en"].rich_text[0].text.content
+  let text = ""
+  if(locale == "ja"){
+    if(general.properties["text"].rich_text[0]){
+        text = general.properties["text"].rich_text[0].text.content
+    }
+} else {
+    if(general.properties["text_en"].rich_text[0]){
+        text = general.properties["text_en"].rich_text[0].text.content
+    }
+
+}
 
   return (
     <Layout>
       <Head>
-        <title>{lang.contact} - {metaTitleExtension} </title>
-        <meta name="description" content={`${lang.contact} - ${lang.description}`} />
+        <title>{lang.opportunity} - {metaTitleExtension} </title>
+        <meta name="description" content={`${lang.opportunity} - ${lang.description}`} />
       </Head>
 
-      <div className="container mt-5">
-        <div className="row">
-          スタッフ募集 (デザイン浮かばん。AIに聞く)
-          {opportunities.map((opportunity) => {
-            return (
-              <>
-               <p>{opportunity.properties["title"].title[0].text.content}</p>
-              </>
-            )
-          })}
-        </div>
+      <div className="">
+        <section className="py-2 md:py-4 lg:py-6">
+          <div className="container px-6 mx-auto justify-center m-4">
+            <div className="w-full m-5">
+              <Title title={title} />
+              <Paragraphs text={text} maxWidth="lg"/>
+            </div>
+            <OpportunityDetail opportunities={opportunities}/>
+          </div>
+        </section>
       </div>
     </Layout>
   );
@@ -37,11 +52,14 @@ export default function ContactOpportunityPage({ opportunities }) {
 
 export const getStaticProps = async (context) => {
   // get news
-  let database = await getDatabase("102a8c0ecf8c80089b21d14aec9edd22")
+  const database = await getDatabase("102a8c0ecf8c80089b21d14aec9edd22")
+
+  const general = await getDatabase("d9037016a0524f08adecdbab0c7302b7")
   
   return {
     props: {
-      opportunities: database
+      opportunities: database,
+      general: general[0]
     },
     revalidate: 1
   };
