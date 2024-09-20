@@ -10,9 +10,11 @@ import Mission from "../../../components/parts/about/mission/mission.js";
 import Philosophy from "../../../components/parts/about/mission/philosophy.js";
 import Policy from "../../../components/parts/about/mission/policy.js";
 import Vision from "../../../components/parts/about/mission/vision.js";
-import savePdfIfNeeded from "../../../components/download/pdf.js";
+import Directors from "../../../components/parts/about/governance/directors.js";
+import OrganisationFlowChart from "../../../components/parts/about/governance/chart.js";
+import GovernancePolicy from "../../../components/parts/about/governance/governancePolicy.js";
 
-export default function MissionPage({ about, philosophy, policy }) {
+export default function GovernancePage({ about, philosophy, policy }) {
   const { locale } = useContext(LocaleContext);
   const { json, metaTitleExtension } = useLocale(locale)
   let lang = json.navigation
@@ -23,16 +25,15 @@ export default function MissionPage({ about, philosophy, policy }) {
   return (
     <Layout>
       <Head>
-        <title>{lang.about} - {metaTitleExtension} </title>
-        <meta name="description" content={`${lang.about} - ${lang.description}`} />
+        <title>{lang.governance} - {metaTitleExtension} </title>
+        <meta name="description" content={`${lang.governance} - ${lang.description}`} />
       </Head>
 
       <div className="">
         <div className="row">
-          <Mission mission={mission} />
-          <Vision vision={vision} />
-          <Philosophy philosophy={philosophy[0]}/>
-          <Policy policy={policy[0]} />
+          <Directors directors="" />
+          <OrganisationFlowChart charts=""/>
+          <GovernancePolicy />
         </div>
       </div>
     </Layout>
@@ -78,7 +79,6 @@ const getPolicy = async () => {
     props.push(item.properties)
   }
   await saveImageIfNeeded(props, "policy")
-  await savePdfIfNeeded(props, "policy")
   // pdf download
   return database
 }

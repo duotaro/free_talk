@@ -8,6 +8,7 @@ import Title from "../../text/title";
 import Paragraphs from "../../text/paragraphs";
 import PolicyEntity from "../../../../entity/policyEntity";
 import FileDownloads from "../../files/downloads";
+import CustomImage from "../../image/CustomImage";
 
 export default function Policy({ policy }) {
   const { locale } = useContext(LocaleContext);
@@ -18,20 +19,10 @@ export default function Policy({ policy }) {
     <section className="py-8 md:py-12 lg:py-20 ">
       <div className="container px-6 mx-auto">
         <div className="grid items-center gap-8 md:grid-flow-col-dense md:grid-cols-2 md:gap-12">
-            <div className="md:col-start-1">
-              <Image
-                src={entity.image}
-                alt="Mission"
-                width={500}
-                height={300}
-                layout="responsive"
-                objectFit="cover"
-                className="rounded-lg"
-              />
-            </div>
+            <CustomImage src={entity.image} alt="Policy" addClass="md:col-start-1" />
             <div className="flex flex-col items-center text-center ">
                 <Title title={entity.title} />
-                <FileDownloads filePath={`/files/policy/policy.pdf`} title={""} />
+                <FileDownloads filePath={entity.pdf} title={""} />
             </div>
         </div>
       </div>

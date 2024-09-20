@@ -9,7 +9,7 @@ export default function Paragraphs({ text, maxWidth = "ml" }) {
 
     const isArray = Array.isArray(text);
 
-    const whiteSpaceStyle = isArray ? { whiteSpace: 'pre-wrap' } : {}
+    const whiteSpaceStyle = isArray ? { whiteSpace: 'pre-wrap', overflowWeap: 'break-word', wordBreak: 'break-all' } : {}
     return (
       <div className={classname} style={whiteSpaceStyle}>
         {isArray && (

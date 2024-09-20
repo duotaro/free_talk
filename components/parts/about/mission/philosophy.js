@@ -14,10 +14,12 @@ export default function Philosophy({ philosophy }) {
 
   return (
     <section className="py-8 md:py-12 lg:py-20 bg-gray-50">
-      <div className="container px-6 mx-auto items-center ">
-        <div className="flex flex-col ">
-          <Title title={entity.title} />
-          <Paragraphs text={entity.text} />
+      <div className="container px-6 mx-auto ">
+        <div className="grid items-center gap-8">
+          <div className="flex flex-col items-center ">
+            <Title title={entity.title} />
+            <Paragraphs text={entity.text} maxWidth="full"/>
+          </div>
         </div>
       </div>
     </section>

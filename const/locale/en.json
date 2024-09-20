@@ -57,6 +57,14 @@
     "calender": {
       "title": "Event"
     },
+    "director": {
+      "title": "Board of Director",
+      "description": "Meet our talented team, a dynamic group of experts driven by passion and innovation."
+    },
+    "chart": {
+      "title": "Governance chart",
+      "description": "description.descriptiondescriptiondescriptiondescriptiondescriptiondescriptiondescriptiondescriptiondescription"
+    },
     "common": {
       "show_more": "See More",
       "not_found_article": "Not Found",
