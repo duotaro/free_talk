@@ -29,7 +29,7 @@ export default function Directors({ director }) {
                     {/* <span className="text-[1.15rem] font-medium text-muted">{lang.description}</span> */}
                     <Paragraphs text={lang.description} />
                   </div>
-                  <div className="grid grid-cols-2 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-5 gap-8 w-full">
+                  <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-5 gap-8 w-full">
                     <div className="flex flex-col text-center">
                       <div className="inline-block mb-4 relative shrink-0 rounded-[.95rem]">
                         <img className="inline-block shrink-0 rounded-[.95rem] w-[150px] h-[150px]" src="https://raw.githubusercontent.com/Loopple/loopple-public-assets/main/riva-dashboard-tailwind/img/avatars/avatar11.jpg" alt="avarat image" />

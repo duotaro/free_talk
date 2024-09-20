@@ -5,12 +5,12 @@ import LocaleContext from "../../context/localeContext";
 import { useLocale } from "../../../utils/locale";
 import SponsorDetail from "./detail";
 
-export default function Sponsor({ sponsor }) {
+export default function Sponsor({ sponsor, bg = "bg-gray-50" }) {
 
     const { locale } = useContext(LocaleContext);
     const { json } = useLocale(locale)
     return (
-      <section className="py-2 md:py-4 lg:py-8 bg-gray-50 px-10">
+      <section className={`py-2 md:py-4 lg:py-8 ${bg} px-10`}>
         <div className="container px-6 mx-auto text-center" >
           <h2 className="text-xl font-black sm:text-2xl lg:text-3xl">
             {json.navigation.sponsors}

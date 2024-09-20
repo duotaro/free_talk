@@ -16,9 +16,14 @@ export default function Greeting({ greeting }) {
 
   let entity = new GreetingEntity(greeting, locale == "ja")
 
+  console.log(entity.text[0].text)
+
   return (
     <section className="py-8 md:py-12 lg:py-20 bg-gray-50">
-      <div className="container px-6 mx-auto">
+      <div className="container mx-auto">
+        <div className="flex flex-col items-center  ">
+          <Title title={entity.title} />
+        </div>
         <div className="grid items-center gap-8 md:grid-flow-col-dense md:grid-cols-2 md:gap-12">
             <div className="md:col-start-2">
               <Image
@@ -32,7 +37,6 @@ export default function Greeting({ greeting }) {
               />
             </div>
             <div className="flex flex-col items-center  ">
-                <Title title={entity.title} />
                 <Paragraphs text={entity.text} />
             </div>
         </div>
