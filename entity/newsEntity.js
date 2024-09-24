@@ -41,6 +41,8 @@ export default class NewsEntity {
             const name = tmpName.replace(/ /g, '_')
             this.image = `/${ACCESABLE_IMAGE_PATH}/news/${name}${DOWNLOAD_IMAGE_EXTENSION}`
         }
+        this.tags = item.properties["tags"].multi_select
+        this.tag = item.properties["tags"].multi_select[0]
         
     }
 }

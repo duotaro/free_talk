@@ -6,14 +6,17 @@ import LocaleContext from "../../context/localeContext";
 import { useLocale } from "../../../utils/locale";
 import Link from "next/link";
 import Title from "../text/title";
+import Section from "../section";
 
 export default function News({ list, isTop }) {
   const { locale } = useContext(LocaleContext);
   const { json } = useLocale(locale)
 
-  var sectionClass = "md:py-2 bg-white"
+  let sectionPy = "md:py-2"
+  let sectionPx = "px-16 xl:px-40"
   if(isTop){
-    sectionClass = "py-4 md:py-6 lg:py-8 bg-white"
+    sectionPy = "py-4 md:py-6 lg:py-8"
+    //sectionPx = "px-40"
   }
 
   var divClass = "grid justify-center gap-10 pt-5 pb-5 md:grid-cols-2 lg:grid-cols-3"
@@ -22,7 +25,7 @@ export default function News({ list, isTop }) {
   }
 
   return (
-    <section className={sectionClass}>
+    <Section py={sectionPy} bg="bg-white" px={sectionPx}>
       {isTop && (
       <div className="container px-6 mx-auto text-center" >
         <Title title={json.navigation.news} link={`/news`}/>
@@ -38,6 +41,6 @@ export default function News({ list, isTop }) {
           })}
           </div>
       </div>
-    </section>
+      </Section>
   );
 }

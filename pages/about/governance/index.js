@@ -5,21 +5,14 @@ import LocaleContext from "../../../components/context/localeContext";
 import { useLocale } from "../../../utils/locale";
 import { getDatabase } from "../../../lib/notion";
 import saveImageIfNeeded from "../../../components/download/index.js";
-import { convertAboutFromDatabase } from "../../../entity/aboutEntity";
-import Mission from "../../../components/parts/about/mission/mission.js";
-import Philosophy from "../../../components/parts/about/mission/philosophy.js";
-import Policy from "../../../components/parts/about/mission/policy.js";
-import Vision from "../../../components/parts/about/mission/vision.js";
 import Directors from "../../../components/parts/about/governance/directors.js";
 import OrganisationFlowChart from "../../../components/parts/about/governance/chart.js";
 import GovernancePolicy from "../../../components/parts/about/governance/governancePolicy.js";
 
-export default function GovernancePage({ about, philosophy, policy }) {
+export default function GovernancePage({ directors }) {
   const { locale } = useContext(LocaleContext);
   const { json, metaTitleExtension } = useLocale(locale)
   let lang = json.navigation
-
-  let {mission, vision} = convertAboutFromDatabase(about, locale == "ja")
 
 
   return (
@@ -31,7 +24,7 @@ export default function GovernancePage({ about, philosophy, policy }) {
 
       <div className="">
         <div className="row">
-          <Directors directors="" />
+          <Directors directors={directors} />
           <OrganisationFlowChart charts=""/>
           <GovernancePolicy />
         </div>
@@ -43,42 +36,22 @@ export default function GovernancePage({ about, philosophy, policy }) {
 export const getStaticProps = async (context) => {
 
   // get about
-  let about = await getAbout()
-  let philosophy = await getPhilosophy()
-  let policy = await getPolicy()
+  let directors = await getDirector()
   return {
     props: {
-      about: about,
-      philosophy: philosophy,
-      policy: policy
+      directors: directors
     },
     revalidate: 1
   };
 };
 
-const getAbout = async () => {
-  const database = await getDatabase("d4eb3828e74c469b9179ca7be9edb5cf")
+const getDirector = async () => {
+  const database = await getDatabase("10ba8c0ecf8c807ba7c6c7c9128d9770")
   let props = []
   for(let item of database){
     props.push(item.properties)
   }
 
-  await saveImageIfNeeded(props, "about")
-  return database
-}
-
-const getPhilosophy = async () => {
-  const database = await getDatabase("f40ad3a82b894969a6a1b0ee0bfcb0cf")
-  return database
-}
-
-const getPolicy = async () => {
-  const database = await getDatabase("105a8c0ecf8c8082a456dd95fd87d0c2")
-  let props = []
-  for(let item of database){
-    props.push(item.properties)
-  }
-  await saveImageIfNeeded(props, "policy")
-  // pdf download
+  await saveImageIfNeeded(props, "director")
   return database
 }

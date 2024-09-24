@@ -9,8 +9,9 @@ import { useLocale } from "../../../../utils/locale";
 import Title from "../../text/title";
 import Paragraphs from "../../text/paragraphs";
 import CustomImage from "../../image/CustomImage";
+import { DirectorsEntity } from "../../../../entity/directorsEntity";
 
-export default function Directors({ director }) {
+export default function Directors({ directors }) {
   const { locale } = useContext(LocaleContext);
   const { json } = useLocale(locale)
   const lang = json.director
@@ -30,51 +31,24 @@ export default function Directors({ director }) {
                     <Paragraphs text={lang.description} />
                   </div>
                   <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-5 gap-8 w-full">
-                    <div className="flex flex-col text-center">
-                      <div className="inline-block mb-4 relative shrink-0 rounded-[.95rem]">
-                        <img className="inline-block shrink-0 rounded-[.95rem] w-[150px] h-[150px]" src="https://raw.githubusercontent.com/Loopple/loopple-public-assets/main/riva-dashboard-tailwind/img/avatars/avatar11.jpg" alt="avarat image" />
-                      </div>
-                      <div className="text-center">
-                        <a href="javascript:void(0)" className="text-dark font-semibold hover:text-primary text-[1.25rem] transition-colors duration-200 ease-in-out">Samantha Reynolds</a>
-                        <span className="block font-medium text-muted">Marketing Manager</span>
-                      </div>
-                    </div>
-                    <div className="flex flex-col text-center">
-                      <div className="inline-block mb-4 relative shrink-0 rounded-[.95rem]">
-                        <img className="inline-block shrink-0 rounded-[.95rem] w-[150px] h-[150px]" src="https://raw.githubusercontent.com/Loopple/loopple-public-assets/main/riva-dashboard-tailwind/img/avatars/avatar2.jpg" alt="avarat image" />
-                      </div>
-                      <div className="text-center">
-                        <a href="javascript:void(0)" className="text-dark font-semibold hover:text-primary text-[1.25rem] transition-colors duration-200 ease-in-out">Benjamin Martinez</a>
-                        <span className="block font-medium text-muted">Sales Executive</span>
-                      </div>
-                    </div>
-                    <div className="flex flex-col text-center">
-                      <div className="inline-block mb-4 relative shrink-0 rounded-[.95rem]">
-                        <img className="inline-block shrink-0 rounded-[.95rem] w-[150px] h-[150px]" src="https://raw.githubusercontent.com/Loopple/loopple-public-assets/main/riva-dashboard-tailwind/img/avatars/avatar5.jpg" alt="avarat image" />
-                      </div>
-                      <div className="text-center">
-                        <a href="javascript:void(0)" className="text-dark font-semibold hover:text-primary text-[1.25rem] transition-colors duration-200 ease-in-out">Emily Turner</a>
-                        <span className="block font-medium text-muted">Customer Support</span>
-                      </div>
-                    </div>
-                    <div className="flex flex-col text-center">
-                      <div className="inline-block mb-4 relative shrink-0 rounded-[.95rem]">
-                        <img className="inline-block shrink-0 rounded-[.95rem] w-[150px] h-[150px]" src="https://raw.githubusercontent.com/Loopple/loopple-public-assets/main/riva-dashboard-tailwind/img/avatars/avatar24.jpg" alt="avarat image" />
-                      </div>
-                      <div className="text-center">
-                        <a href="javascript:void(0)" className="text-dark font-semibold hover:text-primary text-[1.25rem] transition-colors duration-200 ease-in-out">Jason Anderson</a>
-                        <span className="block font-medium text-muted">Development Engineer</span>
-                      </div>
-                    </div>
-                    <div className="flex flex-col text-center">
-                      <div className="inline-block mb-4 relative shrink-0 rounded-[.95rem]">
-                        <img className="inline-block shrink-0 rounded-[.95rem] w-[150px] h-[150px]" src="https://raw.githubusercontent.com/Loopple/loopple-public-assets/main/riva-dashboard-tailwind/img/avatars/avatar23.jpg" alt="avarat image" />
-                      </div>
-                      <div className="text-center">
-                        <a href="javascript:void(0)" className="text-dark font-semibold hover:text-primary text-[1.25rem] transition-colors duration-200 ease-in-out">Olivia Carter</a>
-                        <span className="block font-medium text-muted">Creative Director</span>
-                      </div>
-                    </div>
+                    {directors.map((director) => {
+                      let entity = new DirectorsEntity(director)
+                      return (
+                        <div className="flex flex-col text-center">
+                          <div className="inline-block mb-4 relative shrink-0 rounded-[.95rem]">
+                            <Image className="inline-block shrink-0 rounded-[.95rem] w-[150px] h-[150px]" width={150} height={150} src={entity.image} alt={entity.name} />
+                          </div>
+                          <div className="text-center">
+                            <a href="javascript:void(0)" className="text-dark font-semibold hover:text-primary text-[1.25rem] transition-colors duration-200 ease-in-out">{entity.name}</a>
+                            {entity.positions.map((position) => {
+                              return (
+                                <span className="block font-medium text-muted">{position.name}</span>
+                              )
+                            })}
+                          </div>
+                        </div>
+                      )
+                    })}
                   </div>
                 </div>
               </div>

@@ -9,6 +9,7 @@ import Paragraphs from "../../text/paragraphs";
 import PolicyEntity from "../../../../entity/policyEntity";
 import FileDownloads from "../../files/downloads";
 import CustomImage from "../../image/CustomImage";
+import Section from "../../section";
 
 export default function Policy({ policy }) {
   const { locale } = useContext(LocaleContext);
@@ -16,7 +17,7 @@ export default function Policy({ policy }) {
   let entity = new PolicyEntity(policy, locale == "ja")
 
   return (
-    <section className="py-8 md:py-12 lg:py-20 ">
+    <Section>
       <div className="container px-6 mx-auto">
         <div className="grid items-center gap-8 md:grid-flow-col-dense md:grid-cols-2 md:gap-12">
             <CustomImage src={entity.image} alt="Policy" addClass="md:col-start-1" />
@@ -26,6 +27,6 @@ export default function Policy({ policy }) {
             </div>
         </div>
       </div>
-    </section>
+    </Section>
   );
 }

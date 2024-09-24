@@ -20,7 +20,13 @@ export default function SliderList({ sliderList }) {
                 width: 768,
                 lazyLoad: true ,
                 gap: 50,
-                padding: 50
+                padding: 50,
+                breakpoints: {
+                  768: {
+                    gap: 0,
+                    padding : 0,
+                  },
+                }
               }}
             >
               {sliderList.map((slider) => {

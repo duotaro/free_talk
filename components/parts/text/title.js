@@ -1,8 +1,9 @@
 import Link from "next/link";
 
-export default function Title({ title, link = null }) {
+export default function Title({ title, link = null, fontSize = "text-2xl  sm:text-3xl lg:text-4xl" }) {
+    
     return (
-      <h2 className="text-2xl font-black sm:text-3xl lg:text-4xl text-center">
+      <h2 className={`font-black text-center ${fontSize}`}>
           {link && (
             <Link href={link}>{title}</Link>
           )}

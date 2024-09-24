@@ -7,6 +7,7 @@ import OpportunityEntity from "../../../../entity/opportunityEntity";
 import Title from "../../text/title";
 import Paragraphs from "../../text/paragraphs";
 import CustomImage from "../../image/CustomImage";
+import Section from "../../section";
 
 export default function Opportunity({ opportunity }) {
   const { locale } = useContext(LocaleContext);
@@ -15,7 +16,7 @@ export default function Opportunity({ opportunity }) {
   const entity = new OpportunityEntity(opportunity[0], locale == "ja")
 
   return (
-    <section className="py-8 md:py-12 lg:py-20 bg-slate-300">
+    <Section bg="bg-slate-200">
       <div className="container px-6 mx-auto">
         <div className="grid items-center gap-8 md:grid-flow-col-dense md:grid-cols-2 md:gap-12">
             {/* <div className="relative w-full md:col-start-1 h-80 md:h-52 lg:h-72 xl:h-96">
@@ -28,8 +29,8 @@ export default function Opportunity({ opportunity }) {
               />
             </div> */}
             <CustomImage src={entity.image} alt="opportunity" addClass="md:col-start-1" />
-            <div className="flex flex-col items-center text-center ">
-                <Title title={entity.title} />
+            <div className="flex flex-col items-center ">
+                <Title title={entity.title} fontSize="text-xl  sm:text-2xl lg:text-3xl"/>
                 <Paragraphs text={entity.text}/>
                 <Link href={`/contact/opportunity/`} className="px-6 py-3 mt-3 text-md transition-colors rounded-md bg-blue-600 text-white hover:bg-blue-700">
                     {json.common.show_more}
@@ -37,6 +38,6 @@ export default function Opportunity({ opportunity }) {
             </div>
         </div>
       </div>
-    </section>
+    </Section>
   );
 }

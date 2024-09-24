@@ -1,6 +1,7 @@
 
 import Link from 'next/link';
 import { DocumentArrowDownIcon } from '@heroicons/react/24/outline';
+import FileDownloads from '../../files/downloads';
 
 export default function GovernancePolicy({}) {
   return (
@@ -10,33 +11,20 @@ export default function GovernancePolicy({}) {
       <h1 className="text-3xl font-bold text-center mb-8">組織規約ダウンロード</h1>
       
       {/* 規約の説明 */}
-      <p className="text-center text-gray-600 mb-12">
+      {/* <p className="text-center text-gray-600 mb-12">
         こちらのページから、弊社の規約をダウンロードできます。以下のリンクからPDFファイルをダウンロードしてください。
         <br />デザイン浮かばん
-      </p>
+      </p> */}
 
       {/* PDFリンクセクション */}
-      <div className="grid gap-3 max-w-2xl mx-auto">
-        {/* PDF1 */}
-        <div className="text-left">
-          <Link href="/path/to/terms1.pdf" className="inline-flex items-center px-6  hover:text-blue-700 transition-colors">
-            <DocumentArrowDownIcon className="mr-2 w-5 h-5 text-red" />Bylaw(リンクは無効)
-          </Link>
-        </div>
+      <div className="grid max-w-2xl mx-auto text-center">
 
-        {/* PDF2 */}
-        <div className="text-left">
-          <Link href="/path/to/terms1.pdf" className="inline-flex items-center px-6  hover:text-blue-700 transition-colors">
-            <DocumentArrowDownIcon className="mr-2 w-5 h-5" />Article of Organization(リンクは無効)
-          </Link>
-        </div>
+        <FileDownloads filePath={"/path/to/terms1.pdf"} title="Bylaw(リンクは無効)" />
 
-        {/* PDF3 */}
-        <div className="text-left">
-          <Link href="/path/to/terms1.pdf" className="inline-flex items-center px-6 hover:text-blue-700 transition-colors">
-            <DocumentArrowDownIcon className="mr-2 w-5 h-5" />Conflict of Interest Policy(リンクは無効)
-          </Link>
-        </div>
+        <FileDownloads filePath={"/path/to/terms1.pdf"} title="Article of Organization(リンクは無効)" />
+
+        <FileDownloads filePath={"/path/to/terms1.pdf"} title="Conflict of Interest Policy(リンクは無効)" />
+
       </div>
     </div>
     </section>

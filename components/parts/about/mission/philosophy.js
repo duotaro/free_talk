@@ -6,6 +6,7 @@ import LocaleContext from "../../../context/localeContext";
 import Title from "../../text/title";
 import Paragraphs from "../../text/paragraphs";
 import { PhilosophyEntity } from "../../../../entity/philosophyEntity";
+import Section from "../../section";
 
 export default function Philosophy({ philosophy }) {
   const { locale } = useContext(LocaleContext);
@@ -13,7 +14,7 @@ export default function Philosophy({ philosophy }) {
   let entity = new PhilosophyEntity(philosophy, locale == "ja")
 
   return (
-    <section className="py-8 md:py-12 lg:py-20 bg-gray-50">
+    <Section bg="bg-gray-50">
       <div className="container px-6 mx-auto ">
         <div className="grid items-center gap-8">
           <div className="flex flex-col items-center ">
@@ -22,6 +23,6 @@ export default function Philosophy({ philosophy }) {
           </div>
         </div>
       </div>
-    </section>
+    </Section>
   );
 }
