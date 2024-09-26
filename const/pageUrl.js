@@ -66,7 +66,7 @@ export const REPORT_URL = {
     ORDERING: null,
     GROUP_ORDERING: 6,
     IS_PARENT:false,
-    IS_ACTIVE:false
+    IS_ACTIVE:true
 }
 /** program */
 export const PROGRAM_URL = {
