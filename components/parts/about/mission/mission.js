@@ -18,9 +18,9 @@ export default function Mission({ mission }) {
   return (
     <Section bg="bg-gray-50">
       <div className="container px-6 mx-auto">
-        <div className="grid items-center gap-8 md:grid-flow-col-dense md:grid-cols-2 md:gap-12">
+        <div className="grid gap-8 md:grid-flow-col-dense md:grid-cols-2 md:gap-12">
             <CustomImage src={mission.image} alt="Mission" addClass="md:col-start-1" />
-            <div className="flex flex-col items-center text-center ">
+            <div className="flex flex-col items-center t ">
                 <Title title={mission.title} />
                 <Paragraphs text={mission.text} />
             </div>
