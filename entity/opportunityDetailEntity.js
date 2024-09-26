@@ -3,7 +3,6 @@ import { DOWNLOAD_IMAGE_EXTENSION, ACCESABLE_IMAGE_PATH } from "../const"
 
 export default class OpportunityDetailEntity {
     constructor(item, isJpn){
-        console.log(item.properties["ordering"])
         this.ordering =  item.properties["ordering"].number
         this.title = isJpn ? item.properties["title"].title[0].text.content : item.properties["en"].rich_text[0].text.content
         

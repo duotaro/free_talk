@@ -4,6 +4,7 @@ import React, { useContext } from 'react';
 import LocaleContext from "../../components/context/localeContext";
 import { useLocale } from "../../utils/locale";
 import Contact from "../../components/parts/contact";
+import Section from "../../components/parts/section";
 
 
 export default function ContactPage({ isTop }) {
@@ -19,12 +20,12 @@ export default function ContactPage({ isTop }) {
       </Head>
 
       <div className="container mt-5">
-          <section className="py-2 md:py-4 lg:py-6">
+        <Section py="py-2 md:py-4 lg:py-6">
             <div className="container px-6 mx-auto">
               <Contact />
             </div>
-          </section>
-        </div>
+        </Section>
+      </div>
       
     </Layout>
   );

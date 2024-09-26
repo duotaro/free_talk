@@ -24,6 +24,8 @@ const saveImageIfNeeded = async (blocksWithChildren, path) => {
     await save(tmpPath, image2)
     const image3 = block.image3
     await save(tmpPath, image3)
+    const imageEn = block.image_en
+    await save(tmpPath, imageEn)
   })
 }
 

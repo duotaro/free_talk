@@ -10,6 +10,7 @@ import Title from "../../text/title";
 import Paragraphs from "../../text/paragraphs";
 import CustomImage from "../../image/CustomImage";
 import { DirectorsEntity } from "../../../../entity/directorsEntity";
+import Section from "../../section";
 
 export default function Directors({ directors }) {
   const { locale } = useContext(LocaleContext);
@@ -17,7 +18,7 @@ export default function Directors({ directors }) {
   const lang = json.director
 
   return (
-    <section className="py-8 md:py-6 lg:py-10 bg-gray-50">
+    <Section py="py-8 md:py-6 lg:py-10" bg="bg-gray-50">
       <div className="container px-6 mx-auto">
         <div className="flex flex-wrap -mx-3 mb-5">
           <div className="w-full max-w-full px-3  mx-auto">
@@ -30,7 +31,7 @@ export default function Directors({ directors }) {
                     {/* <span className="text-[1.15rem] font-medium text-muted">{lang.description}</span> */}
                     <Paragraphs text={lang.description} />
                   </div>
-                  <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-5 gap-8 w-full">
+                  <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-8 w-full">
                     {directors.map((director) => {
                       let entity = new DirectorsEntity(director)
                       return (
@@ -56,6 +57,6 @@ export default function Directors({ directors }) {
           </div>
         </div>
       </div>
-    </section>
+    </Section>
   );
 }

@@ -8,6 +8,7 @@ import OpportunityDetail from "../../../components/parts/contact/opportunity/det
 import OpportunityEntity from "../../../entity/opportunityEntity";
 import Paragraphs from "../../../components/parts/text/paragraphs";
 import Title from "../../../components/parts/text/title";
+import Section from "../../../components/parts/section";
 
 export default function ContactOpportunityPage({ opportunities, general }) {
   const { locale } = useContext(LocaleContext);
@@ -36,7 +37,7 @@ export default function ContactOpportunityPage({ opportunities, general }) {
       </Head>
 
       <div className="">
-        <section className="py-2 md:py-4 lg:py-6">
+        <Section py="py-2 md:py-4 lg:py-6" px="px-0 md:px-20 lg:px-28 xl:px-40">
           <div className="container px-6 mx-auto justify-center m-4">
             <div className="flex flex-col w-full px-4 justify-center items-center mb-5">
               <Title title={title} />
@@ -44,7 +45,7 @@ export default function ContactOpportunityPage({ opportunities, general }) {
             </div>
             <OpportunityDetail opportunities={opportunities}/>
           </div>
-        </section>
+        </Section>
       </div>
     </Layout>
   );

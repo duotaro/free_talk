@@ -6,7 +6,6 @@ export class DirectorsEntity {
 
         const tmpName = item.properties["image"].files[0].name
         const fileName = tmpName.replace(/ /g, '_')
-        //const fileName = item.properties["image"].files[0].name
 
         this.name = isJpn ? item.properties["name"].title[0].text.content : item.properties["en"].rich_text[0].text.content
         this.positions = null
@@ -21,7 +20,6 @@ export class DirectorsEntity {
         }
 
         this.image = `/${ACCESABLE_IMAGE_PATH}/director/${fileName}${DOWNLOAD_IMAGE_EXTENSION}`
-        // console.log(item.properties["image"].files[0].external)
-        // this.tmpImage = item.properties["image"].files[0].external.url
+
     }
 }

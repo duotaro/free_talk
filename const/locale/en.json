@@ -62,8 +62,11 @@
       "description": "Meet our talented team, a dynamic group of experts driven by passion and innovation."
     },
     "chart": {
-      "title": "Governance chart",
+      "title": "Governance Chart",
       "description": "description.descriptiondescriptiondescriptiondescriptiondescriptiondescriptiondescriptiondescriptiondescription"
+    },
+    "bylaws": {
+      "title": "Organizational Bylaws"
     },
     "common": {
       "show_more": "See More",
