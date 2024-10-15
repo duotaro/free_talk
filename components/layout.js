@@ -1,32 +1,24 @@
 import Head from "next/head";
-import Navbar from './navbar'
-import Footer from './footer'
+import Footer from './parts/nav/footer'
 import Nav from './parts/nav/nav'
 import Breadcrumb from "./parts/nav/breadcrumb";
-import Sponsor from "./parts/sponsor";
 
 export default function Layout({ children, breadcrumb }) {
-  let sponsorList = []
-
-  // for(let item of sponsors){
-  //   let sponsor = new SponsorEntity(item)
-  //   sponsorList.push(sponsor)
-  // }
 
   return (
     <>
       <Head>
         <meta name="description" content="Japan, Japanese, School, Tucson, children, class, culture, kids, language, クラス, ツーソン, 子ども, 学校, 日本, 日本語" />
         <meta name="keywords" content="Japan, Japanese, School, Tucson, children, class, culture, kids, language, クラス, ツーソン, 子ども, 学校, 日本, 日本語" />
-        <meta property="og:image"  contents="https://cdn-ak.f.st-hatena.com/images/fotolife/d/duo-taro100/20230501/20230501153944.jpg"></meta>
         <link rel="icon" href="/favicon.ico" />
       </Head>
-        <Navbar />
         <Nav />
-        {breadcrumb && ( <Breadcrumb parents={breadcrumb.parents} current={breadcrumb.current} /> )}
+        {breadcrumb && ( 
+          <div className="md:ml-28">
+            <Breadcrumb parents={breadcrumb.parents} current={breadcrumb.current} />
+          </div>
+        )}
         <main className="">{children}</main>
-
-        {/* <Sponsor sponsor={commonData} /> */}
         <Footer />
     </>
   )

@@ -16,15 +16,8 @@ export function LocaleProvider({ children }) {
     const queryLang = getQueryParamLang();
     const [locale, setLocale] = useState("ja");
 
-    // const userLocale = navigator.language || navigator.userLanguage
-    // let defaultLocale = "en"
-    // if(userLocale.startsWith('ja')){
-    //   defaultLocale = "ja"
-    // } 
-
     useEffect(() => {
       // クエリパラメータが存在する場合はそれを使用
-      console.log("-----------------------------------------------------------------------------")
       if (queryLang) {
         setLocale(queryLang);
       } else {

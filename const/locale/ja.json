@@ -1,72 +1,13 @@
 {
     "navigation": {
-      "title": "ツーソン日本語補習校",
-      "sub_title": "Tucson Japanese School",
-      "meta_title": "ツーソン日本語補習校 | アメリカ・アリゾナ州ツーソンの日本語教育",
-      "description": "アメリカ・アリゾナ州ツーソン日本語補習校で日本語を学びませんか？当校は、ツーソンで日本語を習得したい方々に最適な教育環境を提供します。入学に関する情報やコースの詳細はこちらからご確認ください。",
-      "keyword": "Japan, Japanese, School, Tucson, children, class, culture, kids, language, クラス, ツーソン, 子ども, 学校, 日本, 日本語",
-      "home": "ホーム",
-      "about": "学校案内",
-      "welcome": "ようこそＴＪＳへ",
-      "mission": "理念・目標",
-      "governance": "学校運営",
-      "staff": "講師紹介",
-      "policy": "規則・規約",
-      "report": "年間報告書",
-      "program": "プログラム",
-      "calendar": "年間カレンダー",
-      "class": "クラス紹介",
-      "kanjikentei": "漢字検定",
-      "nihongocafe": "にほんごかふぇ",
-      "event": "イベント",
-      "admissions": "入学案内",
-      "forms": "入学手続き・見学",
-      "news": "お知らせ",
-      "contact": "お問い合わせ",
-      "contact2": "お問い合わせ先",
-      "faq": "よくある質問",
-      "opportunity": "スタッフ募集",
-      "donation": "協賛・寄付について",
-      "tucsonlife": "ツーソン生活情報",
-      "payment": "オンライン決済",
-      "sponsors": "スポンサー",
-      "prepare": "このページは現在準備中です。後ほどご覧いただけます。"
+      "title": "Free Talk",
+      "sub_title": "Free Talk",
+      "meta_title": "Free Talk",
+      "description": "Free Talk",
+      "keyword": "Free Talk"
     },
     "footer": {
-      "title": "お問い合わせ",
-      "location": "借用校住所",
-      "address": "郵便宛先",
-      "sns": "SNS",
-      "email": "メールアドレス",
-      "class": "授業日時",
-      "polycy": "ツーソン日本語学校は、教育機関および雇用主として、機会の平等、人間の尊厳、人種/民族および文化の多様性を重視します。従って、人種、肌の色、信条、宗教、出身国、性別、婚姻状況、性的指向、公的支援に関する状況、障害、または年齢に基づくいかなる種類の差別や嫌がらせを禁止し、これに関与しません。",
-      "datetime": "毎週土曜日9時〜11時",
-      "caution": "借用校に直接連絡することのないようにお願い致します。"
-    },
-    "side": {
-      "title": "CONTACT INFO",
-      "sponsors": "{year}年度協賛企業、団体",
-      "contact": "お問い合わせ",
-      "archive": "アーカイブ"
-    },
-    "news": {
-      "title": "お知らせ",
-      "created" : "作成日",
-      "updated" : "更新日"
-    },
-    "calender": {
-      "title": "カレンダー"
-    },
-    "director": {
-      "title": "理事役員会",
-      "description": "私たちの才能あふれるチームをご紹介します。情熱と革新に駆られたダイナミックな専門家集団です。"
-    },
-    "chart": {
-      "title": "組織図",
-      "description": "簡単な説明文簡単な説明文簡単な説明文簡単な説明文簡単な説明文簡単な説明文簡単な説明文簡単な説明文簡単な説明文簡単な説明文簡単な説明文"
-    },
-    "bylaws": {
-      "title": "組織規約"
+      "title": "お問い合わせ"
     },
     "common": {
       "show_more": "もっと詳しく",

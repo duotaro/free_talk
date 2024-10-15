@@ -1,78 +1,19 @@
 {
-   "navigation": {
-      "title": "Tucson Japanese School",
-      "sub_title": "ツーソン日本語補習校",
-      "meta_title": "Tucson Japanese School | Japanese Education in Tucson, USA",
-      "description": "Learn Japanese in Tucson, Arizona with Tucson Japanese Language School. We offer the ideal educational environment for those looking to study Japanese in America. Find information about admission and course details here. Discover Japanese education in America, Arizona, and Tucson.",
-      "keyword": "Japan, Japanese, School, Tucson, children, class, culture, kids, language, クラス, ツーソン, 子ども, 学校, 日本, 日本語",
-      "home": "Home",
-      "about": "About",
-      "welcome": "Welcome to TJS",
-      "mission": "Mission",
-      "governance": "Governance",
-      "staff": "Our Staff",
-      "policy": "Policies",
-      "report": "Annual Report",
-      "program": "Program",
-      "calendar": "Calendar",
-      "class": "Classes",
-      "kanjikentei": "Kanji Kentei",
-      "nihongocafe": "Nihongo Cafe",
-      "event": "Events",
-      "admissions": "Admission",
-      "forms": "Enrollment",
-      "news": "News",
-      "contact": "Contact",
-      "contact2": "Contact Info",
-      "faq": "FAQ",
-      "opportunity": "Opportunity",
-      "donation": "Sponsorship and Donation",
-      "tucsonlife": "Tucson Life Info",
-      "payment": "Payment",
-      "sponsors": "Sponsors",
-      "prepare": "This page is currently being prepared. Please visit again later."
-   },
-    "footer": {
-      "title": "CONTACT INFO",
-      "location": "Location",
-      "address": "Postal Address",
-      "sns": "Social Media",
-      "email": "E-mail",
-      "class": "Class date and time",
-      "polycy": "Tucson Japanese School , as an educational institution and as an employer, values equality of opportunity, human dignity, and racial/ethnic and cultural diversity. Therefore, this organization prohibits and will not engage in discrimination or harassment of any kind based on race, color, creed, religion, national origin, sex, marital status, sexual orientation, status with regard to public assistance, disability or age.",
-      "datetime": "Sat 9-11 AM",
-      "caution": "Please avoid contacting the borrowing school directly."
-    },
-    "side": {
-      "title": "CONTACT INFO",
-      "sponsors": "Sponsors {year}",
-      "contact": "Contact",
-      "archive": "Archives"
-    },
-    "news": {
-      "title": "News",
-      "created" : "Created",
-      "updated" : "Updated"
-    },
-    "calender": {
-      "title": "Event"
-    },
-    "director": {
-      "title": "Board of Director",
-      "description": "Meet our talented team, a dynamic group of experts driven by passion and innovation."
-    },
-    "chart": {
-      "title": "Governance Chart",
-      "description": "description.descriptiondescriptiondescriptiondescriptiondescriptiondescriptiondescriptiondescriptiondescription"
-    },
-    "bylaws": {
-      "title": "Organizational Bylaws"
-    },
-    "common": {
-      "show_more": "See More",
-      "not_found_article": "Not Found",
-      "not_found_page": "Not Found Page",
-      "back_home": "Home",
-      "download": "Download"
-    }
+  "navigation": {
+    "title": "Free Talk",
+    "sub_title": "Free Talk",
+    "meta_title": "Free Talk",
+    "description": "Free Talk",
+    "keyword": "Free Talk"
+  },
+  "footer": {
+    "title": "Contact"
+  },
+  "common": {
+    "show_more": "show more",
+    "not_found_article": "NOT FOUND",
+    "not_found_page": "NOT FOUND",
+    "back_home": "Go Home",
+    "download": "Download"
+  }
 }

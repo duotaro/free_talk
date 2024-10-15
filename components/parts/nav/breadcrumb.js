@@ -18,7 +18,7 @@ export default function Breadcrumb({ parents, current }) {
                 {json.navigation.home}
             </Link>
             </li>
-            {parents.map((parent) => {
+            {parents && parents.map((parent) => {
                 return (
                     <li>
                     <div className="flex items-center">

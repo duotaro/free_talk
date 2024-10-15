@@ -4,57 +4,105 @@ import { useLocale } from "../utils/locale";
 import { getDatabase } from "../lib/notion.js";
 import Layout from '../components/layout.js'
 export const databaseId = process.env.NEXT_PUBLIC_NOTION_DATABASE_ID;
-export const newsId = process.env.NEXT_PUBLIC_NOTION_NEWS_DATABASE_ID;
-import SliderList from '../components/parts/slider/index.js';
-import News from '../components/parts/news/index.js';
-import SponsorEntity from '../entity/sponsorEntity.js';
-import { fetchGss } from '../lib/appscript.js';
-//import fs from 'fs';
 import LocaleContext from '../components/context/localeContext.js';
 import saveImageIfNeeded from '../components/download/index.js';
-import Calender from '../components/parts/calender/index.js';
-import Mission from '../components/parts/about/mission/mission.js';
-import Vision from '../components/parts/about/mission/vision.js';
-import Faq from '../components/parts/faq/index.js';
-import { convertAboutFromDatabase } from '../entity/aboutEntity.js';
-import About from '../components/parts/about/index.js';
-import Sponsor from '../components/parts/sponsor/index.js';
-import Opportunity from '../components/parts/contact/opportunity/index.js';
-import { getNewsList } from '../entity/newsEntity.js';
+import TopListEntity, { getListFromNotion } from '../entity/topListEntity.js';
+import Link from 'next/link.js';
+import Image from 'next/image.js';
 
 
-export default function Home({ sliderList, sponsors, newsList, scheduleList, about, opportunity }) {
+export default function Home({ list }) {
   const { locale } = useContext(LocaleContext);
-  const { json, metaTitleExtension } = useLocale(locale)
-  let lang = json.navigation
-  let sponsorList = []
+  const { json } = useLocale(locale)
+  const lang = json.navigation
 
-  for(let item of sponsors){
-    let sponsor = new SponsorEntity(item)
-    sponsorList.push(sponsor)
+  const entityList = []
+  for(const item of list){
+    const entity = new TopListEntity(item, locale == "ja")
+    //if(entity.active){
+      entityList.push(entity)
+    //}
   }
+  entityList.sort((a, b) => a.ordering - b.ordering)
 
-  let {aboutSchool, mission, vision} = convertAboutFromDatabase(about, locale == "ja")
+  const getBadgeColor = (text) => {
+      const colors = [
+        'green',  // 0
+        'yellow', // 1
+        'red',    // 2
+        'blue',   // 3
+        'purple', // 4
+        'indigo', // 5
+        'pink',   // 6
+        'gray-300'    // 7
+    ];
+
+    // 文字列を数値に変換する
+    const hash = Array.from(text).reduce((acc, char) => acc + char.charCodeAt(0), 0);
+    
+    // 色のインデックスを決定
+    const index = hash % colors.length;
+
+    const color =  colors[index];
+    return `bg-${color}-300 text-${color}-800 text-xs me-2 px-2.5 py-0.5 rounded dark:bg-${color}-900 dark:text-${color}-300`
+  }
 
   return (
     <Layout>
       <Head>
-        <title>{metaTitleExtension}</title>
+        <title>{lang.meta_title}(${lang.sub_title})</title>
         <meta name="description" content={`${lang.title} - ${lang.description}`} />
         <link rel="icon" href="/favicon.ico" />
       </Head>
-      <div className="">
-        <div className="row">
-          <SliderList sliderList={sliderList} />  
-          <News list={newsList} isTop={true} />
-          <About about={aboutSchool} isTop={true}/>
-          <Mission mission={mission} />
-          <Vision vision={vision}/>
-          <Opportunity opportunity={opportunity} />
-          {/* <Faq /> */}
-          <Sponsor sponsor={sponsorList} />
-        </div>{/* .row */}
-      </div>{/* .container */}
+      <section className="bg-white py-8">
+        <div className="container mx-auto flex items-center flex-wrap pt-4 pb-12">
+          <nav id="store" className="w-full z-30 top-0 px-6 py-1">
+              <div className="w-full container mx-auto flex flex-wrap items-center justify-between mt-0 px-2 py-3">
+                  {/* <a className="uppercase tracking-wide no-underline hover:no-underline font-bold text-gray-800 text-xl " href="#">Store</a> */}
+                  {/* <div className="flex items-center" id="store-nav-content">
+
+                      <a className="pl-3 inline-block no-underline hover:text-black" href="#">
+                          <svg className="fill-current hover:text-black" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24">
+                              <path d="M7 11H17V13H7zM4 7H20V9H4zM10 15H14V17H10z" />
+                          </svg>
+                      </a>
+
+                      <a className="pl-3 inline-block no-underline hover:text-black" href="#">
+                          <svg className="fill-current hover:text-black" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24">
+                              <path d="M10,18c1.846,0,3.543-0.635,4.897-1.688l4.396,4.396l1.414-1.414l-4.396-4.396C17.365,13.543,18,11.846,18,10 c0-4.411-3.589-8-8-8s-8,3.589-8,8S5.589,18,10,18z M10,4c3.309,0,6,2.691,6,6s-2.691,6-6,6s-6-2.691-6-6S6.691,4,10,4z" />
+                          </svg>
+                      </a>
+
+                  </div> */}
+            </div>
+          </nav>
+          {entityList.map((entity) => {
+            let detailUrl = `/detail/${entity.id}/`
+            if(!entity.active){
+              detailUrl = `/prepare/`
+            }
+            // if(entity.externalLink){
+            //   detailUrl = entity.externalLink
+            // }
+            const tagClass = getBadgeColor(entity.tag.name)
+            return (
+              <div className="w-full md:w-1/3 xl:w-1/4 p-6 flex flex-col">
+                <Link href={detailUrl}>
+                  <div className="relative w-full h-72 md:h-32 lg:h-48 ">
+                    <Image className="hover:grow hover:shadow-lg" src={entity.image} layout="fill" objectFit="cover" />
+                  </div>
+                    <div className="pt-3 flex items-center justify-between ">
+                        <p className="">{entity.title}</p>
+                        <span className={tagClass}>{entity.tag.name}</span>
+
+                    </div>
+                    <p className="pt-1 text-gray-900">{entity.date}</p>
+                </Link>
+              </div>
+            )
+          })}
+        </div>
+      </section>
     </Layout>
   );
 }
@@ -62,135 +110,22 @@ export default function Home({ sliderList, sponsors, newsList, scheduleList, abo
 export const getStaticProps = async (context) => {
 
   // get slider
-  let sliderList = await getSlider()
+  let list = await getList()
 
-  // get sponsor
-  let sponsors = await getSponsors()
-
-  // get news
-  let newsList = await getNews(3)
-  // 件数フィルター
-
-  // get calender
-  let scheduleList = await getCalender()
-
-  // get about
-  let about = await getAbout()
-
-
-  let opportunity = await getOpportunity()
   return {
     props: {
-      sliderList: sliderList,
-      sponsors: sponsors,
-      newsList: newsList,
-      scheduleList: scheduleList,
-      about: about,
-      opportunity: opportunity
+      list: list,
     },
     revalidate: 1
   };
 };
 
-/**
- * get slider info
- * @returns list [SliderEntity]
- */
-const getSlider = async () => {
-  const topBannerId = "f2bd94d61f7c45958755562d366af5ea"
-  const database = await getDatabase(topBannerId)
-  let props = []
-  for(let item of database){
-    props.push(item.properties)
-  }
-  await saveImageIfNeeded(props, "slider")
-  return database;
- 
-}
-
-
-const getNews = async (limit = null) => {
-  const database = await getDatabase(newsId)
+const getList = async () => {
+  const database = await getListFromNotion()
   let props = []
   for(let item of database){
       props.push(item.properties)
   }
-  await saveImageIfNeeded(props, "news")
-  
-  let params = await getNewsList(database, limit)
-  return params
-}
-
-const getSponsors = async () => {
-  const database = await getDatabase("1e302ac5bce442b797e491aee309e7c4")
-  let props = []
-  for(let item of database){
-    props.push(item.properties)
-  }
-
-  await saveImageIfNeeded(props, "sponsor")
+  await saveImageIfNeeded(props, "top")
   return database
-}
-
-const getCalender = async () => {
-  const database = await getDatabase("8d87080f73f14e8a9e7ba934c1d928c6")
-  return database
-}
-
-const getAbout = async () => {
-  const database = await getDatabase("d4eb3828e74c469b9179ca7be9edb5cf")
-  let props = []
-  for(let item of database){
-    props.push(item.properties)
-  }
-
-  await saveImageIfNeeded(props, "about")
-  return database
-}
-
-const getOpportunity = async () => {
-  const database = await getDatabase("d9037016a0524f08adecdbab0c7302b7")
-  let props = []
-  for(let item of database){
-    props.push(item.properties)
-  }
-
-  await saveImageIfNeeded(props, "opportunity")
-  return database
-}
-
-export async function generateMetadata({ params }) {
-  const metadata = {
-    title: "Home - Arizona Gakuen School",
-    description: "最新情報 What's New? - Updated On Oct 17th ★最新情報 ★ 保護者の皆様へ ★ 登録/募集のお知らせ ★最新情報 IACE Travel 様からの【補習校応援プログラム】を更新致しました。こちらからご覧ください。海外子女教育振興財団より、2021年10月20日（水）に発行される「帰国子女のための学校便覧」2022年度版のご紹介です。書籍詳細、お申込みはこちらからご確認頂けます。学校行事をアップデートしましたのでご覧下さい。海外子女教育 月刊 弊誌をアップしました。こちらの学園内限定サイトよりご覧下さい。 ★ 保護者の皆様へ 全ての生徒様の緊急連絡先の登録をお願いします！（パスワードは校長先生のメールを参照下さい）Please sign up Emergency contact information of every student. （Please confirm e-mail about password.）Amazon.comのお買物の際、Amazon smileからご購入頂くと、その一部がアリゾナ学園へ寄付されます。詳細は下記リンクから。 ★ 登録/募集のお知らせ 学校サポーター（保護者ボランティア）募集！教室での授業サポーター、校内パトロール・サポーター、式典行事サポータ。ー、アリゾナ学園コンシェルジェ等々、みんなのアリゾナ学園の活動に参加しませんか？詳しくは事務局まで。こちらのオンラインフォームからもご応募して頂けます。教員募集！教えることに興味のある方、是非一度、事務局までご連絡下さい。こちらのオンラインフォームからもご応募して頂けます。オフィシャルウェブサイト用の写真を募集しています！詳細はこちらから。Send us your child photos! Check more details here. Fry'sが主催するCommunity Rewards Program にアリゾナ学園（寄付先 : Arizona Kokusai Kyoiku",
-    alternates: {
-      canonical: `${pageUrl}`,
-    },
-    openGraph: {
-      title: "Home - Arizona Gakuen School",
-      description: "最新情報 What's New? - Updated On Oct 17th ★最新情報 ★ 保護者の皆様へ ★ 登録/募集のお知らせ ★最新情報 IACE Travel 様からの【補習校応援プログラム】を更新致しました。こちらからご覧ください。海外子女教育振興財団より、2021年10月20日（水）に発行される「帰国子女のための学校便覧」2022年度版のご紹介です。書籍詳細、お申込みはこちらからご確認頂けます。学校行事をアップデートしましたのでご覧下さい。海外子女教育 月刊 弊誌をアップしました。こちらの学園内限定サイトよりご覧下さい。 ★ 保護者の皆様へ 全ての生徒様の緊急連絡先の登録をお願いします！（パスワードは校長先生のメールを参照下さい）Please sign up Emergency contact information of every student. （Please confirm e-mail about password.）Amazon.comのお買物の際、Amazon smileからご購入頂くと、その一部がアリゾナ学園へ寄付されます。詳細は下記リンクから。 ★ 登録/募集のお知らせ 学校サポーター（保護者ボランティア）募集！教室での授業サポーター、校内パトロール・サポーター、式典行事サポータ。ー、アリゾナ学園コンシェルジェ等々、みんなのアリゾナ学園の活動に参加しませんか？詳しくは事務局まで。こちらのオンラインフォームからもご応募して頂けます。教員募集！教えることに興味のある方、是非一度、事務局までご連絡下さい。こちらのオンラインフォームからもご応募して頂けます。オフィシャルウェブサイト用の写真を募集しています！詳細はこちらから。Send us your child photos! Check more details here. Fry'sが主催するCommunity Rewards Program にアリゾナ学園（寄付先 : Arizona Kokusai Kyoiku",
-      url: `https://example-domain.com/${pageUrl}`,
-      siteName: "サイトタイトル",
-      locale: "ja_JP",
-      type: "website",
-      images: "/opengraph-image.png",
-    },
-    twitter: {
-      card: "summary_large_image",
-      images: "/twitter-image.png",
-    },
-  };
-
-  return metadata;
-}
-
-
-let getNewsFromGSS = async () => {
-  let news = await fetchGss("news")
-  let sponsors = await fetchGss("sponsors")
-
-  return {
-    news,
-    sponsors
-  }
 }
